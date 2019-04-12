@@ -1666,7 +1666,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Instructions will populate here
+  m_Text: Instructions will populate here.  You can't just hit play to run this scene!  You
+    must execute through the test runner.  See the README in this project's root folder
+    for more information.
 --- !u!222 &1903461059
 CanvasRenderer:
   m_ObjectHideFlags: 0
