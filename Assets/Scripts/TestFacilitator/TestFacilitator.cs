@@ -19,7 +19,10 @@ public class TestFacilitator : MonoBehaviour
     private bool m_WaitForContinue;
     string m_Description = "Describe your test here";
     string m_StatusDetails = "None";
-    
+
+    // This is called by TestRunner scripts.
+    // Simply entering playmode won't start this, and we don't want it to start twice via Start() or Awake()
+    // Please refer to the readme in this project's root folder for more information
     public IEnumerator RunTest()
     {
         instructionCanvas.Instructions.text = "Activate one of the control buttons below by pressing the corresponding keyboard key or looking directly at it.";
