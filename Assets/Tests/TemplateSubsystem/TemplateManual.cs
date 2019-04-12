@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 namespace Tests
 {
-    public class NewTestScript
+    public class TemplateManual
     {
         [UnityTest]
         [Description("This test should load the scene, print a debug statement, and succeed")]

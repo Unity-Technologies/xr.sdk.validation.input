@@ -8,20 +8,21 @@ using UnityEngine.SceneManagement;
 
 namespace Tests
 {
-    public class NewTestScript1
+    public class TemplateAutomatic
     {
         [UnityTest]
         [Description("This test should load the scene, print a debug statement, and succeed")]
-        public IEnumerator TestScene()
+        public IEnumerator AlwaysPass()
         {
-            yield return TestFunctions.RunFacilitatorSceneTest("TestScene");
+            yield return null;
         }
 
         [UnityTest]
         [Description("This test should load the scene, print a debug statement, and succeed")]
-        public IEnumerator TestScene2()
+        public IEnumerator AlwaysFail()
         {
-            yield return TestFunctions.RunFacilitatorSceneTest("TestScene");
+            yield return null;
+            Assert.IsTrue(false);
         }
     }
 }

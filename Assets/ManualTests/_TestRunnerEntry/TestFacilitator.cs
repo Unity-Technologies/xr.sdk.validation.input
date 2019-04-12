@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestFacilitator : MonoBehaviour
+public abstract class TestFacilitator : MonoBehaviour
 {
     public InstructionCanvas instructionCanvas;
     public OverallTestStatus overallStatus { get; private set; } = OverallTestStatus.NotRun;
@@ -15,27 +15,17 @@ public class TestFacilitator : MonoBehaviour
         Failed,
         Passed
     }
-
-    private bool m_WaitForContinue;
-    string m_Description = "Describe your test here";
-    string m_StatusDetails = "None";
+    
+    protected bool m_WaitForContinue;
+    protected string m_Description = "Describe your test here";
+    protected string m_StatusDetails = "None";
 
     // This is called by TestRunner scripts.
     // Simply entering playmode won't start this, and we don't want it to start twice via Start() or Awake()
     // Please refer to the readme in this project's root folder for more information
-    public IEnumerator RunTest()
-    {
-        instructionCanvas.Instructions.text = "Activate one of the control buttons below by pressing the corresponding keyboard key or looking directly at it.";
+    public abstract IEnumerator RunTest();
 
-        m_WaitForContinue = true;
-        while (overallStatus == OverallTestStatus.NotRun && m_WaitForContinue)
-            yield return null;
-
-        if (overallStatus == OverallTestStatus.NotRun)
-            RecordStatus(OverallTestStatus.Passed, "Continue was successfully triggered");
-    }
-
-    private void RecordStatus(OverallTestStatus OverallStatus, string StatusDetails)
+    protected void RecordStatus(OverallTestStatus OverallStatus, string StatusDetails)
     {
         overallStatus = OverallStatus;
         m_StatusDetails = StatusDetails;
@@ -56,18 +46,15 @@ public class TestFacilitator : MonoBehaviour
     public void Skip(string StatusDetails)
     {
         RecordStatus(OverallTestStatus.Skipped, StatusDetails);
-        this.StopAllCoroutines();
     }
     
     public void Inconclusive(string StatusDetails)
     {
         RecordStatus(OverallTestStatus.Inconclusive, StatusDetails);
-        this.StopAllCoroutines();
     }
 
     public void Fail(string StatusDetails)
     {
         RecordStatus(OverallTestStatus.Failed, StatusDetails);
-        this.StopAllCoroutines();
     }
 }
