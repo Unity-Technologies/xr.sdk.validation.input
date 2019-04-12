@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Passed" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2019-04-11 18:50:06Z" end-time="2019-04-11 18:50:09Z" duration="3.1302814">
+  <test-suite type="TestSuite" id="1000" name="New Unity Project" fullname="New Unity Project" runstate="Runnable" testcasecount="2" result="Passed" start-time="2019-04-11 18:50:06Z" end-time="2019-04-11 18:50:09Z" duration="3.130281" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties />
+    <test-suite type="Assembly" id="1005" name="Tests.dll" fullname="C:/Users/jackpr/Git/CertTestRunnerScratch/Library/ScriptAssemblies/Tests.dll" runstate="Runnable" testcasecount="2" result="Passed" start-time="2019-04-11 18:50:06Z" end-time="2019-04-11 18:50:09Z" duration="3.078064" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="6848" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+      </properties>
+      <test-suite type="TestSuite" id="1006" name="Tests" fullname="Tests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2019-04-11 18:50:06Z" end-time="2019-04-11 18:50:09Z" duration="3.058367" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestFixture" id="1002" name="NewTestScript" fullname="Tests.NewTestScript" classname="Tests.NewTestScript" runstate="Runnable" testcasecount="2" result="Passed" start-time="2019-04-11 18:50:06Z" end-time="2019-04-11 18:50:09Z" duration="3.036190" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1003" name="TestScene" fullname="Tests.NewTestScript.TestScene" methodname="TestScene" classname="Tests.NewTestScript" runstate="Runnable" seed="1071041810" result="Passed" start-time="2019-04-11 18:50:06Z" end-time="2019-04-11 18:50:08Z" duration="1.770165" asserts="0">
+            <properties>
+              <property name="_JOINTYPE" value="UnityCombinatorial" />
+              <property name="Description" value="This test should load the scene, print a debug statement, and succeed" />
+            </properties>
+            <output><![CDATA[All Tests Finished for scene "TestScene"
+
+General Status: Passed 
+Detailed Status: scene was loaded, you are now getting test status.  The setup works.
+]]></output>
+          </test-case>
+          <test-case id="1004" name="TestScene2" fullname="Tests.NewTestScript.TestScene2" methodname="TestScene2" classname="Tests.NewTestScript" runstate="Runnable" seed="398333873" result="Passed" start-time="2019-04-11 18:50:08Z" end-time="2019-04-11 18:50:09Z" duration="1.234808" asserts="0">
+            <properties>
+              <property name="_JOINTYPE" value="UnityCombinatorial" />
+              <property name="Description" value="This test should load the scene, print a debug statement, and succeed" />
+            </properties>
+            <output><![CDATA[All Tests Finished for scene "TestScene"
+
+General Status: Passed 
+Detailed Status: scene was loaded, you are now getting test status.  The setup works.
+]]></output>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
