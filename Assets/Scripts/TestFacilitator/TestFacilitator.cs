@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using NUnit.Framework;
-using UnityEngine.SceneManagement;
-
 public class TestFacilitator : MonoBehaviour
 {
     public InstructionCanvas instructionCanvas;
@@ -26,8 +23,8 @@ public class TestFacilitator : MonoBehaviour
     public IEnumerator RunTest()
     {
         instructionCanvas.Instructions.text = "Activate one of the control buttons below by pressing the corresponding keyboard key or looking directly at it.";
+
         m_WaitForContinue = true;
-        
         while (overallStatus == OverallTestStatus.NotRun && m_WaitForContinue)
             yield return null;
 
