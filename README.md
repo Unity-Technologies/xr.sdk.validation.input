@@ -1,5 +1,5 @@
-# CertTestRunnerScratch
-Playing with doing xr sdk cert tests through test runner - both automated and manual
+# XR SDK Validation project
+Automated and Manual tests to verify XR SDK providers.
 
 ### Setup
 - Import the target XR SDK package
