@@ -12,10 +12,14 @@ public class TemplateTestFacilitator : TestFacilitator
         m_Description = "Simple template facilitator that just waits for the user to activate one of the manual status panel buttons.";
         instructionCanvas.Instructions.text = "Activate one of the control buttons below by pressing the corresponding keyboard key or looking directly at it.";
 
+        // This is an example of a manual checkpoint.
         m_WaitForContinue = true;
         while (overallStatus == OverallTestStatus.NotRun && m_WaitForContinue)
             yield return null;
 
+        // If your test successfully reaches its conclusion, RecordStatus() as passed.
+        // The second parameter of RecordStatus allows you to give more information 
+        // for a success or failure in the results log.
         if (overallStatus == OverallTestStatus.NotRun)
             RecordStatus(OverallTestStatus.Passed, "Continue was successfully triggered");
     }

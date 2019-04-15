@@ -14,14 +14,14 @@ namespace Tests
         [Description("This test should load the scene, print a debug statement, and succeed")]
         public IEnumerator TestScene()
         {
-            yield return TestFunctions.RunFacilitatorSceneTest("TestScene");
+            yield return TestFunctions.RunFacilitatorSceneTest("TemplateScene");
         }
 
         [UnityTest]
         [Description("This test should load the scene, print a debug statement, and succeed")]
         public IEnumerator TestScene2()
         {
-            yield return TestFunctions.RunFacilitatorSceneTest("TestScene");
+            yield return TestFunctions.RunFacilitatorSceneTest("TemplateScene");
         }
     }
 }
