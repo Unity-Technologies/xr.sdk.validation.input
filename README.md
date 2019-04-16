@@ -25,8 +25,10 @@ Do not just hit play - this won't work!  Refer to "Running a subset of tests" ab
 - Navigate to Assets/ManualTests/foo, where foo is the specific subsystem that applies you will test.  If no appropriate folder exists refer to "Creating a New Subsystem Test Folder."
 - Copy an existing scene or copy and rename Assets/ManualTests/TemplateSubsystem/TemplateScene to this folder.
 - Create a new TestFacilitator in Assets/ManualTests/\_TestRunnerEntry.  This can be a copy of an existing TestFacilitator or a copy of Assets/ManualTests/\_TestRunnerEntry/TemplateTestFacilitator.cs.  The TestFacilitator script controls the flow of your test and ultimately reports status back to the Test Runner.
-- In your new scene replace the existing TestFacilitator script, located on the "TestFacilitator" GameObject, with your new TestFacilitator script.
+- In your new scene replace the existing TestFacilitator script, located on the "TestFacilitator" GameObject, with your new TestFacilitator script.  Link the InstructionCanvas to this new Component.
 - Edit the new scene and TestFacilitator script to match your desired functionality.  Assets/ManualTests/\_TestRunnerEntry/TemplateTestFacilitator.cs contains examples of manual checkpoints and correct status reporting.
+- Open File -> Build Settings and add your new scene to the build.
+- Add your Test Runner test to the appropriate test runner script.  See Assets/Tests/TemplateSubsystem/TemplateManual.cs for an example of a manual Test Runner test.
 
 ### Creating a New Automated Test
 - Navigate to Assets/Tests/foo, where foo is the specific subsystem or intra-subsystem integration that applies to your new test.  If no appropriate folder exists refer to "Creating a New Subsystem Test Folder."
@@ -34,5 +36,5 @@ Do not just hit play - this won't work!  Refer to "Running a subset of tests" ab
 
 ### Creating a New Subsystem Test Folder
 - Check Assets/Tests/ for a folder that already matches the subsystem you want to write tests for.  If one exists, create a new test in that folder instead of creating a new subsystem folder.
-- Copy Assets/Tests/TemplateSubsystem to Assets/Tests/foo, where foo is the name of the subsystem that you will be testing.
+- Copy Assets/Tests/TemplateSubsystem to Assets/Tests/foo, where foo is the name of the subsystem that you will be testing.  Rename the scripts from TemplateAutomatic and TemplateManual to FooAutomatic and FooManual.cs.  Change the class names of these scripts as well.
 - If you want to create manual tests for this subsystem, copy Assets/ManualTests/TemplateSubsystem folder to Assets/ManualTests/foo, where foo is the name of the subsystem that you will be testing.

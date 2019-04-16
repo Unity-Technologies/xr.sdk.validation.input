@@ -5,6 +5,7 @@
 [Bb]uilds/
 Logs/
 Assets/AssetStoreTools*
+Assets/InitTestScene*
 TestResults*.xml
 
 # Visual Studio cache directory
