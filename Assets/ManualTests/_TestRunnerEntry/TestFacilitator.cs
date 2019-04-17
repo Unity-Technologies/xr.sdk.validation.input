@@ -37,6 +37,13 @@ public abstract class TestFacilitator : MonoBehaviour
             "\nTest Description: " + m_Description +
             "\nStatus Details: " + m_StatusDetails;
     }
+
+    protected IEnumerator WaitForContinue()
+    {
+        m_WaitForContinue = true;
+        while (overallStatus == OverallTestStatus.NotRun && m_WaitForContinue)
+            yield return null;
+    }
     
     public void Continue()
     {

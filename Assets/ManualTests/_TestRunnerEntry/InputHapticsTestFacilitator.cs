@@ -12,45 +12,27 @@ public class InputHapticsTestFacilitator : TestFacilitator
         m_Description = "Test haptic response.  Verify impulse and bufferedHaptics behave as required.";
         instructionCanvas.Instructions.text = "If your device supports haptic impulse, verify that the intensity can be changed and the haptic strength reacts appropriately.  Then either fail or continue.";
 
-        // This is an example of a manual checkpoint.
-        m_WaitForContinue = true;
-        while (overallStatus == OverallTestStatus.NotRun && m_WaitForContinue)
-            yield return null;
+        yield return WaitForContinue();
 
         instructionCanvas.Instructions.text = "If your device supports haptic impulse, verify that the duration can be changed and the time of the impulse is correct.  Then either fail or continue.";
 
-        // This is an example of a manual checkpoint.
-        m_WaitForContinue = true;
-        while (overallStatus == OverallTestStatus.NotRun && m_WaitForContinue)
-            yield return null;
+        yield return WaitForContinue();
 
         instructionCanvas.Instructions.text = "If your device supports haptic impulse, verify that the Stop Haptics buttons stop an impulse.  Then either fail or continue.";
 
-        // This is an example of a manual checkpoint.
-        m_WaitForContinue = true;
-        while (overallStatus == OverallTestStatus.NotRun && m_WaitForContinue)
-            yield return null;
+        yield return WaitForContinue();
 
         instructionCanvas.Instructions.text = "If your device supports buffered haptics, verify that the ramp up and ramp down effects feel correct.  Then either fail or continue.";
 
-        // This is an example of a manual checkpoint.
-        m_WaitForContinue = true;
-        while (overallStatus == OverallTestStatus.NotRun && m_WaitForContinue)
-            yield return null;
+        yield return WaitForContinue();
 
         instructionCanvas.Instructions.text = "If your device supports buffered haptics, verify that the 1 second clip lasts one second.  Then either fail or continue.";
 
-        // This is an example of a manual checkpoint.
-        m_WaitForContinue = true;
-        while (overallStatus == OverallTestStatus.NotRun && m_WaitForContinue)
-            yield return null;
+        yield return WaitForContinue();
 
         instructionCanvas.Instructions.text = "If your device supports buffered haptics, verify that the Stop Haptics buttons stop a buffered clip.  Then either fail or continue.";
 
-        // This is an example of a manual checkpoint.
-        m_WaitForContinue = true;
-        while (overallStatus == OverallTestStatus.NotRun && m_WaitForContinue)
-            yield return null;
+        yield return WaitForContinue();
 
         // If your test successfully reaches its conclusion, RecordStatus() as passed.
         // The second parameter of RecordStatus allows you to give more information 
