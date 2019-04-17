@@ -38,6 +38,6 @@ public class InputHapticsTestFacilitator : TestFacilitator
         // The second parameter of RecordStatus allows you to give more information 
         // for a success or failure in the results log.
         if (overallStatus == OverallTestStatus.NotRun)
-            RecordStatus(OverallTestStatus.Passed, "Continue was successfully triggered");
+            RecordStatus(OverallTestStatus.Passed, "All haptic tests have been manually approved");
     }
 }
