@@ -248,6 +248,19 @@ namespace Tests
                         case "TrackingState":
                             Assert.IsTrue(Features[j].type == typeof(uint));
                             break;
+                        case "IsTracked":
+                        case "PrimaryButton":
+                        case "PrimaryTouch":
+                        case "SecondaryButton":
+                        case "SecondaryTouch":
+                        case "GripButton":
+                        case "TriggerButton":
+                        case "Primary2DAxisClick":
+                        case "Primary2DAxisTouch":
+                        case "MenuButton":
+                        case "Thumbrest":
+                            Assert.IsTrue(Features[j].type == typeof(bool));
+                            break;
                         case "Trigger":
                         case "Grip":
                         case "IndexTouch":
@@ -291,7 +304,7 @@ namespace Tests
                             Assert.IsTrue(Features[j].type == typeof(Quaternion));
                             break;
                         default:
-                            Assert.IsTrue(false, "unknown feature detected");
+                            Assert.IsTrue(false, "unknown feature detected \"" + Features[j].name + "\"");
                             break;
                     }
                 }
