@@ -205,5 +205,26 @@ namespace Tests
                 }
             }
         }
+
+        [Test]
+        [Description("This test verifies that a tracked device contatins the minimum set of features.")]
+        public void UsagesNoRepeats()
+        {
+            List<InputDevice> Devices = new List<InputDevice>();
+            InputDevices.GetDevices(Devices);
+
+            Assert.AreNotEqual(0, Devices.Count, "No devices found");
+
+            for (int i = 0; i < Devices.Count; i++)
+            {
+                List<InputFeatureUsage> Features = new List<InputFeatureUsage>();
+                Devices[i].TryGetFeatureUsages(Features);
+
+                for (int j = i + 1; j < Devices.Count; j++)
+                {
+                    Assert.AreNotEqual(Features[i].name, Features[j].name);
+                }
+            }
+        }
     }
 }
