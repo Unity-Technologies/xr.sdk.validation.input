@@ -17,7 +17,6 @@ public abstract class TestFacilitator : MonoBehaviour
     }
     
     protected bool m_WaitForContinue;
-    protected string m_Description = "Describe your test here";
     protected string m_StatusDetails = "None";
 
     // This is called by TestRunner scripts.
@@ -33,8 +32,8 @@ public abstract class TestFacilitator : MonoBehaviour
 
     public string GetTestStatus()
     {
-        return "General Status: " + overallStatus +
-            "\nTest Description: " + m_Description +
+        return "\n----------------------------------" +
+            "\nGeneral Status: " + overallStatus +
             "\nStatus Details: " + m_StatusDetails;
     }
 

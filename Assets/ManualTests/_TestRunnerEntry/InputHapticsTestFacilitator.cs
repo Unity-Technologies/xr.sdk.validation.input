@@ -9,7 +9,6 @@ public class InputHapticsTestFacilitator : TestFacilitator
     // Please refer to the readme in this project's root folder for more information
     public override IEnumerator RunTest()
     {
-        m_Description = "Test haptic response.  Verify impulse and bufferedHaptics behave as required.";
         instructionCanvas.Instructions.text = "If your device supports haptic impulse, verify that the intensity can be changed and the haptic strength reacts appropriately.  Then either fail or continue.";
 
         yield return WaitForContinue();
