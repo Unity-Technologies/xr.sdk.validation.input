@@ -13,11 +13,15 @@ public class ButtonHighlightTriggersPress : MonoBehaviour, IPointerEnterHandler,
     private bool m_Highlighted;
     private float m_Timer;
     private float m_TimeToPress = 1.0f;
+    private Color m_OriginalHighlightColor;
 
     // Start is called before the first frame update
     void Start()
     {
         m_Button = GetComponent<Button>();
+
+        ColorBlock OriginalColorBlock = m_Button.colors;
+        m_OriginalHighlightColor = OriginalColorBlock.highlightedColor;
     }
 
     // Update is called once per frame
@@ -30,8 +34,9 @@ public class ButtonHighlightTriggersPress : MonoBehaviour, IPointerEnterHandler,
             {
                 m_Button.onClick?.Invoke();
                 m_Timer = 0f;
+                EndHighlight(); // Prevent accidental double pressing
             }
-            else // i like to do it this way in case frame rate is garbage for some reason
+            else // add time after check in case frame rate is garbage for some reason
             {
                 ColorBlock highlightBlock = m_Button.colors;
                 highlightBlock.highlightedColor = new Color(inverseTimeFraction, inverseTimeFraction, 0f, 1f);
@@ -43,12 +48,27 @@ public class ButtonHighlightTriggersPress : MonoBehaviour, IPointerEnterHandler,
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        m_Highlighted = true;
-        m_Timer = 0f;
+        StartHighlight();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        EndHighlight();
+    }
+
+    void StartHighlight()
+    {
+        m_Highlighted = true;
+        m_Timer = 0f;
+    }
+
+    void EndHighlight()
+    {
         m_Highlighted = false;
+
+        // Reset colors
+        ColorBlock highlightBlock = m_Button.colors;
+        highlightBlock.highlightedColor = Color.white;
+        m_Button.colors = highlightBlock;
     }
 }
