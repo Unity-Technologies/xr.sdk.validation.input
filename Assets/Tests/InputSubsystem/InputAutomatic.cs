@@ -226,5 +226,76 @@ namespace Tests
                 }
             }
         }
+
+        [Test]
+        [Description("This test verifies that a tracked device contatins the minimum set of features.")]
+        public void UsagesCorrectBackingValues()
+        {
+            List<InputDevice> Devices = new List<InputDevice>();
+            InputDevices.GetDevices(Devices);
+
+            Assert.AreNotEqual(0, Devices.Count, "No devices found");
+
+            for (int i = 0; i < Devices.Count; i++)
+            {
+                List<InputFeatureUsage> Features = new List<InputFeatureUsage>();
+                Devices[i].TryGetFeatureUsages(Features);
+
+                for (int j = i + 1; j < Devices.Count; j++)
+                {
+                    switch (Features[j].name)
+                    {
+                        case "TrackingState":
+                            Assert.IsTrue(Features[j].type == typeof(uint));
+                            break;
+                        case "Trigger":
+                        case "Grip":
+                        case "IndexTouch":
+                        case "ThumbTouch":
+                        case "IndexFinger":
+                        case "MiddleFinger":
+                        case "RingFinger":
+                        case "PinkyFinger":
+                            Assert.IsTrue(Features[j].type == typeof(float));
+                            break;
+                        case "Primary2DAxis":
+                        case "Secondary2DAxis":
+                            Assert.IsTrue(Features[j].type == typeof(Vector2));
+                            break;
+                        case "DevicePosition":
+                        case "DeviceVelocity":
+                        case "DeviceAcceleration":
+                        case "DeviceAngularVelocity":
+                        case "DeviceAngularAcceleration":
+                        case "CenterEyePosition":
+                        case "CenterEyeVelocity":
+                        case "CenterEyeAcceleration":
+                        case "CenterEyeAngularVelocity":
+                        case "CenterEyeAngularAcceleration":
+                        case "LeftEyePosition":
+                        case "LeftEyeVelocity":
+                        case "LeftEyeAcceleration":
+                        case "LeftEyeAngularVelocity":
+                        case "LeftEyeAngularAcceleration":
+                        case "RightEyePosition":
+                        case "RightEyeVelocity":
+                        case "RightEyeAcceleration":
+                        case "RightEyeAngularVelocity":
+                        case "RightEyeAngularAcceleration":
+                            Assert.IsTrue(Features[j].type == typeof(Vector3));
+                            break;
+                        case "DeviceRotation":
+                        case "CenterEyeRotation":
+                        case "LeftEyeRotation":
+                        case "RightEyeRotation":
+                            Assert.IsTrue(Features[j].type == typeof(Quaternion));
+                            break;
+                        default:
+                            Assert.IsTrue(false, "unknown feature detected");
+                            break;
+                    }
+                }
+            }
+        }
     }
 }
