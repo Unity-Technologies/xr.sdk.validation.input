@@ -5,7 +5,7 @@ using UnityEngine.VR;
 public class XRAnyButtonInput : BaseInput
 {
     [SerializeField, Tooltip("The keyboard key treated as the mouse button.")]
-    KeyCode m_MouseKeyCode = KeyCode.F;
+    KeyCode m_MouseKeyCode = KeyCode.Space;
 
     public override bool mousePresent
     {
