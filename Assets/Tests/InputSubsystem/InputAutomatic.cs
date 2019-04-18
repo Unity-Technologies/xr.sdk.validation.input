@@ -255,9 +255,9 @@ namespace Tests
                         case "SecondaryTouch":
                         case "GripButton":
                         case "TriggerButton":
+                        case "MenuButton":
                         case "Primary2DAxisClick":
                         case "Primary2DAxisTouch":
-                        case "MenuButton":
                         case "Thumbrest":
                             Assert.IsTrue(Features[j].type == typeof(bool));
                             break;
@@ -269,6 +269,7 @@ namespace Tests
                         case "MiddleFinger":
                         case "RingFinger":
                         case "PinkyFinger":
+                        case "BatteryLevel":
                             Assert.IsTrue(Features[j].type == typeof(float));
                             break;
                         case "Primary2DAxis":
