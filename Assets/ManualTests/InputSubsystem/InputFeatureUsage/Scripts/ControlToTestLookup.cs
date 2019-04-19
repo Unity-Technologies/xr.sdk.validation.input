@@ -85,8 +85,8 @@ public static class ControlToTestLookup
     private static void AddBinaryTests(InputDevice device, InputFeatureUsage usage, List<ControlTest> tests)
     {
         tests.Add(new ControlTestIsBool(device, usage));
-        tests.Add(new ControlTestBinaryRange(device, usage));
         tests.Add(new ControlTestBinaryDefault(device, usage));
+        tests.Add(new ControlTestBinaryRange(device, usage));
     }
 
     private static void AddAxis1DTests(InputDevice device, InputFeatureUsage usage, List<ControlTest> tests)
