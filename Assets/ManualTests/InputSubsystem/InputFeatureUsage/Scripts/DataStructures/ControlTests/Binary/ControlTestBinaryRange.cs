@@ -11,8 +11,6 @@ public class ControlTestBinaryRange : ControlTest
         Description = "Binary range must hit both false and true to pass this test.";
         CertReqID = "1.2.3.x";
 
-        Debug.Log("ControlTestBinaryRange usage " + usage.name + ", device " + DeviceUnderTest.name);
-
         Checks = new Check[3];
         Checks[0] = new CheckBinaryValueHitsFalse(DeviceUnderTest, FeatureUsageUnderTest, this);
         Checks[1] = new CheckBinaryValueHitsTrue(DeviceUnderTest, FeatureUsageUnderTest, this);

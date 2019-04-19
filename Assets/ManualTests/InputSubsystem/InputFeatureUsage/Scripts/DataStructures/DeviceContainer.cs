@@ -8,9 +8,11 @@ public class DeviceContainer
 {
     public InputDevice Device;
     public DeviceItemUIManager UIManager;
+    public bool HaveAllTestsPassed;
 
     public DeviceContainer(InputDevice device)
     {
         Device = device;
+        HaveAllTestsPassed = false;
     }
 }

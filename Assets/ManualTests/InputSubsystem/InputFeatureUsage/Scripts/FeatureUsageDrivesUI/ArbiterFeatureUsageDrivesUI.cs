@@ -30,6 +30,11 @@ public class ArbiterFeatureUsageDrivesUI : MonoBehaviour
         QuaternionFeatureUI.gameObject.SetActive(false);
     }
 
+    public void ClearDrivingUsage()
+    {
+        HideAllUI();
+    }
+
     public bool SetDrivingUsage(InputDevice device, InputFeatureUsage usage)
     {
         HideAllUI();

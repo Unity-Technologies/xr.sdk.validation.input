@@ -54,7 +54,18 @@ public class DeviceTestManager : MonoBehaviour
         }
         else if (m_StartTestsCalled)
         {
-            GetComponent<FeatureUsageTestFacilitator>().TestFinish(TestFacilitator.OverallTestStatus.Inconclusive, "Todo - status reporting");
+            bool allPassed = true;
+            for (int i = 0; i < m_InputDeviceList.Count; i++)
+            {
+                if (!m_InputDeviceList[i].HaveAllTestsPassed)
+                    allPassed = false;
+            }
+
+            if (allPassed)
+                GetComponent<FeatureUsageTestFacilitator>().TestFinish(TestFacilitator.OverallTestStatus.Passed, "All control tests on all devices tests report as \"Passed\".");
+            else
+                GetComponent<FeatureUsageTestFacilitator>().TestFinish(TestFacilitator.OverallTestStatus.Failed, "One or more control tests on one or more devices were skipped or report as failure.  View the log for more information.");
+
         }
     }
 
@@ -92,7 +103,7 @@ public class DeviceTestManager : MonoBehaviour
                     if (!m_InputFeatureUsageList[i].HaveAllTestsPassed)
                         allControlTestsPassed = false;
                 }
-
+                m_InputDeviceList[m_CurrentDeviceIndex].HaveAllTestsPassed = allControlTestsPassed;
                 m_InputDeviceList[m_CurrentDeviceIndex].UIManager.SetStatusTested(allControlTestsPassed);
 
                 if (!ReadyNextTestableDevice())
