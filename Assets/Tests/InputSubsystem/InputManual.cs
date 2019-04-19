@@ -18,10 +18,17 @@ namespace Tests
         }
 
         [UnityTest]
-        [Description("This test should load the scene, print a debug statement, and succeed")]
+        [Description("This test verifies Recenter functionality.")]
         public IEnumerator InputRecenter()
         {
             yield return TestFunctions.RunFacilitatorSceneTest("InputRecenter");
+        }
+
+        [UnityTest]
+        [Description("This test verifies Feature/Usage specifics.")]
+        public IEnumerator InputFeatureUsage()
+        {
+            yield return TestFunctions.RunFacilitatorSceneTest("InputFeatureUsage");
         }
     }
 }

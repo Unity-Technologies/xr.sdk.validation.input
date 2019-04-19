@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ManualTests/InputSubsystem/InputRecenter.unity
     guid: 658ff0f0f9359104083362287e497afc
+  - enabled: 1
+    path: Assets/ManualTests/InputSubsystem/InputFeatureUsage.unity
+    guid: 9976ad882d06da04cab373baf372d48e
   m_configObjects:
     com.unity.xr.managment.loader_settings: {fileID: 11400000, guid: e27bf1ae79fa9f5469e12826b7854566,
       type: 2}

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.UI;
@@ -7,136 +6,135 @@ using UnityEngine.XR;
 
 public class DeviceTestManager : MonoBehaviour
 {
-    public ContentResize DeviceListContent;
-    public GameObject DeviceListUIElement;
-    public Text DeviceNameText;
-    public ContentResize ControlsListContent;
-    public GameObject ControlsListUIElement;
-    public ContentResize TestsListContent;
-    public GameObject TestsListUIElement;
-    public ArbiterFeatureUsageDrivesUI ArbiterUsageUI;
-    public Text ControlUnderTestName;
-    public Text ControlUnderTestType;
-    public Text TestDescriptionBox;
+    public ContentResize deviceListContent;
+    public GameObject deviceListUIElement;
+    public Text deviceNameText;
+    public ContentResize controlsListContent;
+    public GameObject controlsListUIElement;
+    public ContentResize testsListContent;
+    public GameObject testsListUIElement;
+    public ArbiterFeatureUsageDrivesUI arbiterUsageUI;
+    public Text controlUnderTestName;
+    public Text controlUnderTestType;
+    public Text testDescriptionBox;
 
-    [Tooltip("unit time is seconds")]
-    public float DeviceRefreshRate = 3.0f;
+    private List<DeviceContainer> m_InputDeviceList;
+    private int m_CurrentDeviceIndex;
+    private InputDevice m_CurrentDevice {get { return m_InputDeviceList[m_CurrentDeviceIndex].Device; } }
 
-    private List<DeviceContainer> InputDeviceList;
-    private int CurrentDeviceIndex;
-    private InputDevice CurrentDevice {get { return InputDeviceList[CurrentDeviceIndex].Device; } }
+    private List<InputFeatureUsageContainer> m_InputFeatureUsageList;
+    private int m_CurrentFeatureIndex;
+    private InputFeatureUsage m_CurrentInputFeatureUsage {get { return m_InputFeatureUsageList[m_CurrentFeatureIndex].FeatureUsage; } }
 
-    private List<InputFeatureUsageContainer> InputFeatureUsageList;
-    private int CurrentFeatureIndex;
-    private InputFeatureUsage CurrentInputFeatureUsage {get { return InputFeatureUsageList[CurrentFeatureIndex].FeatureUsage; } }
+    private List<ControlTest> m_ControlTestList;
+    private int m_CurrentTestIndex;
+    private ControlTest m_CurrentControlTest {get { return m_ControlTestList[m_CurrentTestIndex]; } }
 
-    private List<ControlTest> ControlTestList;
-    private int CurrentTestIndex;
-    private ControlTest CurrentControlTest {get { return ControlTestList[CurrentTestIndex]; } }
-
-    private bool RunningTests = false;
+    private bool m_StartTestsCalled = false;
+    private bool m_RunningTests = false;
 
     // Start is called before the first frame update
-    private void Start()
+    public void StartTests()
     {
-        InputDeviceList = new List<DeviceContainer>();
-        InputFeatureUsageList = new List<InputFeatureUsageContainer>();
+        m_InputDeviceList = new List<DeviceContainer>();
+        m_InputFeatureUsageList = new List<InputFeatureUsageContainer>();
 
         RefreshDeviceList();
-
-        // TODO
-        //InputTracking.nodeAdded += HandleNodeAdded();
-        //InputTracking.nodeRemoved += HandleNodeRemoved();
+        m_StartTestsCalled = true;
     }
 
     private void Update()
     {
-        if (RunningTests)
+        if (m_RunningTests)
         {
-            bool testFinished = CurrentControlTest.RunChecks();
+            bool testFinished = m_CurrentControlTest.RunChecks();
             UpdateTestDescription();
             if (testFinished)
                 NextTest();
+        }
+        else if (m_StartTestsCalled)
+        {
+            GetComponent<FeatureUsageTestFacilitator>().TestFinish(TestFacilitator.OverallTestStatus.Inconclusive, "Todo - status reporting");
         }
     }
 
     private void NextTest()
     {
         // Update test status
-        Debug.Log("Finished test " + CurrentControlTest.GetType().ToString());
-        CurrentControlTest.UIManager.SetStatusTested(CurrentControlTest.AllChecksPassed());
-        if (CurrentTestIndex + 1 < ControlTestList.Count)
+        Debug.Log("Finished test " + m_CurrentControlTest.GetType().ToString());
+        m_CurrentControlTest.UIManager.SetStatusTested(m_CurrentControlTest.AllChecksPassed());
+        if (m_CurrentTestIndex + 1 < m_ControlTestList.Count)
         {
-            ReadyTest(ControlTestList, CurrentTestIndex + 1);
+            ReadyTest(m_ControlTestList, m_CurrentTestIndex + 1);
         }
         else
         {
             // Update control status
-            Debug.Log("Finished running tests for usage " + CurrentInputFeatureUsage.name);
+            Debug.Log("Finished running tests for usage " + m_CurrentInputFeatureUsage.name);
 
             bool allPassed = true;
-            for (int i = 0; i < ControlTestList.Count; i++)
+            for (int i = 0; i < m_ControlTestList.Count; i++)
             {
-                if (!ControlTestList[i].AllChecksPassed())
+                if (!m_ControlTestList[i].AllChecksPassed())
                     allPassed = false;
             }
-            InputFeatureUsageList[CurrentFeatureIndex].HaveAllTestsPassed = allPassed;
-            InputFeatureUsageList[CurrentFeatureIndex].UIManager.SetStatusTested(allPassed);
+            m_InputFeatureUsageList[m_CurrentFeatureIndex].HaveAllTestsPassed = allPassed;
+            m_InputFeatureUsageList[m_CurrentFeatureIndex].UIManager.SetStatusTested(allPassed);
 
-            if (!ReadyNextTestableFeature(CurrentDevice))
+            if (!ReadyNextTestableFeature(m_CurrentDevice))
             {
                 // Update device status
-                Debug.Log("Finished testing device " + CurrentDevice.name);
+                Debug.Log("Finished testing device " + m_CurrentDevice.name);
 
                 bool allControlTestsPassed = true;
-                for (int i = 0; i < InputFeatureUsageList.Count; i++)
+                for (int i = 0; i < m_InputFeatureUsageList.Count; i++)
                 {
-                    if (!InputFeatureUsageList[i].HaveAllTestsPassed)
+                    if (!m_InputFeatureUsageList[i].HaveAllTestsPassed)
                         allControlTestsPassed = false;
                 }
 
-                InputDeviceList[CurrentDeviceIndex].UIManager.SetStatusTested(allControlTestsPassed);
+                m_InputDeviceList[m_CurrentDeviceIndex].UIManager.SetStatusTested(allControlTestsPassed);
 
                 if (!ReadyNextTestableDevice())
                 {
-                    MarkTestsFinished();
+                    MarkTestsAsFinished();
                 }
             }
         }
     }
 
-    public void MarkTestsFinished()
+    void MarkTestsAsFinished()
     {
-        ControlsListContent.ClearContentItems();
-        TestsListContent.ClearContentItems();
-        RunningTests = false;
+        controlsListContent.ClearContentItems();
+        testsListContent.ClearContentItems();
+        m_RunningTests = false;
     }
 
-    public void RefreshDeviceList()
+    void RefreshDeviceList()
     {
         Debug.Log("Refreshing Device List");
 
         List<InputDevice> tempDeviceList = new List<InputDevice>();
         InputDevices.GetDevices(tempDeviceList);
-        InputDeviceList.Clear();
-        DeviceListContent.ClearContentItems();
+        m_InputDeviceList.Clear();
+        deviceListContent.ClearContentItems();
 
 
         for (int i = 0; i < tempDeviceList.Count; i++) {
-            InputDeviceList.Add(new DeviceContainer(tempDeviceList[i]));
+            m_InputDeviceList.Add(new DeviceContainer(tempDeviceList[i]));
         }
 
-        Debug.Log(InputDeviceList.Count + " devices");
+        Debug.Log(m_InputDeviceList.Count + " devices");
 
         if (tempDeviceList.Count == 0)
             return;
 
-        for (int i = 0; i < InputDeviceList.Count; i++)
+        for (int i = 0; i < m_InputDeviceList.Count; i++)
         {
-            GameObject tempItem = Instantiate(DeviceListUIElement);
-            tempItem.GetComponent<DeviceItemUIManager>().SetDeviceName(InputDeviceList[i].Device.name);
-            InputDeviceList[i].UIManager = tempItem.GetComponent<DeviceItemUIManager>();
-            DeviceListContent.AddContentItem(tempItem);
+            GameObject tempItem = Instantiate(deviceListUIElement);
+            tempItem.GetComponent<DeviceItemUIManager>().SetDeviceName(m_InputDeviceList[i].Device.name);
+            m_InputDeviceList[i].UIManager = tempItem.GetComponent<DeviceItemUIManager>();
+            deviceListContent.AddContentItem(tempItem);
         }
 
         ReadyNextTestableDevice(true);
@@ -150,23 +148,21 @@ public class DeviceTestManager : MonoBehaviour
         List<ControlTest> tempControlTestList = new List<ControlTest>();
 
         if (startAtFirstDevice)
-            CurrentDeviceIndex = -1;
+            m_CurrentDeviceIndex = -1;
 
         int NextDeviceIndex = -1;
 
         //Debug.Log(InputDeviceList.Count + " devices");
 
         // Cycle through the devices 
-        for (int i = Mathf.Max(0, CurrentDeviceIndex + 1); i < InputDeviceList.Count; i++)
+        for (int i = Mathf.Max(0, m_CurrentDeviceIndex + 1); i < m_InputDeviceList.Count; i++)
         {
-            if (!InputDeviceList[i].Device.TryGetFeatureUsages(tempInputFeatureUsages))
+            if (!m_InputDeviceList[i].Device.TryGetFeatureUsages(tempInputFeatureUsages))
                 continue;
 
             for (int j = 0; j < tempInputFeatureUsages.Count; j++) {
-                // If we find a single testable feature - hooray!  just put it up for now
-                // TODO I'll come back and make this selectable instead later
-                //Debug.Log(InputDeviceList[i].name + " - " + InputFeatureUsageList[j].name);
-                ControlToTestLookup.LookupControlTests(InputDeviceList[i].Device, tempInputFeatureUsages[j], out tempControlTestList);
+                // If we find a single testable feature - hooray!  Start testing at that feature
+                ControlToTestLookup.LookupControlTests(m_InputDeviceList[i].Device, tempInputFeatureUsages[j], out tempControlTestList);
                 if (tempControlTestList.Count > 0)
                 {
                     NextDeviceIndex = i;
@@ -181,31 +177,31 @@ public class DeviceTestManager : MonoBehaviour
         if (NextDeviceIndex == -1)
             return false;
         
-        CurrentDeviceIndex = NextDeviceIndex;
-        InputDeviceList[CurrentDeviceIndex].UIManager.SetStatusInProgress();
+        m_CurrentDeviceIndex = NextDeviceIndex;
+        m_InputDeviceList[m_CurrentDeviceIndex].UIManager.SetStatusInProgress();
         
         // List out the Feature Usages on this device
-        if (CurrentDeviceIndex != -1 && InputDeviceList.Count != 0 && CurrentDevice.TryGetFeatureUsages(tempInputFeatureUsages))
+        if (m_CurrentDeviceIndex != -1 && m_InputDeviceList.Count != 0 && m_CurrentDevice.TryGetFeatureUsages(tempInputFeatureUsages))
         {
-            InputFeatureUsageList.Clear();
+            m_InputFeatureUsageList.Clear();
             for (int i = 0; i < tempInputFeatureUsages.Count; i++)
-                InputFeatureUsageList.Add(new InputFeatureUsageContainer(tempInputFeatureUsages[i]));
+                m_InputFeatureUsageList.Add(new InputFeatureUsageContainer(tempInputFeatureUsages[i]));
 
-            DeviceNameText.text = InputDeviceList[CurrentDeviceIndex].Device.name;
-            ControlsListContent.ClearContentItems();
+            deviceNameText.text = m_InputDeviceList[m_CurrentDeviceIndex].Device.name;
+            controlsListContent.ClearContentItems();
 
-            for (int i = 0; i < InputFeatureUsageList.Count; i++)
+            for (int i = 0; i < m_InputFeatureUsageList.Count; i++)
             {
-                GameObject tempItem = Instantiate(ControlsListUIElement);
-                tempItem.GetComponent<ControlItemUIManager>().SetFeatureName(InputFeatureUsageList[i].FeatureUsage.name);
-                tempItem.GetComponent<ControlItemUIManager>().SetUsageName(InputFeatureUsageList[i].FeatureUsage.type.Name);
-                InputFeatureUsageList[i].UIManager = tempItem.GetComponent<ControlItemUIManager>();
-                ControlsListContent.AddContentItem(tempItem);
+                GameObject tempItem = Instantiate(controlsListUIElement);
+                tempItem.GetComponent<ControlItemUIManager>().SetFeatureName(m_InputFeatureUsageList[i].FeatureUsage.name);
+                tempItem.GetComponent<ControlItemUIManager>().SetUsageName(m_InputFeatureUsageList[i].FeatureUsage.type.Name);
+                m_InputFeatureUsageList[i].UIManager = tempItem.GetComponent<ControlItemUIManager>();
+                controlsListContent.AddContentItem(tempItem);
             }
         }
 
-        CurrentFeatureIndex = -1;
-        return ReadyNextTestableFeature(CurrentDevice);
+        m_CurrentFeatureIndex = -1;
+        return ReadyNextTestableFeature(m_CurrentDevice);
     }
 
     // Return true if there is a testable feature, false otherwise.
@@ -215,13 +211,13 @@ public class DeviceTestManager : MonoBehaviour
         List<ControlTest> tempControlTestList = new List<ControlTest>();
 
         if (startAtFirstFeature)
-            CurrentFeatureIndex = -1;
+            m_CurrentFeatureIndex = -1;
 
         int NextFeatureIndex = -1;
 
-        for (int i = Mathf.Max(0, CurrentFeatureIndex + 1); i < InputFeatureUsageList.Count; i++)
+        for (int i = Mathf.Max(0, m_CurrentFeatureIndex + 1); i < m_InputFeatureUsageList.Count; i++)
         {
-            ControlToTestLookup.LookupControlTests(CurrentDevice, InputFeatureUsageList[i].FeatureUsage, out tempControlTestList);
+            ControlToTestLookup.LookupControlTests(m_CurrentDevice, m_InputFeatureUsageList[i].FeatureUsage, out tempControlTestList);
             if (tempControlTestList.Count > 0)
             {
                 NextFeatureIndex = i;
@@ -232,39 +228,39 @@ public class DeviceTestManager : MonoBehaviour
         if (NextFeatureIndex == -1)
             return false;
         
-        CurrentFeatureIndex = NextFeatureIndex;
-        InputFeatureUsageList[CurrentFeatureIndex].UIManager.SetStatusInProgress();
-        TestsListContent.ClearContentItems();
+        m_CurrentFeatureIndex = NextFeatureIndex;
+        m_InputFeatureUsageList[m_CurrentFeatureIndex].UIManager.SetStatusInProgress();
+        testsListContent.ClearContentItems();
 
-        ControlToTestLookup.LookupControlTests(device, CurrentInputFeatureUsage, out ControlTestList);
+        ControlToTestLookup.LookupControlTests(device, m_CurrentInputFeatureUsage, out m_ControlTestList);
 
-        if (ControlTestList.Count == 0)
+        if (m_ControlTestList.Count == 0)
             return false;
 
         // Yes, we have a testable feature
-        ArbiterUsageUI.SetDrivingUsage(device, CurrentInputFeatureUsage);
+        arbiterUsageUI.SetDrivingUsage(device, m_CurrentInputFeatureUsage);
 
-        for (int i = 0; i < ControlTestList.Count; i++)
+        for (int i = 0; i < m_ControlTestList.Count; i++)
         {
-            GameObject tempItem = Instantiate(TestsListUIElement);
-            tempItem.GetComponent<TestItemUIManager>().SetTestName(ControlTestList[i].GetType().ToString());
-            ControlTestList[i].UIManager = tempItem.GetComponent<TestItemUIManager>();
-            TestsListContent.AddContentItem(tempItem);
+            GameObject tempItem = Instantiate(testsListUIElement);
+            tempItem.GetComponent<TestItemUIManager>().SetTestName(m_ControlTestList[i].GetType().ToString());
+            m_ControlTestList[i].UIManager = tempItem.GetComponent<TestItemUIManager>();
+            testsListContent.AddContentItem(tempItem);
         }
 
         // Have the tests, set up to cycle through them!
-        ControlUnderTestName.text = CurrentInputFeatureUsage.name;
-        ControlUnderTestType.text = CurrentInputFeatureUsage.type.ToString();
-        ReadyTest(ControlTestList, 0);
-        RunningTests = true;
+        controlUnderTestName.text = m_CurrentInputFeatureUsage.name;
+        controlUnderTestType.text = m_CurrentInputFeatureUsage.type.ToString();
+        ReadyTest(m_ControlTestList, 0);
+        m_RunningTests = true;
 
         return true;
     }
 
     private void ReadyTest(List<ControlTest> tests, int index)
     {
-        CurrentTestIndex = index;
-        ControlTestList[CurrentTestIndex].UIManager.SetStatusInProgress();
+        m_CurrentTestIndex = index;
+        m_ControlTestList[m_CurrentTestIndex].UIManager.SetStatusInProgress();
         ControlTest currentTest = tests[index];
 
         UpdateTestDescription();
@@ -272,26 +268,26 @@ public class DeviceTestManager : MonoBehaviour
 
     private void UpdateTestDescription() 
     {
-        TestDescriptionBox.text = CurrentControlTest.GetPrintableDescription();
+        testDescriptionBox.text = m_CurrentControlTest.GetPrintableDescription();
     }
 
     public void ManuallyApproveCurrentTest()
     {
-        if (!RunningTests)
+        if (!m_RunningTests)
             return;
 
-        Debug.Log("ManualPass on test " + CurrentControlTest.GetType().ToString());
-        CurrentControlTest.ManualPass();
+        Debug.Log("ManualPass on test " + m_CurrentControlTest.GetType().ToString());
+        m_CurrentControlTest.ManualPass();
         NextTest();
     }
 
     public void SkipCurrentTest()
     {
-        if (!RunningTests)
+        if (!m_RunningTests)
             return;
 
-        Debug.Log("Skip on test " + CurrentControlTest.GetType().ToString());
-        CurrentControlTest.Skip();
+        Debug.Log("Skip on test " + m_CurrentControlTest.GetType().ToString());
+        m_CurrentControlTest.Skip();
         NextTest();
     }
 }
