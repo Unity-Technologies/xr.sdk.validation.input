@@ -12,7 +12,7 @@ public class Check1DHits0 : Check
     }
     
     // Run the check, which should be a single testable property or characteristic
-    public override bool RunCheck()
+    public override void RunCheck()
     {
         float value;
         if (FeatureUsageUnderTest.type == typeof(float)
@@ -20,9 +20,6 @@ public class Check1DHits0 : Check
             && value == 0.0f)
         {
             passed = true;
-            return true;
         }
-
-        return false;
     }
 }

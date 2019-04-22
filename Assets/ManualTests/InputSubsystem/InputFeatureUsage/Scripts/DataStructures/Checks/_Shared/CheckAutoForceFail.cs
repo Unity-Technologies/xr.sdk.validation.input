@@ -13,9 +13,8 @@ public class CheckAutoForceFail : Check
     }
 
     // Run the check, which should be a single testable property or characteristic
-    public override bool RunCheck()
+    public override void RunCheck()
     {
-        ForceFail();
-        return false;
+        ForceFail("CheckAutoForceFailure - you hit a condition that you should not have hit!  Refer to the previous line of the log for more information on what failed.");
     }
 }

@@ -28,14 +28,15 @@ public abstract class Check
     }
 
     // Run the check, which should be a single testable property or characteristic
-    public abstract bool RunCheck();
+    
+    public abstract void RunCheck();
 
-    public delegate void ForcedFailureHandler(Check sender);
+    public delegate void ForcedFailureHandler(Check sender, string reasonForFailure);
     public event ForcedFailureHandler ForcedFailure;
 
-    protected void ForceFail()
+    protected void ForceFail(string reasonForFailure)
     {
         ForcedFail = true;
-        ForcedFailure?.Invoke(this);
+        ForcedFailure?.Invoke(this, reasonForFailure);
     }
 }

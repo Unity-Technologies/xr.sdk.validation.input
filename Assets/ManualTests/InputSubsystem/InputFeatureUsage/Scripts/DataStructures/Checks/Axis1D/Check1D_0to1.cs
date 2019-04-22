@@ -8,11 +8,11 @@ public class Check1D_0to1 : Check
 {
     public Check1D_0to1(InputDevice device, InputFeatureUsage featureUsage, ControlTest parentTest) : base(device, featureUsage, parentTest)
     {
-        SuccessConditionDescription = "Value lies between 0.0 and 1.0 (for example, 0.5)";
+        SuccessConditionDescription = "Value observed between 0.0 and 1.0 (for example, 0.5)";
     }
     
     // Run the check, which should be a single testable property or characteristic
-    public override bool RunCheck()
+    public override void RunCheck()
     {
         float value;
         if (FeatureUsageUnderTest.type == typeof(float)
@@ -21,9 +21,6 @@ public class Check1D_0to1 : Check
             && value < 1f)
         {
             passed = true;
-            return true;
         }
-
-        return false;
     }
 }

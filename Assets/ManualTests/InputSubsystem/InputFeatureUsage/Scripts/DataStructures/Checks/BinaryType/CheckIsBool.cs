@@ -13,14 +13,12 @@ public class CheckIsBool : Check
     }
 
     // Run the check, which should be a single testable property or characteristic
-    public override bool RunCheck()
+    public override void RunCheck()
     {
         if (FeatureUsageUnderTest.type != typeof(bool)) {
-            ForceFail();
-            return false;
+            ForceFail("Type of " + FeatureUsageUnderTest.name + " is not a boolean.");
         }
 
         passed = true;
-        return true;
     }
 }

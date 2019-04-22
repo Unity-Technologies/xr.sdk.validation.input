@@ -75,7 +75,7 @@ public abstract class ControlTest
         return AllPassed;
     }
 
-    public void HandleForcedFail(Check sender)
+    public void HandleForcedFail(Check sender, string reasonForFailure)
     {
         Debug.Log("Forced Failure on device " + sender.DeviceUnderTest.name 
             + "\n Feature: " + sender.FeatureUsageUnderTest.name

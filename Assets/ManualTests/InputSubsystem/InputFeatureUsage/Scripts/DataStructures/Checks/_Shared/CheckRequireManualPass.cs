@@ -13,8 +13,7 @@ public class CheckRequireManualPass : Check
     }
     
     // Run the check, which should be a single testable property or characteristic
-    public override bool RunCheck()
+    public override void RunCheck()
     {
-        return false;
     }
 }

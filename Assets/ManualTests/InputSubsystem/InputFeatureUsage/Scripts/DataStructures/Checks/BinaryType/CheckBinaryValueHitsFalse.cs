@@ -12,7 +12,7 @@ public class CheckBinaryValueHitsFalse : Check
     }
     
     // Run the check, which should be a single testable property or characteristic
-    public override bool RunCheck()
+    public override void RunCheck()
     {
         bool value;
         if (FeatureUsageUnderTest.type == typeof(bool)
@@ -20,9 +20,6 @@ public class CheckBinaryValueHitsFalse : Check
             && value == false)
         {
             passed = true;
-            return true;
         }
-
-        return false;
     }
 }

@@ -12,7 +12,7 @@ public class CheckRotationHits0_0_0_1 : Check
     }
     
     // Run the check, which should be a single testable property or characteristic
-    public override bool RunCheck()
+    public override void RunCheck()
     {
         Quaternion value;
         if (FeatureUsageUnderTest.type == typeof(Quaternion)
@@ -23,9 +23,6 @@ public class CheckRotationHits0_0_0_1 : Check
             && value.w == 1.0f)
         {
             passed = true;
-            return true;
         }
-
-        return false;
     }
 }

@@ -13,14 +13,12 @@ public class CheckIsQuaternion : Check
     }
 
     // Run the check, which should be a single testable property or characteristic
-    public override bool RunCheck()
+    public override void RunCheck()
     {
         if (FeatureUsageUnderTest.type != typeof(Quaternion)) {
-            ForceFail();
-            return false;
+            ForceFail("Type of " + FeatureUsageUnderTest.name + " is not a Quaternion.");
         }
 
         passed = true;
-        return true;
     }
 }

@@ -12,7 +12,7 @@ public class CheckBinaryValueHitsTrue : Check
     }
 
     // Run the check, which should be a single testable property or characteristic
-    public override bool RunCheck()
+    public override void RunCheck()
     {
         bool value;
 
@@ -21,9 +21,6 @@ public class CheckBinaryValueHitsTrue : Check
             && value == true)
         {
             passed = true;
-            return true;
         }
-
-        return false;
     }
 }

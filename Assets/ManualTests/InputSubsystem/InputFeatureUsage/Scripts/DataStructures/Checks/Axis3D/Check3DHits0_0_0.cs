@@ -12,7 +12,7 @@ public class Check3DHits0_0_0 : Check
     }
     
     // Run the check, which should be a single testable property or characteristic
-    public override bool RunCheck()
+    public override void RunCheck()
     {
         Vector3 value;
         if (FeatureUsageUnderTest.type == typeof(Vector3)
@@ -22,9 +22,6 @@ public class Check3DHits0_0_0 : Check
             && value.z == 0.0f)
         {
             passed = true;
-            return true;
         }
-
-        return false;
     }
 }

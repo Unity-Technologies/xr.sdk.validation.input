@@ -13,14 +13,12 @@ public class CheckIsVector2 : Check
     }
 
     // Run the check, which should be a single testable property or characteristic
-    public override bool RunCheck()
+    public override void RunCheck()
     {
         if (FeatureUsageUnderTest.type != typeof(Vector2)) {
-            ForceFail();
-            return false;
+            ForceFail("Type of " + FeatureUsageUnderTest.name + " is not a Vector2.");
         }
 
         passed = true;
-        return true;
     }
 }

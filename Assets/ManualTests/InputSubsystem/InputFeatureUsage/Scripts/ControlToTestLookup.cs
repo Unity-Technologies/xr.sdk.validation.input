@@ -11,7 +11,7 @@ public static class ControlToTestLookup
         tests = new List<ControlTest>();
 
         // Add usage type tests.
-        // TODO: Add any control-specific tests in another switch statement using usage.name(?)
+
         if (usage.type == typeof(bool))
             AddBinaryTests(device, usage, tests);
         else if (usage.type == typeof(uint))
@@ -27,59 +27,34 @@ public static class ControlToTestLookup
         else
             AddNotSupportedTypeTests(device, usage, tests);
 
-        // *** Add usage tests here ***
-        //switch(usage.type)
-        //{
-        //    case "TrackingState":
-        //        AddUintTests(device, usage, tests);
-        //        break;
-        //    case "Trigger":
-        //    case "Grip":
-        //    case "IndexTouch":
-        //    case "ThumbTouch":
-        //    case "IndexFinger":
-        //    case "MiddleFinger":
-        //    case "RingFinger":
-        //    case "PinkyFinger":
-        //        AddAxis1DTests(device, usage, tests);
-        //        break;
-        //    case "Primary2DAxis":
-        //    case "Secondary2DAxis":
-        //        AddAxis2DTests(device, usage, tests);
-        //        break;
-        //    case "DevicePosition":
-        //    case "DeviceVelocity":
-        //    case "DeviceAcceleration":
-        //    case "DeviceAngularVelocity":
-        //    case "DeviceAngularAcceleration":
-        //    case "CenterEyePosition":
-        //    case "CenterEyeVelocity":
-        //    case "CenterEyeAcceleration":
-        //    case "CenterEyeAngularVelocity":
-        //    case "CenterEyeAngularAcceleration":
-        //    case "LeftEyePosition":
-        //    case "LeftEyeVelocity":
-        //    case "LeftEyeAcceleration":
-        //    case "LeftEyeAngularVelocity":
-        //    case "LeftEyeAngularAcceleration":
-        //    case "RightEyePosition":
-        //    case "RightEyeVelocity":
-        //    case "RightEyeAcceleration":
-        //    case "RightEyeAngularVelocity":
-        //    case "RightEyeAngularAcceleration":
-        //        AddAxis3DTests(device, usage, tests);
-        //        break;
-        //    case "DeviceRotation":
-        //    case "CenterEyeRotation":
-        //    case "LeftEyeRotation":
-        //    case "RightEyeRotation":
-        //        AddRotationTests(device, usage, tests);
-        //        break;
-        //    default:
-        //        //AddCatchTest
-        //        break;
-        //}
-        
+        // Add usage specific tests
+
+        switch (usage.name)
+        {
+            case "Trigger":
+            case "Grip":
+            case "IndexTouch":
+            case "ThumbTouch":
+            case "IndexFinger":
+            case "MiddleFinger":
+            case "RingFinger":
+            case "PinkyFinger":
+            case "BatteryLevel":
+                tests.Add(new ControlTest1DRange_0_1(device, usage));
+                break;
+            case "CombinedTrigger":
+                tests.Add(new ControlTest1DRange_neg1_1(device, usage));
+                break;
+            case "Primary2DAxis":
+            case "Secondary2DAxis":
+            case "DPad":
+                tests.Add(new ControlTest2DRange_neg1_1(device, usage));
+                break;
+            default:
+                // Otherwise, this usage doesn't have a specific test to add
+                break;
+        }
+
     }
 
     private static void AddBinaryTests(InputDevice device, InputFeatureUsage usage, List<ControlTest> tests)

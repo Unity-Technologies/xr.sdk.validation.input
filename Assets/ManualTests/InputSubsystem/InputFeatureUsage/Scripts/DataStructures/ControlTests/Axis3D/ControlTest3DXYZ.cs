@@ -8,7 +8,7 @@ public class ControlTest3DXYZ : ControlTest
 {
     public ControlTest3DXYZ(InputDevice device, InputFeatureUsage usage) : base(device, usage)
     {
-        Description = "If this control represents a 3d cartesian coordinate, it must be of the form (x, y, z).";
+        Description = "If this control represents a 3d cartesian coordinate, it must be of the form (x, y, z). +Z must represent forward, +Y must represent up, and +X must represent right of the device's real world origin.";
         CertReqID = "1.2.3.x";
 
         Checks = new Check[1];

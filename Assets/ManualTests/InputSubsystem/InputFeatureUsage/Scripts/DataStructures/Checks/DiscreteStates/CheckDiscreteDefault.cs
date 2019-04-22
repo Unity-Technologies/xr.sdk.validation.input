@@ -12,7 +12,7 @@ public class CheckDiscreteDefault : Check
     }
     
     // Run the check, which should be a single testable property or characteristic
-    public override bool RunCheck()
+    public override void RunCheck()
     {
         uint value;
         if (FeatureUsageUnderTest.type == typeof(uint)
@@ -20,9 +20,6 @@ public class CheckDiscreteDefault : Check
             && value == 0)
         {
             passed = true;
-            return true;
         }
-
-        return false;
     }
 }

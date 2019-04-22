@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FeatureUsageTestFacilitator : TestFacilitator
 {
-    public bool m_WaitForTestFinish = false;
+    private bool m_WaitForTestFinish = false;
 
     // This is called by TestRunner scripts.
     // Simply entering playmode won't start this, and we don't want it to start twice via Start() or Awake()
