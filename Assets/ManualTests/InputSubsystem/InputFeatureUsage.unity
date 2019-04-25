@@ -770,13 +770,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deviceListContent: {fileID: 160565121}
+  deviceScrollRect: {fileID: 529958912}
   deviceListUIElement: {fileID: 6638414030144495869, guid: 6df5794285301c04796edd5c21044ef9,
     type: 3}
   deviceNameText: {fileID: 1984466703}
   controlsListContent: {fileID: 996196383}
+  controlsScrollRect: {fileID: 340535195}
   controlsListUIElement: {fileID: 2058023451572221959, guid: b8fb2250f28c1e049a07e66920a06773,
     type: 3}
   testsListContent: {fileID: 141430572}
+  testsScrollRect: {fileID: 1893087323}
   testsListUIElement: {fileID: 4951888176875230232, guid: 9580966ad7252b043a2ab34dbe7a5654,
     type: 3}
   arbiterUsageUI: {fileID: 1323300678}

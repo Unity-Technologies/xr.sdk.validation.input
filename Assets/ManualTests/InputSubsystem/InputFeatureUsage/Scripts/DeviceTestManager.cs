@@ -7,11 +7,14 @@ using UnityEngine.XR;
 public class DeviceTestManager : MonoBehaviour
 {
     public ContentResize deviceListContent;
+    public ScrollRect deviceScrollRect;
     public GameObject deviceListUIElement;
     public Text deviceNameText;
     public ContentResize controlsListContent;
+    public ScrollRect controlsScrollRect;
     public GameObject controlsListUIElement;
     public ContentResize testsListContent;
+    public ScrollRect testsScrollRect;
     public GameObject testsListUIElement;
     public ArbiterFeatureUsageDrivesUI arbiterUsageUI;
     public Text controlUnderTestName;
@@ -190,6 +193,7 @@ public class DeviceTestManager : MonoBehaviour
         
         m_CurrentDeviceIndex = NextDeviceIndex;
         m_InputDeviceList[m_CurrentDeviceIndex].UIManager.SetStatusInProgress();
+        deviceScrollRect.verticalNormalizedPosition = 1f - ((float)(m_CurrentDeviceIndex) / (float)m_InputDeviceList.Count);
         
         // List out the Feature Usages on this device
         if (m_CurrentDeviceIndex != -1 && m_InputDeviceList.Count != 0 && m_CurrentDevice.TryGetFeatureUsages(tempInputFeatureUsages))
@@ -241,6 +245,8 @@ public class DeviceTestManager : MonoBehaviour
         
         m_CurrentFeatureIndex = NextFeatureIndex;
         m_InputFeatureUsageList[m_CurrentFeatureIndex].UIManager.SetStatusInProgress();
+        controlsScrollRect.verticalNormalizedPosition = 1f - ((float)(m_CurrentFeatureIndex) / (float)m_InputFeatureUsageList.Count);
+
         testsListContent.ClearContentItems();
 
         ControlToTestLookup.LookupControlTests(device, m_CurrentInputFeatureUsage, out m_ControlTestList);
@@ -275,6 +281,7 @@ public class DeviceTestManager : MonoBehaviour
         ControlTest currentTest = tests[index];
 
         UpdateTestDescription();
+        testsScrollRect.verticalNormalizedPosition = 1f - ((float)(m_CurrentTestIndex) / (float)tests.Count);
     }
 
     private void UpdateTestDescription() 
