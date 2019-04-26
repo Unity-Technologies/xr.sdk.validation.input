@@ -71,6 +71,13 @@ public static class ControlToTestLookup
             case "CenterEyeVelocity":
                 tests.Add(new ControlTestVelocity(device, usage));
                 break;
+            case "DeviceAngularVelocity":
+            case "ColorCameraAngularVelocity":
+            case "LeftEyeAngularVelocity":
+            case "RightEyeAngularVelocity":
+            case "CenterEyeAngularVelocity":
+                tests.Add(new ControlTestAngularVelocity(device, usage));
+                break;
             default:
                 // Otherwise, this usage doesn't have a specific test to add
                 break;

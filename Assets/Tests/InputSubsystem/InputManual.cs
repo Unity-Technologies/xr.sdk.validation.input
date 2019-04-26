@@ -11,6 +11,7 @@ namespace Tests
     public class InputManual
     {
         [UnityTest]
+        [Timeout(3600000)] // An hour
         [Description("This test verifies haptic response with a physical controller.")]
         public IEnumerator InputHaptics()
         {
@@ -18,6 +19,7 @@ namespace Tests
         }
 
         [UnityTest]
+        [Timeout(3600000)] // An hour
         [Description("This test verifies Recenter functionality.")]
         public IEnumerator InputRecenter()
         {
@@ -25,6 +27,7 @@ namespace Tests
         }
 
         [UnityTest]
+        [Timeout(3600000)] // An hour
         [Description("This test verifies Feature/Usage specifics.")]
         public IEnumerator InputFeatureUsage()
         {
