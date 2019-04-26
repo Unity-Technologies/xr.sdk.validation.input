@@ -281,6 +281,11 @@ namespace Tests
                         case "DeviceAcceleration":
                         case "DeviceAngularVelocity":
                         case "DeviceAngularAcceleration":
+                        case "ColorCameraPosition":
+                        case "ColorCameraVelocity":
+                        case "ColorCameraAcceleration":
+                        case "ColorCameraAngularVelocity":
+                        case "ColorCameraAngularAcceleration":
                         case "CenterEyePosition":
                         case "CenterEyeVelocity":
                         case "CenterEyeAcceleration":
@@ -299,6 +304,7 @@ namespace Tests
                             Assert.IsTrue(Features[j].type == typeof(Vector3));
                             break;
                         case "DeviceRotation":
+                        case "ColorCameraRotation":
                         case "CenterEyeRotation":
                         case "LeftEyeRotation":
                         case "RightEyeRotation":

@@ -51,12 +51,21 @@ public static class ControlToTestLookup
                 tests.Add(new ControlTest2DRange_neg1_1(device, usage));
                 break;
             case "DevicePosition":
+            case "ColorCameraPosition":
             case "LeftEyePosition":
             case "RightEyePosition":
             case "CenterEyePosition":
                 tests.Add(new ControlTestPosition(device, usage));
                 break;
+            case "DeviceRotation":
+            case "ColorCameraRotation":
+            case "LeftEyeRotation":
+            case "RightEyeRotation":
+            case "CenterEyeRotation":
+                tests.Add(new ControlTestRotation(device, usage));
+                break;
             case "DeviceVelocity":
+            case "ColorCameraVelocity":
             case "LeftEyeVelocity":
             case "RightEyeVelocity":
             case "CenterEyeVelocity":
