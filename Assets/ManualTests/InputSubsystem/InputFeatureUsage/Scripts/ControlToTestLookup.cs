@@ -50,6 +50,12 @@ public static class ControlToTestLookup
             case "DPad":
                 tests.Add(new ControlTest2DRange_neg1_1(device, usage));
                 break;
+            case "DevicePosition":
+            case "LeftEyePosition":
+            case "RightEyePosition":
+            case "CenterEyePosition":
+                tests.Add(new ControlTestPosition(device, usage));
+                break;
             case "DeviceVelocity":
             case "LeftEyeVelocity":
             case "RightEyeVelocity":

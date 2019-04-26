@@ -20,7 +20,10 @@ public class DeviceTestManager : MonoBehaviour
     public Text controlUnderTestName;
     public Text controlUnderTestType;
     public Text testDescriptionBox;
+    public GameObject XRRig;
     public Bearings bearings;
+    public GameObject TrackedDeviceVisualizerPositionPrefab;
+    public GameObject TrackedDeviceVisualizerRotationPrefab;
 
     private List<DeviceContainer> m_InputDeviceList;
     private int m_CurrentDeviceIndex;
