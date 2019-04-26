@@ -24,6 +24,11 @@ public abstract class ControlTest
         FeatureUsageUnderTest = usage;
     }
 
+    // If your test needs to enable things in the scene
+    // then setup and teardown here.
+    public virtual void Setup() { }
+    public virtual void Teardown() { }
+
     public void Skip()
     {
         skip = true;

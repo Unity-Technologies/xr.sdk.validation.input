@@ -50,6 +50,12 @@ public static class ControlToTestLookup
             case "DPad":
                 tests.Add(new ControlTest2DRange_neg1_1(device, usage));
                 break;
+            case "DeviceVelocity":
+            case "LeftEyeVelocity":
+            case "RightEyeVelocity":
+            case "CenterEyeVelocity":
+                tests.Add(new ControlTestVelocity(device, usage));
+                break;
             default:
                 // Otherwise, this usage doesn't have a specific test to add
                 break;

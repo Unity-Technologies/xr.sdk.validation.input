@@ -20,6 +20,7 @@ public class DeviceTestManager : MonoBehaviour
     public Text controlUnderTestName;
     public Text controlUnderTestType;
     public Text testDescriptionBox;
+    public Bearings bearings;
 
     private List<DeviceContainer> m_InputDeviceList;
     private int m_CurrentDeviceIndex;
@@ -76,6 +77,7 @@ public class DeviceTestManager : MonoBehaviour
     {
         // Update test status
         Debug.Log("Finished test " + m_CurrentControlTest.GetType().ToString());
+        m_CurrentControlTest.Teardown();
         m_CurrentControlTest.UIManager.SetStatusTested(m_CurrentControlTest.AllChecksPassed());
         if (m_CurrentTestIndex + 1 < m_ControlTestList.Count)
         {
@@ -280,6 +282,7 @@ public class DeviceTestManager : MonoBehaviour
         m_ControlTestList[m_CurrentTestIndex].UIManager.SetStatusInProgress();
         ControlTest currentTest = tests[index];
 
+        m_CurrentControlTest.Setup();
         UpdateTestDescription();
         testsScrollRect.verticalNormalizedPosition = 1f - ((float)(m_CurrentTestIndex) / (float)tests.Count);
     }
