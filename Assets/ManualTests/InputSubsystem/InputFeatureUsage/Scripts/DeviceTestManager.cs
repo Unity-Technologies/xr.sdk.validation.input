@@ -24,6 +24,7 @@ public class DeviceTestManager : MonoBehaviour
     public Bearings bearings;
     public GameObject TrackedDeviceVisualizerPositionPrefab;
     public GameObject TrackedDeviceVisualizerRotationPrefab;
+    public GameObject TrackedDeviceVisualizerPointerPrefab;
 
     private List<DeviceContainer> m_InputDeviceList;
     private int m_CurrentDeviceIndex;
@@ -31,7 +32,7 @@ public class DeviceTestManager : MonoBehaviour
 
     private List<InputFeatureUsageContainer> m_InputFeatureUsageList;
     private int m_CurrentFeatureIndex;
-    private InputFeatureUsage m_CurrentInputFeatureUsage {get { return m_InputFeatureUsageList[m_CurrentFeatureIndex].FeatureUsage; } }
+    public InputFeatureUsage CurrentInputFeatureUsage {get { return m_InputFeatureUsageList[m_CurrentFeatureIndex].FeatureUsage; } }
 
     private List<ControlTest> m_ControlTestList;
     private int m_CurrentTestIndex;
@@ -89,7 +90,7 @@ public class DeviceTestManager : MonoBehaviour
         else
         {
             // Update control status
-            Debug.Log("Finished running tests for usage " + m_CurrentInputFeatureUsage.name);
+            Debug.Log("Finished running tests for usage " + CurrentInputFeatureUsage.name);
 
             bool allPassed = true;
             for (int i = 0; i < m_ControlTestList.Count; i++)
@@ -254,13 +255,13 @@ public class DeviceTestManager : MonoBehaviour
 
         testsListContent.ClearContentItems();
 
-        ControlToTestLookup.LookupControlTests(device, m_CurrentInputFeatureUsage, out m_ControlTestList);
+        ControlToTestLookup.LookupControlTests(device, CurrentInputFeatureUsage, out m_ControlTestList);
 
         if (m_ControlTestList.Count == 0)
             return false;
 
         // Yes, we have a testable feature
-        arbiterUsageUI.SetDrivingUsage(device, m_CurrentInputFeatureUsage);
+        arbiterUsageUI.SetDrivingUsage(device, CurrentInputFeatureUsage);
 
         for (int i = 0; i < m_ControlTestList.Count; i++)
         {
@@ -271,8 +272,8 @@ public class DeviceTestManager : MonoBehaviour
         }
 
         // Have the tests, set up to cycle through them!
-        controlUnderTestName.text = m_CurrentInputFeatureUsage.name;
-        controlUnderTestType.text = m_CurrentInputFeatureUsage.type.ToString();
+        controlUnderTestName.text = CurrentInputFeatureUsage.name;
+        controlUnderTestType.text = CurrentInputFeatureUsage.type.ToString();
         ReadyTest(m_ControlTestList, 0);
         m_RunningTests = true;
 

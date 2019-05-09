@@ -10,6 +10,7 @@ public class Bearings : MonoBehaviour
     public ParticleSystem VelocityParticlesXYZ;
     public GameObject Coordinates;
     public GameObject AngularVelocityOrbit;
+    public GameObject AngularAccelerationVisuals;
 
     // When adding a new bearing, make sure to update this!
     public void HideAll()
@@ -18,6 +19,7 @@ public class Bearings : MonoBehaviour
         EnableXYZVelocityParticles = false;
         EnableCoordinates = false;
         DisableAngularVelocityOrbit();
+        DisableAngularAcceleration();
     }
 
     public bool EnableDirection { set { Direction.SetActive(value); } }
@@ -33,6 +35,17 @@ public class Bearings : MonoBehaviour
     public void DisableAngularVelocityOrbit()
     {
         AngularVelocityOrbit.SetActive(false);
+    }
+
+    public void EnableAngularAcceleration(InputDevice device, InputFeatureUsage<Vector3> usage)
+    {
+        AngularAccelerationVisuals.SetActive(true);
+        AngularAccelerationVisuals.GetComponent<AngularAcceleration>().SetDrivingUsage(device, usage);
+    }
+
+    public void DisableAngularAcceleration()
+    {
+        AngularAccelerationVisuals.SetActive(false);
     }
 
     void Start()
