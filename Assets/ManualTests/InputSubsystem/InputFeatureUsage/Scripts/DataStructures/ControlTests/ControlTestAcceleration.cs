@@ -11,9 +11,11 @@ public class ControlTestAcceleration : ControlTest
     public ControlTestAcceleration(InputDevice device, InputFeatureUsage usage) : base(device, usage)
     {
         Description = "Match the motion of each color of cube to test the acceleration.  You should see the magnitude hit a maximum of about 10." +
+            "This value is relative to world space, not the device.  So tilt the device under test when doing this." +
             "\nRed corresponds to X" +
             "\nGreen corresponds to Y" +
-            "\nBlue corresponds to Z";
+            "\nBlue corresponds to Z" +
+            "\n\nAs a sanity check, you can drop the device (under safe conditions, guaranteeing that you can catch it!)  An object in free fall must have an acceleration of approximately (0, -9.81, 0).";
 
         CertReqID = "1.2.3.x";
 
