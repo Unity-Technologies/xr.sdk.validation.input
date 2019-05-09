@@ -10,7 +10,7 @@ public class ControlTestRotation : ControlTest
 
     public ControlTestRotation(InputDevice device, InputFeatureUsage usage) : base(device, usage)
     {
-        Description = "A visualizer has been added to the device under test.  Rotate the device and verify that the device's virtual rotation matches the device's actual rotation.";
+        Description = "A visualizer has been added to the device under test.  Rotate the device and verify that the device's virtual rotation matches the device's actual rotation.  If the device under test is a headset, turning your head to view the +X, -X, +Y, -Y, +Z, -Z blocks and seeing the screen update 1:1 with your head movement is sufficient.";
 
         CertReqID = "1.2.3.x";
 

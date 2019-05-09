@@ -10,7 +10,8 @@ public class ControlTestVelocity : ControlTest
 
     public ControlTestVelocity(InputDevice device, InputFeatureUsage usage) : base(device, usage)
     {
-        Description = "Match the device under test's motion with the particles moving through the air.  Observe the velocity value is approximately (0.2, 0.2, 0.2).";
+        Description = "Match the device under test's motion with the particles moving through the air.  " +
+            "Observe the velocity value is approximately (0.2, 0.2, 0.2).  The magnitude is approximately 0.35.";
         CertReqID = "1.2.3.x";
 
         Checks = new Check[1];

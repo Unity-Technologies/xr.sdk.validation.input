@@ -11,7 +11,8 @@ public class ControlTestPosition : ControlTest
     public ControlTestPosition(InputDevice device, InputFeatureUsage usage) : base(device, usage)
     {
         Description = "A visualizer has been added to the device under test.  Verify that the virtual position matches the movements of the real-world position.  " +
-            "For all devices except Tracking References, move the device between cubes to verify that X, Y, and Z all update correctly relative to the coordinates reported by the cubes.";
+            "For all devices except Tracking References, move the device between cubes to verify that X, Y, and Z all update correctly relative to the coordinates reported by the cubes.  " +
+            "If the device under test is a headset, move it around the coordinates and verify that the position is correct.";
 
         CertReqID = "1.2.3.x";
 
