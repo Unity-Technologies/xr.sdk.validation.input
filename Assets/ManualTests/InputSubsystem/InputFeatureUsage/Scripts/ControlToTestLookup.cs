@@ -31,6 +31,9 @@ public static class ControlToTestLookup
 
         switch (usage.name)
         {
+            case "IsTracked":
+                tests.Add(new ControlTestIsTracked(device, usage));
+                break;
             case "Trigger":
             case "Grip":
             case "IndexTouch":
