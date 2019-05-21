@@ -176,7 +176,7 @@ namespace Tests
         }
 
         [Test]
-        [Description("This test verifies that a tracked device contatins the minimum set of features.")]
+        [Description("This test verifies that haptics capabilities adhere to correct limits.")]
         public void HapticCapabilitiesSanityCheck()
         {
             List<InputDevice> Devices = new List<InputDevice>();
@@ -207,7 +207,7 @@ namespace Tests
         }
 
         [Test]
-        [Description("This test verifies that a tracked device contatins the minimum set of features.")]
+        [Description("This test verifies that there are no repeated features in a device's features list.")]
         public void UsagesNoRepeats()
         {
             List<InputDevice> Devices = new List<InputDevice>();
@@ -220,15 +220,18 @@ namespace Tests
                 List<InputFeatureUsage> Features = new List<InputFeatureUsage>();
                 Devices[i].TryGetFeatureUsages(Features);
 
-                for (int j = i + 1; j < Devices.Count; j++)
+                for (int j = 0; j < Features.Count - 1; j++)
                 {
-                    Assert.AreNotEqual(Features[i].name, Features[j].name);
+                    for (int k = j + 1; k < Features.Count; k++)
+                    {
+                        Assert.AreNotEqual(Features[j].name, Features[k].name);
+                    }
                 }
             }
         }
 
         [Test]
-        [Description("This test verifies that a tracked device contatins the minimum set of features.")]
+        [Description("This test verifies that all features are backed by the correct values types.")]
         public void UsagesCorrectBackingValues()
         {
             List<InputDevice> Devices = new List<InputDevice>();
@@ -241,7 +244,7 @@ namespace Tests
                 List<InputFeatureUsage> Features = new List<InputFeatureUsage>();
                 Devices[i].TryGetFeatureUsages(Features);
 
-                for (int j = i + 1; j < Devices.Count; j++)
+                for (int j = 0; j < Features.Count; j++)
                 {
                     switch (Features[j].name)
                     {
