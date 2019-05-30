@@ -192,16 +192,16 @@ namespace Tests
                     break;
 
                 if (hapticCapabilities.supportsBuffer) {
-                    Assert.IsTrue(hapticCapabilities.bufferFrequencyHz > 0);
-                    Assert.IsTrue(hapticCapabilities.bufferOptimalSize > 0);
-                    Assert.IsTrue(hapticCapabilities.bufferOptimalSize <= hapticCapabilities.bufferMaxSize);
-                    Assert.IsTrue(hapticCapabilities.bufferOptimalSize <= 4096); // kUnityXRMaxHapticBufferSize
+                    Assert.IsTrue(hapticCapabilities.bufferFrequencyHz > 0, "Supports buffer is true, HapticCapabilities.bufferFrequencyHz is zero");
+                    Assert.IsTrue(hapticCapabilities.bufferOptimalSize > 0, "Supports buffer is true, HapticCapabilities.bufferOptimalSize is zero");
+                    Assert.IsTrue(hapticCapabilities.bufferOptimalSize <= hapticCapabilities.bufferMaxSize, "Error! HapticCapabilities.bufferOptimalSize > HapticCapabilities.bufferMaxSize!");
+                    Assert.IsTrue(hapticCapabilities.bufferOptimalSize <= 4096, "HapticCapabilities.bufferOptimalSize = " + hapticCapabilities.bufferOptimalSize + " detected as greater than kUnityXRMaxHapticBufferSize."); // kUnityXRMaxHapticBufferSize
                 }
                 else
                 {
-                    Assert.Equals(0, hapticCapabilities.bufferFrequencyHz);
-                    Assert.Equals(0, hapticCapabilities.bufferOptimalSize);
-                    Assert.Equals(0, hapticCapabilities.bufferMaxSize);
+                    Assert.AreEqual(0, hapticCapabilities.bufferFrequencyHz, "Supports buffer is false, but HapticCapabilities.bufferFrequencyHz != 0");
+                    Assert.AreEqual(0, hapticCapabilities.bufferOptimalSize, "Supports buffer is false, but HapticCapabilities.bufferOptimalSize != 0");
+                    Assert.AreEqual(0, hapticCapabilities.bufferMaxSize, "Supports buffer is false, but HapticCapabilities.bufferMaxSize != 0");
                 }
             }
         }

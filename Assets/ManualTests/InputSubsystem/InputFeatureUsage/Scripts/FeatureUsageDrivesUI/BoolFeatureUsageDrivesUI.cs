@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class BoolFeatureUsageDrivesUI : MonoBehaviour
 {
-    public Image DisplayImage;
+    public Text DisplayText;
 
     private InputDevice Device;
     private InputFeatureUsage<bool> FeatureUsage;
@@ -28,8 +28,8 @@ public class BoolFeatureUsageDrivesUI : MonoBehaviour
             return;
 
         if (State)
-            DisplayImage.color = Color.red;
+            DisplayText.text = "true";
         else
-            DisplayImage.color = Color.white;
+            DisplayText.text = "false";
     }
 }

@@ -65,6 +65,7 @@ public class ButtonHighlightTriggersPress : MonoBehaviour, IPointerEnterHandler,
     void EndHighlight()
     {
         m_Highlighted = false;
+        m_Timer = 0f;
 
         // Reset colors
         ColorBlock highlightBlock = m_Button.colors;

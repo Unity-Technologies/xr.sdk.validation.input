@@ -8,7 +8,7 @@ public class ControlTestRotationNormalizedXYZW : ControlTest
 {
     public ControlTestRotationNormalizedXYZW(InputDevice device, InputFeatureUsage usage) : base(device, usage)
     {
-        Description = "If this control represents a normalized cartesian coordinate, it must be of the form (x, y, z, w)";
+        Description = "If this control represents a normalized cartesian coordinate, it must be of the form (x, y, z, w).  Rotate the device under test. If the quaternion is not normalized this test will automatically fail.";
         CertReqID = "1.2.3.x";
 
         Checks = new Check[2];
