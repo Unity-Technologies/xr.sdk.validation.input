@@ -28,10 +28,18 @@ namespace Tests
 
         [UnityTest]
         [Timeout(3600000)] // An hour
-        [Description("This test verifies Feature/Usage specifics.")]
-        public IEnumerator InputFeatureUsage()
+        [Description("This test verifies Feature/Usage controls specifics.")]
+        public IEnumerator InputFeatureUsageControls()
         {
-            yield return TestFunctions.RunFacilitatorSceneTest("InputFeatureUsage");
+            yield return TestFunctions.RunFacilitatorSceneTest("InputFeatureUsageControls");
+        }
+
+        [UnityTest]
+        [Timeout(3600000)] // An hour
+        [Description("This test verifies Feature/Usage tracking specifics.")]
+        public IEnumerator InputFeatureUsageTracking()
+        {
+            yield return TestFunctions.RunFacilitatorSceneTest("InputFeatureUsageTracking");
         }
     }
 }

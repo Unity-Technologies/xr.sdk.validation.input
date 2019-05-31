@@ -6,6 +6,14 @@ using UnityEngine.XR;
 
 public class DeviceTestManager : MonoBehaviour
 {
+    public enum FeatureUsageTestType
+    {
+        Controls,
+        Tracking
+    }
+
+    public FeatureUsageTestType testType;
+
     public ContentResize deviceListContent;
     public ScrollRect deviceScrollRect;
     public GameObject deviceListUIElement;
@@ -182,7 +190,9 @@ public class DeviceTestManager : MonoBehaviour
 
             for (int j = 0; j < tempInputFeatureUsages.Count; j++) {
                 // If we find a single testable feature - hooray!  Start testing at that feature
-                ControlToTestLookup.LookupControlTests(m_InputDeviceList[i].Device, tempInputFeatureUsages[j], out tempControlTestList);
+                if (ShouldAddFeature(tempInputFeatureUsages[j]))
+                    ControlToTestLookup.LookupControlTests(m_InputDeviceList[i].Device, tempInputFeatureUsages[j], out tempControlTestList);
+
                 if (tempControlTestList.Count > 0)
                 {
                     NextDeviceIndex = i;
@@ -206,7 +216,8 @@ public class DeviceTestManager : MonoBehaviour
         {
             m_InputFeatureUsageList.Clear();
             for (int i = 0; i < tempInputFeatureUsages.Count; i++)
-                m_InputFeatureUsageList.Add(new InputFeatureUsageContainer(tempInputFeatureUsages[i]));
+                if (ShouldAddFeature(tempInputFeatureUsages[i]))
+                    m_InputFeatureUsageList.Add(new InputFeatureUsageContainer(tempInputFeatureUsages[i]));
 
             deviceNameText.text = m_InputDeviceList[m_CurrentDeviceIndex].Device.name;
             controlsListContent.ClearContentItems();
@@ -238,7 +249,9 @@ public class DeviceTestManager : MonoBehaviour
 
         for (int i = Mathf.Max(0, m_CurrentFeatureIndex + 1); i < m_InputFeatureUsageList.Count; i++)
         {
-            ControlToTestLookup.LookupControlTests(m_CurrentDevice, m_InputFeatureUsageList[i].FeatureUsage, out tempControlTestList);
+            if (ShouldAddFeature(m_InputFeatureUsageList[i].FeatureUsage))
+                ControlToTestLookup.LookupControlTests(m_CurrentDevice, m_InputFeatureUsageList[i].FeatureUsage, out tempControlTestList);
+            
             if (tempControlTestList.Count > 0)
             {
                 NextFeatureIndex = i;
@@ -255,7 +268,8 @@ public class DeviceTestManager : MonoBehaviour
 
         testsListContent.ClearContentItems();
 
-        ControlToTestLookup.LookupControlTests(device, CurrentInputFeatureUsage, out m_ControlTestList);
+        if (ShouldAddFeature(CurrentInputFeatureUsage))
+            ControlToTestLookup.LookupControlTests(device, CurrentInputFeatureUsage, out m_ControlTestList);
 
         if (m_ControlTestList.Count == 0)
             return false;
@@ -314,5 +328,61 @@ public class DeviceTestManager : MonoBehaviour
         Debug.Log("Skip on test " + m_CurrentControlTest.GetType().ToString());
         m_CurrentControlTest.Skip();
         NextTest();
+    }
+
+    private bool IsFeatureUsageForTracking(InputFeatureUsage usage)
+    {
+        switch (usage.name)
+        {
+            case "IsTracked":
+            case "TrackingState":
+            
+            case "DevicePosition":
+            case "ColorCameraPosition":
+            case "LeftEyePosition":
+            case "RightEyePosition":
+            case "CenterEyePosition":
+            
+            case "DeviceRotation":
+            case "ColorCameraRotation":
+            case "LeftEyeRotation":
+            case "RightEyeRotation":
+            case "CenterEyeRotation":
+            
+            case "DeviceVelocity":
+            case "ColorCameraVelocity":
+            case "LeftEyeVelocity":
+            case "RightEyeVelocity":
+            case "CenterEyeVelocity":
+            
+            case "DeviceAngularVelocity":
+            case "ColorCameraAngularVelocity":
+            case "LeftEyeAngularVelocity":
+            case "RightEyeAngularVelocity":
+            case "CenterEyeAngularVelocity":
+            
+            case "DeviceAcceleration":
+            case "ColorCameraAcceleration":
+            case "LeftEyeAcceleration":
+            case "RightEyeAcceleration":
+            case "CenterEyeAcceleration":
+            
+            case "DeviceAngularAcceleration":
+            case "ColorCameraAngularAcceleration":
+            case "LeftEyeAngularAcceleration":
+            case "RightEyeAngularAcceleration":
+            case "CenterEyeAngularAcceleration":
+
+                return true;
+
+            default:
+                return false;
+        }
+    }
+
+    private bool ShouldAddFeature(InputFeatureUsage usage)
+    {
+        return (testType == FeatureUsageTestType.Tracking && IsFeatureUsageForTracking(usage)) ||
+            (testType == FeatureUsageTestType.Controls && !IsFeatureUsageForTracking(usage));
     }
 }
