@@ -41,5 +41,13 @@ namespace Tests
         {
             yield return TestFunctions.RunFacilitatorSceneTest("InputFeatureUsageTracking");
         }
+
+        [UnityTest]
+        [Timeout(3600000)] // An hour
+        [Description("This test verifies Device names, manufacturer, and serial number information.")]
+        public IEnumerator NameManfSerial()
+        {
+            yield return TestFunctions.RunFacilitatorSceneTest("NameManfSerial");
+        }
     }
 }
