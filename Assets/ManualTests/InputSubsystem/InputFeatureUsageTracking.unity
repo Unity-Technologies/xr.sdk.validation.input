@@ -6028,7 +6028,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 113172990}
-  m_LocalRotation: {x: -0.13052624, y: 0, z: 0, w: 0.9914449}
+  m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
   m_LocalPosition: {x: 0, y: 0, z: -155}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6041,10 +6041,10 @@ RectTransform:
   - {fileID: 1098276221}
   m_Father: {fileID: 2023161426}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -15, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 617}
+  m_AnchoredPosition: {x: 0, y: -843}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &113172992
@@ -37355,7 +37355,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 508763463}
   m_HandleRect: {fileID: 508763462}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -57625,7 +57625,7 @@ PrefabInstance:
     - target: {fileID: 1154545405468851273, guid: 36b8b8bfc50faf647a9bb692c3591901,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.13052616
+      value: -0.13052624
       objectReference: {fileID: 0}
     - target: {fileID: 1154545405468851273, guid: 36b8b8bfc50faf647a9bb692c3591901,
         type: 3}
@@ -57650,7 +57650,7 @@ PrefabInstance:
     - target: {fileID: 1154545405468851273, guid: 36b8b8bfc50faf647a9bb692c3591901,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 15
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 1154545405468851273, guid: 36b8b8bfc50faf647a9bb692c3591901,
         type: 3}
@@ -57670,7 +57670,7 @@ PrefabInstance:
     - target: {fileID: 1154545405468851273, guid: 36b8b8bfc50faf647a9bb692c3591901,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -8.42
+      value: 6.5
       objectReference: {fileID: 0}
     - target: {fileID: 1154545405468851273, guid: 36b8b8bfc50faf647a9bb692c3591901,
         type: 3}
