@@ -6,8 +6,6 @@ using UnityEngine.XR;
 
 public class ControlTestAcceleration : ControlTest
 {
-    GameObject m_Visualizer = null;
-
     public ControlTestAcceleration(InputDevice device, InputFeatureUsage usage) : base(device, usage)
     {
         Description = "Match the motion of each color of cube to test the acceleration.  You should see the magnitude hit a maximum of about 10." +

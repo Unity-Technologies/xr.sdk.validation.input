@@ -6,8 +6,6 @@ using UnityEngine.XR;
 
 public class ControlTestIsTracked : ControlTest
 {
-    Bearings m_Bearings = null;
-
     public ControlTestIsTracked(InputDevice device, InputFeatureUsage usage) : base(device, usage)
     {
         Description = "If possible, hide this device from tracking sensors or cover device tracking cameras in an attempt to lose tracking.  " +
