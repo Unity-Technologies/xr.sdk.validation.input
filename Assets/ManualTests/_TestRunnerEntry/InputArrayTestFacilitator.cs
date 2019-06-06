@@ -14,7 +14,11 @@ public class InputArrayTestFacilitator : TestFacilitator
     // Please refer to the readme in this project's root folder for more information
     public override IEnumerator RunTest()
     {
-        instructionCanvas.Instructions.text = "For each control on each device, verify that each physical control changes only its expected usage(s). Activate \"Continue\" to cycle through devices.";
+        instructionCanvas.Instructions.text = "For each device:" +
+            "\n - Verify that every hardware sensor or control corresponds to a feature in the CommonUsages table." +
+            "\n - Verify that if a feature resembles a usage on the XR SDK Input Usage Table, it is implemented as that feature." + 
+            "\n - Verify that verify that each each hardware sensor or control changes only its expected usage(s). For example, a trigger should drive Trigger and TriggerButton, but not PrimaryButton." +
+            "\n\nActivate \"Continue\" to cycle through devices.";
 
         m_Devices = new List<InputDevice>();
         InputDevices.GetDevices(m_Devices);
