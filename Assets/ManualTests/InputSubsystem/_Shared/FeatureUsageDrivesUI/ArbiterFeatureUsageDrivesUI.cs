@@ -15,9 +15,12 @@ public class ArbiterFeatureUsageDrivesUI : MonoBehaviour
     public QuaternionFeatureUsageDrivesUI QuaternionFeatureUI;
     // If you add to this list, update HideAllUI() and SetDrivingUsage() as well
 
+    private bool m_HideOnStart = true;
+
     private void Start()
     {
-        HideAllUI();
+        if (m_HideOnStart)
+            HideAllUI();
     }
 
     private void HideAllUI()
@@ -37,6 +40,8 @@ public class ArbiterFeatureUsageDrivesUI : MonoBehaviour
 
     public bool SetDrivingUsage(InputDevice device, InputFeatureUsage usage)
     {
+        m_HideOnStart = false;
+
         HideAllUI();
 
         if (usage.type == typeof(bool)) {

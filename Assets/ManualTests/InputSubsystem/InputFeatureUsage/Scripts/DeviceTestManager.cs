@@ -49,7 +49,7 @@ public class DeviceTestManager : MonoBehaviour
     private bool m_StartTestsCalled = false;
     private bool m_RunningTests = false;
 
-    // Start is called before the first frame update
+    // This method is launched by the TestFacilitator broadcasting a message
     public void StartTests()
     {
         m_InputDeviceList = new List<DeviceContainer>();

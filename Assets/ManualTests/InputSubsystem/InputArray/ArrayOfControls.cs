@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.XR;
+using UnityEngine.UI;
 
 [RequireComponent (typeof(RectTransform))]
 public class ArrayOfControls : MonoBehaviour
 {
-    public GameObject ControlUIPrefab;
+    public GameObject controlUIPrefab;
+    public Text name;
 
     private RectTransform m_ParentRect;
 
@@ -21,7 +23,7 @@ public class ArrayOfControls : MonoBehaviour
     {
         m_ParentRect = GetComponent<RectTransform>();
         m_OriginalRectTransform = m_ParentRect.sizeDelta;
-        m_RowSeparation = 1.25f * ControlUIPrefab.GetComponent<RectTransform>().rect.height;
+        m_RowSeparation = 1.25f * controlUIPrefab.GetComponent<RectTransform>().rect.height;
         ResetElementInsertPosition();
         
         m_Elements = new List<GameObject>();
@@ -29,11 +31,11 @@ public class ArrayOfControls : MonoBehaviour
         Clear();
     }
 
-    public void AddElement(InputDevice device, InputFeatureUsage usage)
+    void AddElement(InputDevice device, InputFeatureUsage usage)
     {
         if (Mathf.Abs(m_NextPosition.y) > m_ParentRect.rect.height)
             m_ParentRect.sizeDelta = new Vector2(m_ParentRect.sizeDelta.x, m_ParentRect.sizeDelta.y + m_RowSeparation);
-        GameObject NewControl = Instantiate(ControlUIPrefab, m_ParentRect);
+        GameObject NewControl = Instantiate(controlUIPrefab, m_ParentRect);
         m_Elements.Add(NewControl);
         NewControl.transform.localPosition = m_NextPosition;
         NewControl.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 1f);
@@ -43,7 +45,7 @@ public class ArrayOfControls : MonoBehaviour
         NewControl.GetComponent<ControlValue>().SetDrivingUsage(device, usage);
     }
 
-    public void Clear()
+    void Clear()
     {
         for (int i = 0; i < m_Elements.Count; i++)
             Destroy(m_Elements[i]);
@@ -57,5 +59,23 @@ public class ArrayOfControls : MonoBehaviour
     void ResetElementInsertPosition()
     {
         m_NextPosition = new Vector3(-m_ParentRect.rect.width/4, -0.625f * m_RowSeparation, 0);
+    }
+
+    public void ClearArrayOfControls()
+    {
+        Clear();
+    }
+
+    public void FillArrayOfControls(InputDevice device)
+    {
+        name.text = device.name;
+
+        List<InputFeatureUsage> usages = new List<InputFeatureUsage>();
+        device.TryGetFeatureUsages(usages);
+
+        for (int i = 0; i < usages.Count; i++)
+        {
+            AddElement(device, usages[i]);
+        }
     }
 }
