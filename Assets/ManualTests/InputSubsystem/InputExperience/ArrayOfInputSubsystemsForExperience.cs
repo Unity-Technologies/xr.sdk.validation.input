@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class ArrayOfInputSubsystemsForExperience : MonoBehaviour
 {
     public GameObject uiPrefab;
+    public Transform xrRig;
 
     private RectTransform m_ParentRect;
 
@@ -40,9 +41,8 @@ public class ArrayOfInputSubsystemsForExperience : MonoBehaviour
         NewSubsystemUI.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 1f);
         NewSubsystemUI.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 1f);
         m_NextPosition = new Vector3(0, m_NextPosition.y - m_RowSeparation, 0);
-
-        NewSubsystemUI.GetComponent<InputSubsystemPanel>().InputSubsystem = inputSubsystem;
-        NewSubsystemUI.GetComponent<InputSubsystemPanel>().SystemNumber = systemNumber;
+        
+        NewSubsystemUI.GetComponent<InputSubsystemPanel>().Setup(xrRig, systemNumber, inputSubsystem);
     }
 
     void Clear()

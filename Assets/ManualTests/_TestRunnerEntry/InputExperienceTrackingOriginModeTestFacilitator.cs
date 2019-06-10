@@ -16,7 +16,9 @@ public class InputExperienceTrackingOriginModeTestFacilitator : TestFacilitator
             "\n - Verify that \"Unknown\" does not appear as the current TrackingOriginMode or in the list of available TrackingOriginModes." +
             "\n - Verify that you can switch to any of the available tracking modes." +
             "\n - Verify that you can NOT switch to any tracking mode that is not listed as available." +
-            "\n - Verify that each input subsystem that should have a boundary does. Boundary start points are labeled with its subsystem number and must be enumerated clockwise and in sequence." + 
+            "\n - Verify that each input subsystem that should have a boundary does. Boundary start points are labeled with its subsystem number and must be enumerated clockwise (from above) and in sequence." +
+            "\n - Verify that Recenter will trigger OnBoundaryChanged. After a recenter, bounds should still be correct." + 
+            "\n - If applicable, verify that changing the boundary in the runtime under test while running this test will trigger OnBoundaryChanged." + 
             "\n\nActivate \"Continue\" when finished";
 
         ShowSubsystems();
