@@ -52,10 +52,18 @@ namespace Tests
 
         [UnityTest]
         [Timeout(3600000)] // An hour
-        [Description("This test verifies Device names, manufacturer, and serial number information.")]
+        [Description("This test verifies information that requires viewing all features at once.")]
         public IEnumerator InputArray()
         {
             yield return TestFunctions.RunFacilitatorSceneTest("InputArray");
+        }
+        
+        [UnityTest]
+        [Timeout(3600000)] // An hour
+        [Description("This test verifies TrackingOriginType and Boundary functions.")]
+        public IEnumerator InputExperience()
+        {
+            yield return TestFunctions.RunFacilitatorSceneTest("InputExperience");
         }
     }
 }

@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class ArrayOfControls : MonoBehaviour
 {
     public GameObject controlUIPrefab;
-    public Text name;
+    public Text nameText;
 
     private RectTransform m_ParentRect;
 
@@ -68,7 +68,7 @@ public class ArrayOfControls : MonoBehaviour
 
     public void FillArrayOfControls(InputDevice device)
     {
-        name.text = device.name;
+        nameText.text = device.name;
 
         List<InputFeatureUsage> usages = new List<InputFeatureUsage>();
         device.TryGetFeatureUsages(usages);
