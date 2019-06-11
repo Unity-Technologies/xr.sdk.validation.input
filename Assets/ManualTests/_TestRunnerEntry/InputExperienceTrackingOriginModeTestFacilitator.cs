@@ -17,7 +17,7 @@ public class InputExperienceTrackingOriginModeTestFacilitator : TestFacilitator
             "\n - Verify that you can switch to any of the available tracking modes." +
             "\n - Verify that you can NOT switch to any tracking mode that is not listed as available." +
             "\n - Verify that each input subsystem that should have a boundary does. Boundary start points are labeled with its subsystem number and must be enumerated clockwise (from above) and in sequence." +
-            "\n - Verify that Recenter will trigger OnBoundaryChanged. After a recenter, bounds should still be correct." + 
+            "\n - For each supported TrackingOriginMode, try recenter.  If it changes your position or orientation, verify that the bounds are still correct." + 
             "\n - If applicable, verify that changing the boundary in the runtime under test while running this test will trigger OnBoundaryChanged." + 
             "\n\nActivate \"Continue\" when finished";
 

@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/ManualTests/InputSubsystem/InputHaptics.unity
     guid: c005f704a1d404a428836c03400fa9c2
   - enabled: 1
-    path: Assets/ManualTests/InputSubsystem/InputRecenter.unity
-    guid: 658ff0f0f9359104083362287e497afc
-  - enabled: 1
     path: Assets/ManualTests/InputSubsystem/InputFeatureUsageControls.unity
     guid: 9976ad882d06da04cab373baf372d48e
   - enabled: 1
@@ -29,3 +26,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ManualTests/InputSubsystem/InputExperience.unity
     guid: 25bc465f0c9dcdf47b8ce52d36303c04
+  - enabled: 1
+    path: Assets/ManualTests/InputSubsystem/InputExperienceRecenter.unity
+    guid: 9307a857a2ecd534f97c03aff6f55333

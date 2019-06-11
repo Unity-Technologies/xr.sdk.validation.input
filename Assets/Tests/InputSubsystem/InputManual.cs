@@ -20,14 +20,6 @@ namespace Tests
 
         [UnityTest]
         [Timeout(3600000)] // An hour
-        [Description("This test verifies Recenter functionality.")]
-        public IEnumerator InputRecenter()
-        {
-            yield return TestFunctions.RunFacilitatorSceneTest("InputRecenter");
-        }
-
-        [UnityTest]
-        [Timeout(3600000)] // An hour
         [Description("This test verifies Feature/Usage controls specifics.")]
         public IEnumerator InputFeatureUsageControls()
         {
@@ -64,6 +56,14 @@ namespace Tests
         public IEnumerator InputExperience()
         {
             yield return TestFunctions.RunFacilitatorSceneTest("InputExperience");
+        }
+
+        [UnityTest]
+        [Timeout(3600000)] // An hour
+        [Description("This test verifies Recentering functionality.")]
+        public IEnumerator InputExperienceRecenter()
+        {
+            yield return TestFunctions.RunFacilitatorSceneTest("InputExperienceRecenter");
         }
     }
 }
