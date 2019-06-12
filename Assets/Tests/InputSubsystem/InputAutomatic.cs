@@ -320,5 +320,38 @@ namespace Tests
                 }
             }
         }
+
+        [Test]
+        [Description("This test verifies that XRInputSubsystem.TryGetDevices works properly when compared to InputDevices.GetDevices.")]
+        public void GetDevicesFromSubsystem()
+        {
+            List<InputDevice> allDevices = new List<InputDevice>();
+            InputDevices.GetDevices(allDevices);
+
+            List<XRInputSubsystem> InputSubsystemInstances = new List<XRInputSubsystem>();
+            SubsystemManager.GetInstances<XRInputSubsystem>(InputSubsystemInstances);
+
+            List<InputDevice> DevicesForCurrentSubsystem = new List<InputDevice>();
+            for (int i = 0; i < InputSubsystemInstances.Count; i++)
+            {
+                DevicesForCurrentSubsystem.Clear();
+                XRInputSubsystem CurrentSubsystem = InputSubsystemInstances[i];
+                CurrentSubsystem.TryGetInputDevices(DevicesForCurrentSubsystem);
+
+                for (int j = DevicesForCurrentSubsystem.Count - 1; j >= 0; j--)
+                {
+                    InputDevice CurrentDevice = DevicesForCurrentSubsystem[j];
+
+                    Assert.IsTrue(allDevices.Contains(CurrentDevice), "Device \"" + CurrentDevice.name + "\" must be reported by InputDevices.");
+                    Assert.AreEqual(CurrentDevice.subsystem, CurrentSubsystem, "Device \"" + CurrentDevice.name + "\" must report as from the same subsystem that it was pulled from, which was \"" + CurrentSubsystem.SubsystemDescriptor.id + "\"");
+                    allDevices.Remove(CurrentDevice);
+                    DevicesForCurrentSubsystem.Remove(CurrentDevice);
+                }
+
+                Assert.AreEqual(0, DevicesForCurrentSubsystem.Count, "\"" + CurrentSubsystem.SubsystemDescriptor.id + "\" must not have devices that are not reported by InputDevices.GetDevices");
+            }
+
+            Assert.AreEqual(0, allDevices.Count, "InputDevices.GetDevices is reporting devices that are somehow not reported by a XRInputSubsystem");
+        }
     }
 }
