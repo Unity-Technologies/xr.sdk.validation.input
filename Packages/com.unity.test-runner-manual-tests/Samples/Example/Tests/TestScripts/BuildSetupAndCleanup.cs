@@ -10,7 +10,7 @@ using System;
 
 public class BuildSetupAndCleanup : IPrebuildSetup, IPostBuildCleanup
 {
-    int NumberOfScenes = 0;
+    string PlayerPrefKey = "ManualTestsExampleNumberOfTestScenes";
 
     public void Setup()
     {
@@ -19,7 +19,7 @@ public class BuildSetupAndCleanup : IPrebuildSetup, IPostBuildCleanup
             new EditorBuildSettingsScene("Packages/com.unity.test-runner-manual-tests/Samples/Example/Tests/Scenes/SampleTestScene.unity", true)
             };
 
-        NumberOfScenes = TestScenes.Length;
+        PlayerPrefs.SetInt(PlayerPrefKey, TestScenes.Length);
 
         EditorBuildSettingsScene[] NewSceneList = new EditorBuildSettingsScene[EditorBuildSettings.scenes.Length + TestScenes.Length];
 
@@ -31,7 +31,7 @@ public class BuildSetupAndCleanup : IPrebuildSetup, IPostBuildCleanup
 
     public void Cleanup()
     {
-        EditorBuildSettingsScene[] NewSceneList = new EditorBuildSettingsScene[EditorBuildSettings.scenes.Length - NumberOfScenes];
+        EditorBuildSettingsScene[] NewSceneList = new EditorBuildSettingsScene[EditorBuildSettings.scenes.Length - PlayerPrefs.GetInt(PlayerPrefKey)];
         Array.Copy(EditorBuildSettings.scenes, NewSceneList, NewSceneList.Length);
         EditorBuildSettings.scenes = NewSceneList;
     }
