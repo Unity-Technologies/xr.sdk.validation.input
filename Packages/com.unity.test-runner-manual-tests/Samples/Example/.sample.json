@@ -1,0 +1,5 @@
+{
+	"displayName":"Manual Tests Sample",
+	"description": "This sample shows how to make barebones manual tests.",
+	"createSeparatePackage": false
+}
