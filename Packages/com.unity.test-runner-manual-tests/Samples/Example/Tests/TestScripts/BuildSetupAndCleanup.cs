@@ -5,52 +5,34 @@ using UnityEngine.TestTools;
 using UnityEditor;
 using System;
 
+// This setup script appends scenes to the scene list during setup.
+// It then removes the same number of scenes from the scene list during cleanup.
+
 public class BuildSetupAndCleanup : IPrebuildSetup, IPostBuildCleanup
 {
-    const string SavedSceneListPrefName    = "SavedSceneList";
+    int NumberOfScenes = 0;
 
     public void Setup()
     {
-        // Save original scene list
-        string SceneListAccumulator = "";
-        for (int i = 0; i < EditorBuildSettings.scenes.Length; i++)
-            SceneListAccumulator += EditorBuildSettings.scenes[i].path + (EditorBuildSettings.scenes[i].enabled ? "1" : "0") + "\n";
-
-        PlayerPrefs.SetString(SavedSceneListPrefName, SceneListAccumulator);
-        PlayerPrefs.Save();
-
         // Set up test scene list for the test run
-        EditorBuildSettings.scenes = new EditorBuildSettingsScene[] {
+        EditorBuildSettingsScene[] TestScenes = new EditorBuildSettingsScene[] {
             new EditorBuildSettingsScene("Packages/com.unity.test-runner-manual-tests/Samples/Example/Tests/Scenes/SampleTestScene.unity", true)
             };
+
+        NumberOfScenes = TestScenes.Length;
+
+        EditorBuildSettingsScene[] NewSceneList = new EditorBuildSettingsScene[EditorBuildSettings.scenes.Length + TestScenes.Length];
+
+        Array.Copy(EditorBuildSettings.scenes, NewSceneList, EditorBuildSettings.scenes.Length);
+        Array.Copy(TestScenes, 0, NewSceneList, EditorBuildSettings.scenes.Length, TestScenes.Length);
+
+        EditorBuildSettings.scenes = NewSceneList;
     }
 
     public void Cleanup()
     {
-        // Restore original scene list
-        List<string> RestoredScenes = new List<string>();
-        string SavedScenesString = PlayerPrefs.GetString(SavedSceneListPrefName);
-
-        if (SavedScenesString == "")
-        {
-            EditorBuildSettings.scenes = new EditorBuildSettingsScene[0];
-            return;
-        }
-        
-        string[] SavedScenesRawString = SavedScenesString.Split('\n');
-        List<EditorBuildSettingsScene> EditorScenes = new List<EditorBuildSettingsScene>();
-        EditorBuildSettingsScene Temp;
-
-        // Length - 1 because String.Split() will give you an empty string as its last element
-        for (int i = 0; i < SavedScenesRawString.Length - 1; i++)
-        {
-            Temp = new EditorBuildSettingsScene();
-            Temp.path = SavedScenesRawString[i].Substring(0, SavedScenesRawString[i].Length - 1);
-            Temp.enabled = ((SavedScenesRawString[i].Substring(SavedScenesRawString[i].Length - 1) == "1") ? true : false);
-            EditorScenes.Add(Temp);
-        }
-
-        EditorBuildSettingsScene[] EditorScenesArray  = EditorScenes.ToArray();
-        EditorBuildSettings.scenes = EditorScenesArray;
+        EditorBuildSettingsScene[] NewSceneList = new EditorBuildSettingsScene[EditorBuildSettings.scenes.Length - NumberOfScenes];
+        Array.Copy(EditorBuildSettings.scenes, NewSceneList, NewSceneList.Length);
+        EditorBuildSettings.scenes = NewSceneList;
     }
 }

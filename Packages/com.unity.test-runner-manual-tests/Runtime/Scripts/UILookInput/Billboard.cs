@@ -5,8 +5,7 @@ using UnityEngine;
 
 namespace Unity.TestRunnerManualTests
 {
-    [ExecuteInEditMode]
-    public class CursorBillboard : MonoBehaviour
+    public class Billboard : MonoBehaviour
     {
         // Use this for initialization
         void Start()

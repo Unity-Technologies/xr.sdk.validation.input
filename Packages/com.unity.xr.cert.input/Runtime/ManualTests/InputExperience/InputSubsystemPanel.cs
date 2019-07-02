@@ -196,7 +196,7 @@ public class InputSubsystemPanel : MonoBehaviour
                     Signpost.transform.SetParent(NewGameObject.transform);
                     Signpost.transform.localPosition = Vector3.zero;
 
-                    Signpost.AddComponent<CursorBillboard>();
+                    Signpost.AddComponent<Billboard>();
 
                     TextMesh StartText = Signpost.AddComponent<TextMesh>();
                     StartText.text = ("Start of boundary\n for XRInputSubsystem " + m_SystemNumber);
