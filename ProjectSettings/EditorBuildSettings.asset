@@ -4,28 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/ManualTests/TemplateSubsystem/TemplateScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/ManualTests/InputSubsystem/InputHaptics.unity
-    guid: c005f704a1d404a428836c03400fa9c2
-  - enabled: 1
-    path: Assets/ManualTests/InputSubsystem/InputFeatureUsageControls.unity
-    guid: 9976ad882d06da04cab373baf372d48e
-  - enabled: 1
-    path: Assets/ManualTests/InputSubsystem/InputFeatureUsageTracking.unity
-    guid: 544459f5cbc6d0d42baee81ef9a622c4
-  - enabled: 1
-    path: Assets/ManualTests/InputSubsystem/NameManfSerial.unity
-    guid: 70df82a62c4ca844d8135c53422fae0a
-  - enabled: 1
-    path: Assets/ManualTests/InputSubsystem/InputArray.unity
-    guid: 51beedad5b5e70c4aa3c49d0a08cc0e5
-  - enabled: 1
-    path: Assets/ManualTests/InputSubsystem/InputExperience.unity
-    guid: 25bc465f0c9dcdf47b8ce52d36303c04
-  - enabled: 1
-    path: Assets/ManualTests/InputSubsystem/InputExperienceRecenter.unity
-    guid: 9307a857a2ecd534f97c03aff6f55333
+  m_Scenes: []
+  m_configObjects: {}
