@@ -16,7 +16,7 @@ public class CheckRotationHits0_0_0_1 : Check
     {
         Quaternion value;
         if (FeatureUsageUnderTest.type == typeof(Quaternion)
-            && DeviceUnderTest.TryGetFeatureValue(new InputFeatureUsage<Quaternion>(FeatureUsageUnderTest.name), out value)
+            && DeviceUnderTest.TryGetFeatureValue(FeatureUsageUnderTest.As<Quaternion>(), out value)
             && value.x == 0.0f
             && value.y == 0.0f
             && value.z == 0.0f

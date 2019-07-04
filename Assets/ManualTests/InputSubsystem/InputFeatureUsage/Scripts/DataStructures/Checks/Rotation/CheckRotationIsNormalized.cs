@@ -16,8 +16,7 @@ public class CheckRotationIsNormalized : Check
     public override void RunCheck()
     {
         Quaternion value;
-        if (FeatureUsageUnderTest.type == typeof(Quaternion)
-            && DeviceUnderTest.TryGetFeatureValue(new InputFeatureUsage<Quaternion>(FeatureUsageUnderTest.name), out value)
+        if (DeviceUnderTest.TryGetFeatureValue(FeatureUsageUnderTest.As<Quaternion>(), out value)
             && Mathf.Sqrt(Mathf.Pow(value.x, 2) + Mathf.Pow(value.y, 2) + Mathf.Pow(value.z, 2) + Mathf.Pow(value.w, 2)) != 1.0f)
         {
             ForceFail("ForceFail: quaternion is not normalized. Magnitude = " + (Mathf.Sqrt(Mathf.Pow(value.x, 2.0f) + Mathf.Pow(value.y, 2.0f) + Mathf.Pow(value.z, 2.0f) + Mathf.Pow(value.w, 2.0f))).ToString("F8"));

@@ -16,7 +16,7 @@ public class Check2DHitsneg1_0 : Check
     {
         Vector2 value;
         if (FeatureUsageUnderTest.type == typeof(Vector2)
-            && DeviceUnderTest.TryGetFeatureValue(new InputFeatureUsage<Vector2>(FeatureUsageUnderTest.name), out value)
+            && DeviceUnderTest.TryGetFeatureValue(FeatureUsageUnderTest.As<Vector2>(), out value)
             && value.x == -1.0f
             && value.y == 0.0f)
         {

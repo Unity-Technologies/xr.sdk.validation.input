@@ -18,7 +18,7 @@ public class Check1D_AlwaysNeg1To1 : Check
         float value = float.NaN;
         if (!
             (FeatureUsageUnderTest.type == typeof(float)
-            && DeviceUnderTest.TryGetFeatureValue(new InputFeatureUsage<float>(FeatureUsageUnderTest.name), out value)
+            && DeviceUnderTest.TryGetFeatureValue(FeatureUsageUnderTest.As<float>(), out value)
             && value >= -1f
             && value <= 1f)
            )

@@ -18,7 +18,7 @@ public class Check2D_AlwaysNeg1To1 : Check
         Vector2 value = new Vector2(float.NaN, float.NaN);
         if (!
             (FeatureUsageUnderTest.type == typeof(Vector2)
-            && DeviceUnderTest.TryGetFeatureValue(new InputFeatureUsage<Vector2>(FeatureUsageUnderTest.name), out value)
+            && DeviceUnderTest.TryGetFeatureValue(FeatureUsageUnderTest.As<Vector2>(), out value)
             && value.x >= -1f
             && value.x <= 1f
             && value.y >= -1f

@@ -24,6 +24,8 @@ public static class ControlToTestLookup
             AddAxis3DTests(device, usage, tests);
         else if (usage.type == typeof(Quaternion))
             AddRotationTests(device, usage, tests);
+        else if (usage.type == typeof(Eyes))
+            AddEyesTests(device, usage, tests);
         else
             AddNotSupportedTypeTests(device, usage, tests);
 
@@ -140,6 +142,13 @@ public static class ControlToTestLookup
         tests.Add(new ControlTestIsQuaternion(device, usage));
         tests.Add(new ControlTestRotationDefault(device, usage));
         tests.Add(new ControlTestRotationNormalizedXYZW(device, usage));
+    }
+
+    private static void AddEyesTests(InputDevice device, InputFeatureUsage usage, List<ControlTest> tests)
+    {
+        tests.Add(new ControlTestEyesDefault(device, usage));
+        tests.Add(new ControlTestEyesOpenAmount(device, usage));
+        tests.Add(new ControlTestEyesFixationPoint(device, usage));
     }
 
     private static void AddNotSupportedTypeTests(InputDevice device, InputFeatureUsage usage, List<ControlTest> tests)
