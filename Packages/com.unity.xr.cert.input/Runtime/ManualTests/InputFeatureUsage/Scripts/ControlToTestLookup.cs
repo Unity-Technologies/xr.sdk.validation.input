@@ -149,6 +149,8 @@ public static class ControlToTestLookup
         tests.Add(new ControlTestEyesDefault(device, usage));
         tests.Add(new ControlTestEyesOpenAmount(device, usage));
         tests.Add(new ControlTestEyesFixationPoint(device, usage));
+        tests.Add(new ControlTestEyesPosition(device, usage));
+        tests.Add(new ControlTestEyesRotation(device, usage));
     }
 
     private static void AddNotSupportedTypeTests(InputDevice device, InputFeatureUsage usage, List<ControlTest> tests)
