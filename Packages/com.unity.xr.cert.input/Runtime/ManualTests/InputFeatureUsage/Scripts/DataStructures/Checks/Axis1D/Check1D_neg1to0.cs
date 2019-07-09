@@ -16,7 +16,7 @@ public class Check1D_neg1to0 : Check
     {
         float value;
         if (FeatureUsageUnderTest.type == typeof(float)
-            && DeviceUnderTest.TryGetFeatureValue(new InputFeatureUsage<float>(FeatureUsageUnderTest.name), out value)
+            && DeviceUnderTest.TryGetFeatureValue(FeatureUsageUnderTest.As<float>(), out value)
             && value > -1f
             && value < 0f)
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.XR;
+using UnityEngine.UI;
 
 public class ArbiterFeatureUsageDrivesUI : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class ArbiterFeatureUsageDrivesUI : MonoBehaviour
     public Vector2FeatureUsageDrivesUI Vector2FeatureUI;
     public Vector3FeatureUsageDrivesUI Vector3FeatureUI;
     public QuaternionFeatureUsageDrivesUI QuaternionFeatureUI;
+    public Text EyeDataUI;
     // If you add to this list, update HideAllUI() and SetDrivingUsage() as well
 
     private bool m_HideOnStart = true;
@@ -31,6 +33,7 @@ public class ArbiterFeatureUsageDrivesUI : MonoBehaviour
         Vector2FeatureUI.gameObject.SetActive(false);
         Vector3FeatureUI.gameObject.SetActive(false);
         QuaternionFeatureUI.gameObject.SetActive(false);
+        EyeDataUI.gameObject.SetActive(false);
     }
 
     public void ClearDrivingUsage()
@@ -44,24 +47,20 @@ public class ArbiterFeatureUsageDrivesUI : MonoBehaviour
 
         HideAllUI();
 
-        if (usage.type == typeof(bool)) {
+        if (usage.type == typeof(bool))
             BoolFeatureUI.SetDrivingUsage(device, usage.As<bool>());
-        }
-        else if (usage.type == typeof(float)) {
+        else if (usage.type == typeof(float))
             FloatFeatureUI.SetDrivingUsage(device, usage.As<float>());
-        }
-        else if (usage.type == typeof(uint)) {
+        else if (usage.type == typeof(uint))
             UintFeatureUI.SetDrivingUsage(device, usage.As<uint>());
-        }
-        else if (usage.type == typeof(Vector2)) {
+        else if (usage.type == typeof(Vector2))
             Vector2FeatureUI.SetDrivingUsage(device, usage.As<Vector2>());
-        }
-        else if (usage.type == typeof(Vector3)) {
+        else if (usage.type == typeof(Vector3))
             Vector3FeatureUI.SetDrivingUsage(device, usage.As<Vector3>());
-        }
-        else if (usage.type == typeof(Quaternion)) {
+        else if (usage.type == typeof(Quaternion))
             QuaternionFeatureUI.SetDrivingUsage(device, usage.As<Quaternion>());
-        }
+        else if (usage.type == typeof(Eyes))
+            EyeDataUI.gameObject.SetActive(true);
         else {
             Debug.LogError("ArbiterFeatureUsageDrivesUI could not SetDrivingUsage() for device " + device.name + " and " + usage.type.ToString() + " type usage " + usage.name);
             return false;

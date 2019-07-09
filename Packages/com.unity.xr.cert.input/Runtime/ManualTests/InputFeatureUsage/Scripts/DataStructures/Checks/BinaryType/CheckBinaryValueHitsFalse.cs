@@ -16,7 +16,7 @@ public class CheckBinaryValueHitsFalse : Check
     {
         bool value;
         if (FeatureUsageUnderTest.type == typeof(bool)
-            && DeviceUnderTest.TryGetFeatureValue(new InputFeatureUsage<bool>(FeatureUsageUnderTest.name), out value)
+            && DeviceUnderTest.TryGetFeatureValue(FeatureUsageUnderTest.As<bool>(), out value)
             && value == false)
         {
             passed = true;

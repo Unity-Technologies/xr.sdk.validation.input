@@ -16,7 +16,7 @@ public class CheckDiscreteDefault : Check
     {
         uint value;
         if (FeatureUsageUnderTest.type == typeof(uint)
-            && DeviceUnderTest.TryGetFeatureValue(new InputFeatureUsage<uint>(FeatureUsageUnderTest.name), out value)
+            && DeviceUnderTest.TryGetFeatureValue(FeatureUsageUnderTest.As<uint>(), out value)
             && value == 0)
         {
             passed = true;

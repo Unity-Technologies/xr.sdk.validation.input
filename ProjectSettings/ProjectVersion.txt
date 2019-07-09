@@ -1,2 +1,2 @@
-m_EditorVersion: 2019.3.0a4
-m_EditorVersionWithRevision: 2019.3.0a4 (7bf09b2b9ec3)
+m_EditorVersion: 2019.3.0a10
+m_EditorVersionWithRevision: 2019.3.0a10 (7d69749e0540)

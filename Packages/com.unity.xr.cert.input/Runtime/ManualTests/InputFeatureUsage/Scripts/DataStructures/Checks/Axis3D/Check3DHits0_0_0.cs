@@ -16,7 +16,7 @@ public class Check3DHits0_0_0 : Check
     {
         Vector3 value;
         if (FeatureUsageUnderTest.type == typeof(Vector3)
-            && DeviceUnderTest.TryGetFeatureValue(new InputFeatureUsage<Vector3>(FeatureUsageUnderTest.name), out value)
+            && DeviceUnderTest.TryGetFeatureValue(FeatureUsageUnderTest.As<Vector3>(), out value)
             && value.x == 0.0f
             && value.y == 0.0f
             && value.z == 0.0f)
