@@ -33,6 +33,7 @@ public class DeviceTestManager : MonoBehaviour
     public GameObject TrackedDeviceVisualizerPositionPrefab;
     public GameObject TrackedDeviceVisualizerRotationPrefab;
     public GameObject TrackedDeviceVisualizerPointerPrefab;
+    public GameObject TrackedDeviceVisualizerEyePointerPrefab;
     public GameObject EyeHelper;
     public GameObject FixationPointVisualizer;
 

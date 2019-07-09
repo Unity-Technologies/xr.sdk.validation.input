@@ -6302,6 +6302,8 @@ MonoBehaviour:
     type: 3}
   TrackedDeviceVisualizerPointerPrefab: {fileID: 5397210739576108242, guid: 8ae76e8350c548e4ba31cae49330af08,
     type: 3}
+  TrackedDeviceVisualizerEyePointerPrefab: {fileID: 5397210739576108242, guid: 80d5ea112a56b66469249de08716ec27,
+    type: 3}
   EyeHelper: {fileID: 271168981}
   FixationPointVisualizer: {fileID: 5397210739576108242, guid: 31754c41036532b469351c1d8288f168,
     type: 3}

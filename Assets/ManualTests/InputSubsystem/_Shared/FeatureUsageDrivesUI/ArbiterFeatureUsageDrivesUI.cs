@@ -33,7 +33,10 @@ public class ArbiterFeatureUsageDrivesUI : MonoBehaviour
         Vector2FeatureUI.gameObject.SetActive(false);
         Vector3FeatureUI.gameObject.SetActive(false);
         QuaternionFeatureUI.gameObject.SetActive(false);
-        EyeDataUI.gameObject.SetActive(false);
+
+        // Doesn't make sense to show this in the InputArray scene
+        if (EyeDataUI != null)
+            EyeDataUI.gameObject.SetActive(false);
     }
 
     public void ClearDrivingUsage()
@@ -59,7 +62,7 @@ public class ArbiterFeatureUsageDrivesUI : MonoBehaviour
             Vector3FeatureUI.SetDrivingUsage(device, usage.As<Vector3>());
         else if (usage.type == typeof(Quaternion))
             QuaternionFeatureUI.SetDrivingUsage(device, usage.As<Quaternion>());
-        else if (usage.type == typeof(Eyes))
+        else if (usage.type == typeof(Eyes) && EyeDataUI != null) // Doesn't make sense to show this in the InputArray scene
             EyeDataUI.gameObject.SetActive(true);
         else {
             Debug.LogError("ArbiterFeatureUsageDrivesUI could not SetDrivingUsage() for device " + device.name + " and " + usage.type.ToString() + " type usage " + usage.name);

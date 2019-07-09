@@ -6,14 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/ManualTests/TemplateSubsystem/TemplateScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/ManualTests/InputSubsystem/InputHaptics.unity
-    guid: c005f704a1d404a428836c03400fa9c2
-  - enabled: 1
-    path: Assets/ManualTests/InputSubsystem/InputRecenter.unity
-    guid: 658ff0f0f9359104083362287e497afc
+    path: Assets/ManualTests/InputSubsystem/InputArray.unity
+    guid: 51beedad5b5e70c4aa3c49d0a08cc0e5
   - enabled: 1
     path: Assets/ManualTests/InputSubsystem/InputFeatureUsageControls.unity
     guid: 9976ad882d06da04cab373baf372d48e
@@ -21,11 +15,21 @@ EditorBuildSettings:
     path: Assets/ManualTests/InputSubsystem/InputFeatureUsageTracking.unity
     guid: 544459f5cbc6d0d42baee81ef9a622c4
   - enabled: 1
+    path: Assets/ManualTests/InputSubsystem/InputHaptics.unity
+    guid: c005f704a1d404a428836c03400fa9c2
+  - enabled: 1
+    path: Assets/ManualTests/InputSubsystem/InputRecenter.unity
+    guid: 658ff0f0f9359104083362287e497afc
+  - enabled: 1
     path: Assets/ManualTests/InputSubsystem/NameManfSerial.unity
     guid: 70df82a62c4ca844d8135c53422fae0a
   - enabled: 1
-    path: Assets/ManualTests/InputSubsystem/InputArray.unity
-    guid: 51beedad5b5e70c4aa3c49d0a08cc0e5
+    path: Assets/ManualTests/TemplateSubsystem/TemplateScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
+    com.unity.xr.magicleap.magic_leap_settings: {fileID: 11400000, guid: 02cf757488ffffd4c90d62e02450b633,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: dd300e176233f3544aef4b09025b6df0,
+      type: 2}
     com.unity.xr.managment.loader_settings: {fileID: 11400000, guid: e27bf1ae79fa9f5469e12826b7854566,
       type: 2}
