@@ -6303,9 +6303,11 @@ MonoBehaviour:
     type: 3}
   TrackedDeviceVisualizerPointerPrefab: {fileID: 5397210739576108242, guid: 8ae76e8350c548e4ba31cae49330af08,
     type: 3}
-  TrackedDeviceVisualizerEyePointerPrefab: {fileID: 0}
+  TrackedDeviceVisualizerEyePointerPrefab: {fileID: 5397210739576108242, guid: 5024733f8a6a564448c69c3111a8f435,
+    type: 3}
   EyeHelper: {fileID: 927921274}
-  FixationPointVisualizer: {fileID: 0}
+  FixationPointVisualizer: {fileID: 5397210739576108242, guid: e253dcac2a5aa5c4686e1388187b4ce3,
+    type: 3}
 --- !u!1 &128220872
 GameObject:
   m_ObjectHideFlags: 0
