@@ -50,6 +50,14 @@ public class InputManual
     {
         yield return TestHelperFunctions.RunFacilitatorSceneTest("InputArray");
     }
+
+    [UnityTest]
+    [Timeout(3600000)] // An hour
+    [Description("This test verifies information that requires viewing all features at once.")]
+    public IEnumerator InputArrayForTracking()
+    {
+        yield return TestHelperFunctions.RunFacilitatorSceneTest("InputArrayForTracking");
+    }
         
     [UnityTest]
     [Timeout(3600000)] // An hour

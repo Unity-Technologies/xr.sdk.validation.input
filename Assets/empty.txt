@@ -1,0 +1,5 @@
+All content for this project are located in packages.  
+
+This is a stub file so that the Assets folder exists in source control.  
+
+Without an Assets folder hub doesn't recognize this as a Unity project.

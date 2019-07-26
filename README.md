@@ -27,7 +27,7 @@ Do not just hit play - this won't work!  Refer to "Running a subset of tests" ab
 - Create a new TestFacilitator in Assets/ManualTests/\_TestRunnerEntry.  This can be a copy of an existing TestFacilitator or a copy of Assets/ManualTests/\_TestRunnerEntry/TemplateTestFacilitator.cs.  The TestFacilitator script controls the flow of your test and ultimately reports status back to the Test Runner.
 - In your new scene replace the existing TestFacilitator script, located on the "TestFacilitator" GameObject, with your new TestFacilitator script.  Link the InstructionCanvas to this new Component.
 - Edit the new scene and TestFacilitator script to match your desired functionality.  Assets/ManualTests/\_TestRunnerEntry/TemplateTestFacilitator.cs contains examples of manual checkpoints and correct status reporting.
-- Open File -> Build Settings and add your new scene to the build.
+- Add your new scene to /com.unity.xr.cert.input/Runtime/BuildSetupAndCleanup.cs
 - Add your Test Runner test to the appropriate test runner script.  See Assets/Tests/TemplateSubsystem/TemplateManual.cs for an example of a manual Test Runner test.
 
 ### Creating a New Automated Test

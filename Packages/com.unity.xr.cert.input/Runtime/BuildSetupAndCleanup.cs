@@ -17,6 +17,7 @@ public class BuildSetupAndCleanup : IPrebuildSetup, IPostBuildCleanup
         // Set up test scene list for the test run
         EditorBuildSettingsScene[] TestScenes = new EditorBuildSettingsScene[] {
             new EditorBuildSettingsScene("Packages/com.unity.xr.cert.input/Runtime/ManualTests/InputArray.unity", true),
+            new EditorBuildSettingsScene("Packages/com.unity.xr.cert.input/Runtime/ManualTests/InputArrayForTracking.unity", true),
             new EditorBuildSettingsScene("Packages/com.unity.xr.cert.input/Runtime/ManualTests/InputExperience.unity", true),
             new EditorBuildSettingsScene("Packages/com.unity.xr.cert.input/Runtime/ManualTests/InputExperienceRecenter.unity", true),
             new EditorBuildSettingsScene("Packages/com.unity.xr.cert.input/Runtime/ManualTests/InputFeatureUsageControls.unity", true),
