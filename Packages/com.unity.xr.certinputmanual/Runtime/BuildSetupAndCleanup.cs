@@ -16,14 +16,14 @@ public class BuildSetupAndCleanup : IPrebuildSetup, IPostBuildCleanup
     {
         // Set up test scene list for the test run
         EditorBuildSettingsScene[] TestScenes = new EditorBuildSettingsScene[] {
-            new EditorBuildSettingsScene("Packages/com.unity.xr.cert.input/Runtime/ManualTests/InputArray.unity", true),
-            new EditorBuildSettingsScene("Packages/com.unity.xr.cert.input/Runtime/ManualTests/InputArrayForTracking.unity", true),
-            new EditorBuildSettingsScene("Packages/com.unity.xr.cert.input/Runtime/ManualTests/InputExperience.unity", true),
-            new EditorBuildSettingsScene("Packages/com.unity.xr.cert.input/Runtime/ManualTests/InputExperienceRecenter.unity", true),
-            new EditorBuildSettingsScene("Packages/com.unity.xr.cert.input/Runtime/ManualTests/InputFeatureUsageControls.unity", true),
-            new EditorBuildSettingsScene("Packages/com.unity.xr.cert.input/Runtime/ManualTests/InputFeatureUsageTracking.unity", true),
-            new EditorBuildSettingsScene("Packages/com.unity.xr.cert.input/Runtime/ManualTests/InputHaptics.unity", true),
-            new EditorBuildSettingsScene("Packages/com.unity.xr.cert.input/Runtime/ManualTests/NameManfSerial.unity", true),
+            new EditorBuildSettingsScene("Packages/com.unity.xr.certinputmanual/Runtime/ManualTests/InputArray.unity", true),
+            new EditorBuildSettingsScene("Packages/com.unity.xr.certinputmanual/Runtime/ManualTests/InputArrayForTracking.unity", true),
+            new EditorBuildSettingsScene("Packages/com.unity.xr.certinputmanual/Runtime/ManualTests/InputExperience.unity", true),
+            new EditorBuildSettingsScene("Packages/com.unity.xr.certinputmanual/Runtime/ManualTests/InputExperienceRecenter.unity", true),
+            new EditorBuildSettingsScene("Packages/com.unity.xr.certinputmanual/Runtime/ManualTests/InputFeatureUsageControls.unity", true),
+            new EditorBuildSettingsScene("Packages/com.unity.xr.certinputmanual/Runtime/ManualTests/InputFeatureUsageTracking.unity", true),
+            new EditorBuildSettingsScene("Packages/com.unity.xr.certinputmanual/Runtime/ManualTests/InputHaptics.unity", true),
+            new EditorBuildSettingsScene("Packages/com.unity.xr.certinputmanual/Runtime/ManualTests/NameManfSerial.unity", true),
             };
 
         PlayerPrefs.SetInt(PlayerPrefKey, TestScenes.Length);

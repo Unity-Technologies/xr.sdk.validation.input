@@ -1,5 +1,5 @@
 {
-    "name": "Unity.XR.Cert.Input",
+    "name": "Unity.XR.CertInputManual",
     "references": [
         "Unity.ugui",
         "UnityEngine.TestRunner",

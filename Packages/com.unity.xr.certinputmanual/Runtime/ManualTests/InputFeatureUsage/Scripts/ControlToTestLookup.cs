@@ -29,6 +29,10 @@ public static class ControlToTestLookup
         else
             AddNotSupportedTypeTests(device, usage, tests);
 
+        // Add SI unit test
+
+        tests.Add(new ControlTestSIUnits(device, usage));
+
         // Add usage specific tests
 
         switch (usage.name)
