@@ -6,8 +6,6 @@ using UnityEngine.TestTools;
 
 using Unity.TestRunnerManualTests;
 
-[PrebuildSetup(typeof(BuildSetupAndCleanup))]
-[PostBuildCleanup(typeof(BuildSetupAndCleanup))]
 public class TemplateManual
 {
     [UnityTest]

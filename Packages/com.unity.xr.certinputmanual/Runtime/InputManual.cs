@@ -7,8 +7,6 @@ using UnityEngine.TestTools;
 using UnityEngine.SceneManagement;
 using Unity.TestRunnerManualTests;
 
-[PrebuildSetup(typeof(BuildSetupAndCleanup))]
-[PostBuildCleanup(typeof(BuildSetupAndCleanup))]
 public class InputManual
 {
     [UnityTest]
