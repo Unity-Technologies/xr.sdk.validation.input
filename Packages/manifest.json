@@ -10,6 +10,7 @@
     "com.unity.purchasing": "2.0.6",
     "com.unity.test-framework": "1.0.18",
     "com.unity.timeline": "1.1.0",
+    "com.unity.xr.certinputauto": "https://github.com/Unity-Technologies/com.unity.xr.certinputauto.git#master",
     "com.unity.xr.legacyinputhelpers": "2.0.4",
     "com.unity.xr.openvr.standalone": "1.0.5",
     "com.unity.modules.ai": "1.0.0",
@@ -43,5 +44,8 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  }
+  },
+  "testables": [
+    "com.unity.xr.certinputauto"
+  ]
 }
