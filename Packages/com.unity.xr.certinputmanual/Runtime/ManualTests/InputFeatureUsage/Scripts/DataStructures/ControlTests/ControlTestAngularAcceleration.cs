@@ -8,6 +8,7 @@ public class ControlTestAngularAcceleration : ControlTest
 {
     GameObject m_Visualizer = null;
     Bearings m_Bearings = null;
+    GraphFromVector3FeatureUsage m_Graph = null;
 
     public ControlTestAngularAcceleration(InputDevice device, InputFeatureUsage usage) : base(device, usage)
     {
@@ -51,13 +52,26 @@ public class ControlTestAngularAcceleration : ControlTest
 
         // Set up bearings
         m_Bearings = GameObject.FindGameObjectWithTag("Facilitator").GetComponent<DeviceTestManager>().bearings;
-        m_Bearings.EnableAngularAcceleration(DeviceUnderTest, FeatureUsageUnderTest.As<Vector3>());
+        if (m_Bearings != null)
+            m_Bearings.EnableAngularAcceleration(DeviceUnderTest, FeatureUsageUnderTest.As<Vector3>());
+
+        m_Graph = GameObject.FindGameObjectWithTag("Facilitator").GetComponent<DeviceTestManager>().graphVector3;
+        if (m_Graph != null)
+        {
+            m_Graph.gameObject.SetActive(true);
+            m_Graph.SetActive(DeviceUnderTest, FeatureUsageUnderTest.As<Vector3>());
+        }
     }
 
     public override void Teardown()
     {
         if (m_Bearings != null)
             m_Bearings.DisableAngularAcceleration();
+
+        if (m_Graph != null) {
+            m_Graph.SetInactive();
+            m_Graph.gameObject.SetActive(false);
+        }
         Object.Destroy(m_Visualizer);
     }
 }

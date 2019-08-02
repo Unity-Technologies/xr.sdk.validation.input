@@ -38,6 +38,7 @@ public class DeviceTestManager : MonoBehaviour
     public GameObject TrackedDeviceVisualizerEyePointerPrefab;
     public GameObject EyeHelper;
     public GameObject FixationPointVisualizer;
+    public GraphFromVector3FeatureUsage graphVector3;
 
     private List<DeviceContainer> m_InputDeviceList;
     private int m_CurrentDeviceIndex;
@@ -62,6 +63,9 @@ public class DeviceTestManager : MonoBehaviour
 
         RefreshDeviceList();
         m_StartTestsCalled = true;
+
+        if (graphVector3 != null)
+            graphVector3.gameObject.SetActive(false);
     }
 
     private void Update()
