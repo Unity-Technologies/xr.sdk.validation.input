@@ -8,7 +8,7 @@ public class ControlTestRotationDefault : ControlTest
 {
     public ControlTestRotationDefault(InputDevice device, InputFeatureUsage usage) : base(device, usage)
     {
-        Description = "Rotation control should default to (0.0, 0.0, 0.0, 1.0) when not the control is not active or when the device is pointed straight forward with no roll.";
+        Description = "Rotation control should default to (0.0, 0.0, 0.0, +-1.0) when the control is not active or when the device is pointed straight forward with no roll.";
         CertReqID = "1.2.3.x";
 
         Checks = new Check[2];

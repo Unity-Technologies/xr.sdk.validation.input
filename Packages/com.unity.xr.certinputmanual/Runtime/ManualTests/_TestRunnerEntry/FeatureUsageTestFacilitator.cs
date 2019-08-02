@@ -13,7 +13,7 @@ public class FeatureUsageTestFacilitator : TestFacilitator
     // Please refer to the readme in this project's root folder for more information
     public override IEnumerator RunTest()
     {
-        instructionCanvas.Instructions.text = "This test moves through all connected devices and their controls.  Follow the instructions on the UI above to completion.";
+        instructionCanvas.Instructions.text = "This test moves through all connected devices and their controls.  Follow the instructions on the test UI to completion.";
 
         BroadcastMessage("StartTests");   // Kick off DeviceTestManager
         yield return WaitForTestFinish(); // DeviceTestManager will call TestFinish when complete

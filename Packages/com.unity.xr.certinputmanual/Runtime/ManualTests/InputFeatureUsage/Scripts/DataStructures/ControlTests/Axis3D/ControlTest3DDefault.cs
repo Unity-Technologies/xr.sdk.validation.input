@@ -8,7 +8,7 @@ public class ControlTest3DDefault : ControlTest
 {
     public ControlTest3DDefault(InputDevice device, InputFeatureUsage usage) : base(device, usage)
     {
-        Description = "3D Axis control should default to (0.0, 0.0, 0.0) when not the control is not actuated or is in the \"default\" position. Verify that the device defaults to (0.0, 0.0, 0.0) and then manually pass this test.";
+        Description = "3D Axis control should default to (0.0, 0.0, 0.0) when the control is not actuated or is in the \"default\" position. Verify that the device defaults to (0.0, 0.0, 0.0) and then manually pass this test.";
         CertReqID = "1.2.3.x";
 
         Checks = new Check[2];

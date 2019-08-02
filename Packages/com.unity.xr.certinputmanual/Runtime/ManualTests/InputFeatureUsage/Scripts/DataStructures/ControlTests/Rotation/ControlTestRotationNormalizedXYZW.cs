@@ -12,8 +12,8 @@ public class ControlTestRotationNormalizedXYZW : ControlTest
         CertReqID = "1.2.3.x";
 
         Checks = new Check[2];
-        Checks[0] = new CheckRequireManualPass(DeviceUnderTest, FeatureUsageUnderTest, this);
-        Checks[1] = new CheckRotationIsNormalized(DeviceUnderTest, FeatureUsageUnderTest, this);
+        Checks[0] = new CheckRotationIsNormalized(DeviceUnderTest, FeatureUsageUnderTest, this);
+        Checks[1] = new CheckRequireManualPass(DeviceUnderTest, FeatureUsageUnderTest, this);
 
         for (int i = 0; i < Checks.Length; i++)
         {

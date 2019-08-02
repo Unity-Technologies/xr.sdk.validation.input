@@ -8,7 +8,7 @@ public class ControlTestBinaryDefault : ControlTest
 {
     public ControlTestBinaryDefault(InputDevice device, InputFeatureUsage usage) : base(device, usage)
     {
-        Description = "Binary control should default to false when not the control is not actuated. Verify that the device defaults to false and then manually pass this test.";
+        Description = "Binary control should default to false when the control is not actuated. Verify that the device defaults to false and then manually pass this test.";
         CertReqID = "1.2.3.x";
 
         Checks = new Check[2];
