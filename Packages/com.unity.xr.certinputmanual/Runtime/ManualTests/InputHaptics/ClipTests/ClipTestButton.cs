@@ -8,8 +8,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Button))]
 public class ClipTestButton : MonoBehaviour
 {
-    private byte[] m_LeftClip = null;
-    private byte[] m_RightClip = null;
+    private byte[] m_Clip = null;
 
     // Update is called once per frame
     void OnEnable()
@@ -23,11 +22,10 @@ public class ClipTestButton : MonoBehaviour
     }
 
     // In implementations, overwrite this to generate clips
-    protected virtual bool GenerateClip(XRNode node, ref byte[] clip)
+    protected virtual bool GenerateClip(ref byte[] clip)
     {
         HapticCapabilities caps = new HapticCapabilities();
-
-        InputDevice device = InputDevices.GetDeviceAtXRNode(node);
+        InputDevice device = GetComponentInParent<HapticDeviceUnderTest>().device;
 
         if (device == null
             || !device.TryGetHapticCapabilities(out caps)
@@ -48,17 +46,13 @@ public class ClipTestButton : MonoBehaviour
 
     void PlayClip()
     {
-        InputDevice LeftDevice = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
-        InputDevice RightDevice = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+        InputDevice device = GetComponentInParent<HapticDeviceUnderTest>().device;
 
-        if (GenerateClip(XRNode.LeftHand, ref m_LeftClip) 
-            && LeftDevice != null
+        if (GenerateClip(ref m_Clip) 
+            && device != null
             )
-            LeftDevice.SendHapticBuffer(0, m_LeftClip);
-
-        if (GenerateClip(XRNode.RightHand, ref m_RightClip) 
-            && RightDevice != null
-            )
-            RightDevice.SendHapticBuffer(0, m_RightClip);
+        {
+            device.SendHapticBuffer(0, m_Clip);
+        }
     }
 }

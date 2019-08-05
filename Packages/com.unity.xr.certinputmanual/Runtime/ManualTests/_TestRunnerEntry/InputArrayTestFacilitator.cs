@@ -8,7 +8,7 @@ using Unity.TestRunnerManualTests;
 public class InputArrayTestFacilitator : TestFacilitator
 {
     List<InputDevice> m_Devices;
-    int m_DeviceIndex = 0;
+    int i = 0;
 
     // This is called by TestRunner scripts.
     // Simply entering playmode won't start this, and we don't want it to start twice via Start() or Awake()
@@ -25,10 +25,10 @@ public class InputArrayTestFacilitator : TestFacilitator
         InputDevices.GetDevices(m_Devices);
         Debug.Log(m_Devices.Count + " devices detected");
 
-        while (m_DeviceIndex < m_Devices.Count)
+        for (int i = 0; i < m_Devices.Count; i++)
         {
-            Debug.Log("Testing device [" + m_DeviceIndex + "] " + m_Devices[m_DeviceIndex].name);
-            DisplayNextDevice(m_Devices[m_DeviceIndex]);
+            Debug.Log("Testing device [" + i + "] " + m_Devices[i].name);
+            DisplayNextDevice(m_Devices[i]);
             yield return WaitForContinue();
         }
 
@@ -41,11 +41,7 @@ public class InputArrayTestFacilitator : TestFacilitator
 
     void DisplayNextDevice(InputDevice device)
     {
-        // Do stuff
         BroadcastMessage("ClearArrayOfControls");
         BroadcastMessage("FillArrayOfControls", device);
-
-        // Do this last
-        m_DeviceIndex++;
     }
 }

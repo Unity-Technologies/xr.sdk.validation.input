@@ -6,11 +6,10 @@ using UnityEngine.XR;
 
 public class OneSecondClip : ClipTestButton
 {
-    protected override bool GenerateClip(XRNode node, ref byte[] clip)
+    protected override bool GenerateClip(ref byte[] clip)
     {
         HapticCapabilities caps = new HapticCapabilities();
-
-        InputDevice device = InputDevices.GetDeviceAtXRNode(node);
+        InputDevice device = GetComponentInParent<HapticDeviceUnderTest>().device;
 
         if (device == null
             || !device.TryGetHapticCapabilities(out caps)

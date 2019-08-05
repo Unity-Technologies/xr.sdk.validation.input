@@ -14,8 +14,7 @@ public class XRNodeHapticsCapabilitiesSetsSliderExtents : MonoBehaviour
         Duration,
         Frequency
     }
-
-    public XRNode node;
+    
     public DriveType driveType;
     private Slider m_Slider;
 
@@ -29,7 +28,7 @@ public class XRNodeHapticsCapabilitiesSetsSliderExtents : MonoBehaviour
     public void SetSliderExtents()
     {
         HapticCapabilities caps = new HapticCapabilities();
-        InputDevice device = InputDevices.GetDeviceAtXRNode(node);
+        InputDevice device = GetComponentInParent<HapticDeviceUnderTest>().device;
 
         if (device == null
             || !device.TryGetHapticCapabilities(out caps) 
