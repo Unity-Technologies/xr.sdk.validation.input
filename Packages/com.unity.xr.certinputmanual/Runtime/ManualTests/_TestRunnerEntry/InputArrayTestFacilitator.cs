@@ -36,7 +36,7 @@ public class InputArrayTestFacilitator : TestFacilitator
         // The second parameter of RecordStatus allows you to give more information 
         // for a success or failure in the results log.
         if (overallStatus == OverallTestStatus.NotRun)
-            RecordStatus(OverallTestStatus.Passed, "All haptic tests have been manually approved");
+            RecordStatus(OverallTestStatus.Passed, "All Input Array tests have been manually approved");
     }
 
     void DisplayNextDevice(InputDevice device)
