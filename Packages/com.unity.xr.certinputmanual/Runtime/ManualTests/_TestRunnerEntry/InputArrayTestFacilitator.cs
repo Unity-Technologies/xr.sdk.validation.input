@@ -15,6 +15,14 @@ public class InputArrayTestFacilitator : TestFacilitator
     // Please refer to the readme in this project's root folder for more information
     public override IEnumerator RunTest()
     {
+        List<InputDevice> m_Devices = new List<InputDevice>();
+        InputDevices.GetDevices(m_Devices);
+        if (m_Devices.Count == 0)
+        {
+            RecordStatus(OverallTestStatus.Failed, "No devices detected.  Test failing due to invalid setup.");
+            yield break;
+        }
+
         instructionCanvas.Instructions.text = "For each device:" +
             "\n - Verify that every hardware sensor or control corresponds to a feature in the CommonUsages table." +
             "\n - Verify that if a feature resembles a usage on the XR SDK Input Usage Table, it is implemented as that feature." + 

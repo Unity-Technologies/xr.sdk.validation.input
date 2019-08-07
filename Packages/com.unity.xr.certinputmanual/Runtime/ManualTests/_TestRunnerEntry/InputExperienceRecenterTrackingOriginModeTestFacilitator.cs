@@ -12,6 +12,14 @@ public class InputExperienceRecenterTrackingOriginModeTestFacilitator : TestFaci
     // Please refer to the readme in this project's root folder for more information
     public override IEnumerator RunTest()
     {
+        List<InputDevice> m_Devices = new List<InputDevice>();
+        InputDevices.GetDevices(m_Devices);
+        if (m_Devices.Count == 0)
+        {
+            RecordStatus(OverallTestStatus.Failed, "No devices detected.  Test failing due to invalid setup.");
+            yield break;
+        }
+
         instructionCanvas.Instructions.text = "Activating Recenter corrects your position and yaw." +
                     "\nFor each input subsystem that supports Device TrackingOriginMode, do the following:" +
                     "\n- Move away from your starting position if possible." +

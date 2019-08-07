@@ -15,6 +15,14 @@ public class InputArrayForTrackingTestFacilitator : TestFacilitator
     // Please refer to the readme in this project's root folder for more information
     public override IEnumerator RunTest()
     {
+        List<InputDevice> m_Devices = new List<InputDevice>();
+        InputDevices.GetDevices(m_Devices);
+        if (m_Devices.Count == 0)
+        {
+            RecordStatus(OverallTestStatus.Failed, "No devices detected.  Test failing due to invalid setup.");
+            yield break;
+        }
+
         instructionCanvas.Instructions.text = "For each device, and each tracking property (position, rotation, velocity, angular velocity, acceleration, and angular acceleration):" +
             "\n - If the tracking property is marked as NOT tracking, its value must default to (0, 0, 0) for Vector3 type usages and (0, 0, 0, 1) for Quaternion usages." + 
             "\n - If the tracking property is marked as YES tracking, verify that its values are update when you move the device." +

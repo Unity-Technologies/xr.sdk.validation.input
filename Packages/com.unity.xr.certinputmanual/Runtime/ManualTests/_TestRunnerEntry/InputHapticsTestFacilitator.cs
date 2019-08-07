@@ -12,11 +12,13 @@ public class InputHapticsTestFacilitator : TestFacilitator
     // Please refer to the readme in this project's root folder for more information
     public override IEnumerator RunTest()
     {
-        List<InputDevice> m_Devices;
-
-        m_Devices = new List<InputDevice>();
+        List<InputDevice> m_Devices = new List<InputDevice>();
         InputDevices.GetDevices(m_Devices);
-        Debug.Log(m_Devices.Count + " devices detected");
+        if (m_Devices.Count == 0)
+        {
+            RecordStatus(OverallTestStatus.Failed, "No devices detected.  Test failing due to invalid setup.");
+            yield break;
+        }
 
         for (int i = 0; i < m_Devices.Count; i++)
         {
