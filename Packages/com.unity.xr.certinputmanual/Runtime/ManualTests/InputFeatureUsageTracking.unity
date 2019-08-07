@@ -739,7 +739,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 6.283
+      scalar: 12.566
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -2813,7 +2813,7 @@ ParticleSystem:
     speedModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.4
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -6727,7 +6727,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -261.5, y: -0.000016027223}
+  m_AnchoredPosition: {x: -261.5, y: 0.00011685591}
   m_SizeDelta: {x: 523, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &141430572
@@ -7083,7 +7083,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 6.283
+      scalar: 12.566
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -9157,7 +9157,7 @@ ParticleSystem:
     speedModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.4
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -55284,7 +55284,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 6.283
+      scalar: 12.566
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -57358,7 +57358,7 @@ ParticleSystem:
     speedModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.4
       minScalar: 1
       maxCurve:
         serializedVersion: 2

@@ -33,7 +33,7 @@ public class ControlTestVelocity : ControlTest
         if (m_Graph != null)
         {
             m_Graph.gameObject.SetActive(true);
-            m_Graph.SetActive(DeviceUnderTest, FeatureUsageUnderTest.As<Vector3>(), 10f);
+            m_Graph.SetActive(DeviceUnderTest, FeatureUsageUnderTest.As<Vector3>(), 0.2f);
         }
     }
 
