@@ -23,7 +23,12 @@ public class XRNodeCapabilities : MonoBehaviour
             || !device.TryGetHapticCapabilities(out caps)
             )
         {
-            Debug.Log("TryGetHapticCapabilities failed!");
+            Debug.Log("TryGetHapticCapabilities failed for device " + device.name);
+            deviceName.text = device.name;
+            numChannels.text = "failed to get haptic capabilities";
+            supportsImpulse.text = "failed to get haptic capabilities";
+            supportsBuffer.text = "failed to get haptic capabilities";
+            bufferFreqHz.text = "failed to get haptic capabilities";
             return;
         }
 
