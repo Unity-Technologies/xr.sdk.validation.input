@@ -6,6 +6,8 @@ using UnityEngine.XR;
 
 public class ControlTestAcceleration : ControlTest
 {
+    GraphFromVector3FeatureUsage m_Graph = null;
+
     public ControlTestAcceleration(InputDevice device, InputFeatureUsage usage) : base(device, usage)
     {
         Description = "Match the motion of each color of cube to test the acceleration.  You should see the magnitude hit a maximum of about 10." +
@@ -29,10 +31,22 @@ public class ControlTestAcceleration : ControlTest
     public override void Setup()
     {
         GameObject.FindGameObjectWithTag("Facilitator").GetComponent<DeviceTestManager>().bearings.EnableAcceleration = true;
+
+        m_Graph = GameObject.FindGameObjectWithTag("Facilitator").GetComponent<DeviceTestManager>().graphVector3;
+        if (m_Graph != null)
+        {
+            m_Graph.gameObject.SetActive(true);
+            m_Graph.SetActive(DeviceUnderTest, FeatureUsageUnderTest.As<Vector3>(), 10f);
+        }
     }
 
     public override void Teardown()
     {
         GameObject.FindGameObjectWithTag("Facilitator").GetComponent<DeviceTestManager>().bearings.EnableAcceleration = false;
+
+        if (m_Graph != null) {
+            m_Graph.SetInactive();
+            m_Graph.gameObject.SetActive(false);
+        }
     }
 }
