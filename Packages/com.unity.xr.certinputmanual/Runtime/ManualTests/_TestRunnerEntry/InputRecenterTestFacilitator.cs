@@ -3,14 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Unity.TestRunnerManualTests;
+using UnityEngine.XR;
 
-public class InputRecenter : TestFacilitator
+public class InputRecenterTestFacilitator : TestFacilitator
 {
     // This is called by TestRunner scripts.
     // Simply entering playmode won't start this, and we don't want it to start twice via Start() or Awake()
     // Please refer to the readme in this project's root folder for more information
     public override IEnumerator RunTest()
     {
+        List<InputDevice> m_Devices = new List<InputDevice>();
+        InputDevices.GetDevices(m_Devices);
+        if (m_Devices.Count == 0)
+        {
+            RecordStatus(OverallTestStatus.Failed, "No devices detected.  Test failing due to invalid setup.");
+            yield break;
+        }
+
         instructionCanvas.Instructions.text = "Verify recenter functionality for the device-under-test's tracking type.";
 
         yield return WaitForContinue();

@@ -12,6 +12,14 @@ public class InputExperienceTrackingOriginModeTestFacilitator : TestFacilitator
     // Please refer to the readme in this project's root folder for more information
     public override IEnumerator RunTest()
     {
+        List<InputDevice> m_Devices = new List<InputDevice>();
+        InputDevices.GetDevices(m_Devices);
+        if (m_Devices.Count == 0)
+        {
+            RecordStatus(OverallTestStatus.Failed, "No devices detected.  Test failing due to invalid setup.");
+            yield break;
+        }
+
         instructionCanvas.Instructions.text = "For each input subsystem:" +
             "\n - Verify that a the current TrackingOriginMode is in the list of available tracking modes." +
             "\n - Verify that \"Unknown\" does not appear as the current TrackingOriginMode or in the list of available TrackingOriginModes." +

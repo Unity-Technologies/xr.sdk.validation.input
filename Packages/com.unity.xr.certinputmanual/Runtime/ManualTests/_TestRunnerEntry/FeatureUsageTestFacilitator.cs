@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Unity.TestRunnerManualTests;
+using UnityEngine.XR;
 
 public class FeatureUsageTestFacilitator : TestFacilitator
 {
@@ -13,6 +14,14 @@ public class FeatureUsageTestFacilitator : TestFacilitator
     // Please refer to the readme in this project's root folder for more information
     public override IEnumerator RunTest()
     {
+        List<InputDevice> m_Devices = new List<InputDevice>();
+        InputDevices.GetDevices(m_Devices);
+        if (m_Devices.Count == 0)
+        {
+            RecordStatus(OverallTestStatus.Failed, "No devices detected.  Test failing due to invalid setup.");
+            yield break;
+        }
+
         instructionCanvas.Instructions.text = "This test moves through all connected devices and their controls.  Follow the instructions on the test UI to completion.";
 
         BroadcastMessage("StartTests");   // Kick off DeviceTestManager
