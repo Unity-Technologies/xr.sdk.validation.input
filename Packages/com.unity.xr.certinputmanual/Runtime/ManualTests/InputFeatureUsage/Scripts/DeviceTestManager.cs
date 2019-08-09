@@ -112,37 +112,47 @@ public class DeviceTestManager : MonoBehaviour
         }
         else
         {
-            // Update control status
-            Debug.Log("\n----------------------------------\nFinished running tests for usage " + CurrentInputFeatureUsage.name + "\n----------------------------------");
+            NextUsage();
+        }
+    }
 
-            bool allPassed = true;
-            for (int i = 0; i < m_ControlTestList.Count; i++)
-            {
-                if (!m_ControlTestList[i].AllChecksPassed())
-                    allPassed = false;
-            }
-            m_InputFeatureUsageList[m_CurrentFeatureIndex].HaveAllTestsPassed = allPassed;
-            m_InputFeatureUsageList[m_CurrentFeatureIndex].UIManager.SetStatusTested(allPassed);
+    private void NextUsage()
+    {
+        // Update control status
+        Debug.Log("\n----------------------------------\nFinished running tests for usage " + CurrentInputFeatureUsage.name + "\n----------------------------------");
 
-            if (!ReadyNextTestableFeature(m_CurrentDevice))
-            {
-                // Update device status
-                Debug.Log("\n\n==================================\nFinished testing device " + m_CurrentDevice.name + "\n==================================\n\n");
+        bool allPassed = true;
+        for (int i = 0; i < m_ControlTestList.Count; i++)
+        {
+            if (!m_ControlTestList[i].AllChecksPassed())
+                allPassed = false;
+        }
+        m_InputFeatureUsageList[m_CurrentFeatureIndex].HaveAllTestsPassed = allPassed;
+        m_InputFeatureUsageList[m_CurrentFeatureIndex].UIManager.SetStatusTested(allPassed);
 
-                bool allControlTestsPassed = true;
-                for (int i = 0; i < m_InputFeatureUsageList.Count; i++)
-                {
-                    if (!m_InputFeatureUsageList[i].HaveAllTestsPassed)
-                        allControlTestsPassed = false;
-                }
-                m_InputDeviceList[m_CurrentDeviceIndex].HaveAllTestsPassed = allControlTestsPassed;
-                m_InputDeviceList[m_CurrentDeviceIndex].UIManager.SetStatusTested(allControlTestsPassed);
+        if (!ReadyNextTestableFeature(m_CurrentDevice))
+        {
+            NextDevice();
+        }
+    }
 
-                if (!ReadyNextTestableDevice())
-                {
-                    MarkTestsAsFinished();
-                }
-            }
+    private void NextDevice()
+    {
+        // Update device status
+        Debug.Log("\n\n==================================\nFinished testing device " + m_CurrentDevice.name + "\n==================================\n\n");
+
+        bool allControlTestsPassed = true;
+        for (int i = 0; i < m_InputFeatureUsageList.Count; i++)
+        {
+            if (!m_InputFeatureUsageList[i].HaveAllTestsPassed)
+                allControlTestsPassed = false;
+        }
+        m_InputDeviceList[m_CurrentDeviceIndex].HaveAllTestsPassed = allControlTestsPassed;
+        m_InputDeviceList[m_CurrentDeviceIndex].UIManager.SetStatusTested(allControlTestsPassed);
+
+        if (!ReadyNextTestableDevice())
+        {
+            MarkTestsAsFinished();
         }
     }
 
