@@ -11,8 +11,6 @@ public class ControlTest1DRange_0_1 : ControlTest
         Description = "This control's range must be 0.0 to 1.0.  Check that it hits both extremes and is never outside that range.";
         CertReqID = "1.2.3.x";
 
-        Debug.Log("ControlTestBinaryRange usage " + usage.name + ", device " + DeviceUnderTest.name);
-
         Checks = new Check[5];
         Checks[0] = new Check1DHits0(DeviceUnderTest, FeatureUsageUnderTest, this);
         Checks[1] = new Check1DHits1(DeviceUnderTest, FeatureUsageUnderTest, this);

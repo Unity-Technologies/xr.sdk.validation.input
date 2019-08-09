@@ -11,8 +11,6 @@ public class ControlTestEyesOpenAmount : ControlTest
         Description = "Look at the eye information panel. Manually verify that the left and right eye open amounts react correctly as you open and close each eye separately.";
         CertReqID = "1.2.3.x";
 
-        Debug.Log("ControlTestBinaryRange usage " + usage.name + ", device " + DeviceUnderTest.name);
-
         Checks = new Check[2];
         Checks[0] = new CheckEyesRange_0_to_1(DeviceUnderTest, FeatureUsageUnderTest, this);
         Checks[1] = new CheckRequireManualPass(DeviceUnderTest, FeatureUsageUnderTest, this);

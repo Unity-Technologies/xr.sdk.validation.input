@@ -11,8 +11,6 @@ public class ControlTest1DDefault : ControlTest
         Description = "1D Axis control should default to 0.0 when the control is not actuated. Verify that the device defaults to 0.0 and then manually pass this test.";
         CertReqID = "1.2.3.x";
 
-        Debug.Log("ControlTestBinaryRange usage " + usage.name + ", device " + DeviceUnderTest.name);
-
         Checks = new Check[2];
         Checks[0] = new Check1DHits0(DeviceUnderTest, FeatureUsageUnderTest, this);
         Checks[1] = new CheckRequireManualPass(DeviceUnderTest, FeatureUsageUnderTest, this);

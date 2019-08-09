@@ -11,8 +11,6 @@ public class ControlTestEyesDefault : ControlTest
         Description = "Look at the eye information panel. If possible, disable the eye tracking features of the device or use another method to drive values to their defaults. Manually verify that the values are correctly driven to their default values when valid data cannot be found.  Floats should default to 0.0. Vector3s should default to (0, 0, 0). Quaternions should default to the quaternion identity.";
         CertReqID = "1.2.3.x";
 
-        Debug.Log("ControlTestBinaryRange usage " + usage.name + ", device " + DeviceUnderTest.name);
-
         Checks = new Check[1];
         Checks[0] = new CheckRequireManualPass(DeviceUnderTest, FeatureUsageUnderTest, this);
 

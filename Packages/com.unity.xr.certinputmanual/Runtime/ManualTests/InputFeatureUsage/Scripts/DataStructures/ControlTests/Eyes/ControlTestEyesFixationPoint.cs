@@ -13,8 +13,6 @@ public class ControlTestEyesFixationPoint : ControlTest
         Description = "A visualizer has been created to show the eye fixation point reported by the device.  Look around and verify that this fixation point is correct.";
         CertReqID = "1.2.3.x";
 
-        Debug.Log("ControlTestBinaryRange usage " + usage.name + ", device " + DeviceUnderTest.name);
-
         Checks = new Check[1];
         Checks[0] = new CheckRequireManualPass(DeviceUnderTest, FeatureUsageUnderTest, this);
 
