@@ -29,12 +29,15 @@ public class ControlTestPosition : ControlTest
     {
         DeviceTestManager TestManager = GameObject.FindGameObjectWithTag("Facilitator").GetComponent<DeviceTestManager>();
 
-        // Set up visualizer
-        m_Visualizer = Object.Instantiate(TestManager.TrackedDeviceVisualizerPositionPrefab);
-        m_Visualizer.transform.SetParent(TestManager.XRRig.transform);
-        TrackedDevice Device = m_Visualizer.GetComponent<TrackedDevice>();
-        Device.device = DeviceUnderTest;
-        Device.positionUsage = FeatureUsageUnderTest.As<Vector3>();
+        if ((DeviceUnderTest.characteristics & InputDeviceCharacteristics.HeadMounted) == 0)
+        {
+            // Set up visualizer
+            m_Visualizer = Object.Instantiate(TestManager.TrackedDeviceVisualizerPositionPrefab);
+            m_Visualizer.transform.SetParent(TestManager.XRRig.transform);
+            TrackedDevice Device = m_Visualizer.GetComponent<TrackedDevice>();
+            Device.device = DeviceUnderTest;
+            Device.positionUsage = FeatureUsageUnderTest.As<Vector3>();
+        }
 
         // Show coordinates
         TestManager.bearings.EnableCoordinates = true;
@@ -42,7 +45,8 @@ public class ControlTestPosition : ControlTest
 
     public override void Teardown()
     {
-        Object.Destroy(m_Visualizer);
+        if ((DeviceUnderTest.characteristics & InputDeviceCharacteristics.HeadMounted) == 0)
+            Object.Destroy(m_Visualizer);
         
         GameObject.FindGameObjectWithTag("Facilitator").GetComponent<DeviceTestManager>().bearings.EnableCoordinates = false;
     }

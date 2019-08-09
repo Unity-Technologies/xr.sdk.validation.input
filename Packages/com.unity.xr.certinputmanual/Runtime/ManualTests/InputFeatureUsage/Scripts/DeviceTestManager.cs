@@ -39,6 +39,7 @@ public class DeviceTestManager : MonoBehaviour
     public GameObject EyeHelper;
     public GameObject FixationPointVisualizer;
     public GraphFromVector3FeatureUsage graphVector3;
+    public QuaternionDrivesTextMesh rotationTextOnFace;
 
     private List<DeviceContainer> m_InputDeviceList;
     private int m_CurrentDeviceIndex;
@@ -66,6 +67,9 @@ public class DeviceTestManager : MonoBehaviour
 
         if (graphVector3 != null)
             graphVector3.gameObject.SetActive(false);
+
+        if (rotationTextOnFace != false)
+            rotationTextOnFace.gameObject.SetActive(false);
     }
 
     private void Update()
