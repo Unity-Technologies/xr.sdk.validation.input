@@ -116,6 +116,12 @@ public class DeviceTestManager : MonoBehaviour
         }
     }
 
+    public void SkipToNextUsage()
+    {
+        Debug.Log("\n----------------------------------\nManually skipping to next usage.\n----------------------------------");
+        NextUsage();
+    }
+
     private void NextUsage()
     {
         // Update control status
@@ -134,6 +140,12 @@ public class DeviceTestManager : MonoBehaviour
         {
             NextDevice();
         }
+    }
+
+    public void SkipToNextDevice()
+    {
+        Debug.Log("\n----------------------------------\nManually skipping to next device.\n----------------------------------");
+        NextDevice();
     }
 
     private void NextDevice()
