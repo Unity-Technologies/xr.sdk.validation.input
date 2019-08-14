@@ -1,6 +1,8 @@
 # XR SDK Validation project
 Automated and Manual tests to verify XR SDK providers.  Both automated and manual tests are executed through Test Runner to enable continuous integration systems.
 
+Branches are named based on new input provider interface versions.  There is at most only one new interface version per dot release of unity (for example, 2019.2 and 2019.3 are different dot releases).  New versions of Unity may not contain a new interface version.  When choosing which branch to use, select the latest Unity version that does not exceed the version you wish to test with.
+
 ### Setup
 - Import the target XR SDK package
 - Configure ProjectSettings -> XR -> XR Manager to the target XR SDK Loader
