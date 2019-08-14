@@ -47,11 +47,5 @@
   },
   "testables": [
     "com.unity.xr.certinputauto"
-  ],
-  "lock": {
-    "com.unity.xr.certinputauto": {
-      "revision": "interface-4",
-      "hash": "87109d3b60eb29d8f1b03f33b438a9881e7b2916"
-    }
-  }
+  ]
 }

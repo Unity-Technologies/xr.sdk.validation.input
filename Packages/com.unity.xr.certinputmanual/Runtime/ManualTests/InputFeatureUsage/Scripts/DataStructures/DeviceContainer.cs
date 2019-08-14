@@ -8,7 +8,8 @@ public class DeviceContainer
 {
     public InputDevice Device;
     public DeviceItemUIManager UIManager;
-    public bool HaveAllTestsPassed;
+    public bool HaveAllTestsPassed = false;
+    public bool NoTestsToRun = false;
 
     public DeviceContainer(InputDevice device)
     {

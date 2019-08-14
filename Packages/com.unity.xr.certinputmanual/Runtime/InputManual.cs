@@ -19,7 +19,7 @@ public class InputManual
 
     [UnityTest]
     [Timeout(3600000)] // An hour
-    [Description("This test verifies Feature/Usage controls specifics.")]
+    [Description("This test verifies non-tracking Feature/Usage details.")]
     public IEnumerator InputFeatureUsageControls()
     {
         yield return TestHelperFunctions.RunFacilitatorSceneTest("InputFeatureUsageControls");
@@ -27,7 +27,7 @@ public class InputManual
 
     [UnityTest]
     [Timeout(3600000)] // An hour
-    [Description("This test verifies Feature/Usage tracking specifics.")]
+    [Description("This test verifies tracking Feature/Usage details.")]
     public IEnumerator InputFeatureUsageTracking()
     {
         yield return TestHelperFunctions.RunFacilitatorSceneTest("InputFeatureUsageTracking");
@@ -51,7 +51,7 @@ public class InputManual
 
     [UnityTest]
     [Timeout(3600000)] // An hour
-    [Description("This test verifies information that requires viewing all features at once.")]
+    [Description("This test verifies tracking information that requires viewing all features at once.")]
     public IEnumerator InputArrayForTracking()
     {
         yield return TestHelperFunctions.RunFacilitatorSceneTest("InputArrayForTracking");

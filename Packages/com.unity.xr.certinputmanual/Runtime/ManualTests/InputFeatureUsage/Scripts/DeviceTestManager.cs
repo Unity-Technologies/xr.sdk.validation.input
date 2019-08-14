@@ -86,7 +86,9 @@ public class DeviceTestManager : MonoBehaviour
             bool allPassed = true;
             for (int i = 0; i < m_InputDeviceList.Count; i++)
             {
-                if (!m_InputDeviceList[i].HaveAllTestsPassed)
+                if (m_InputDeviceList[i].NoTestsToRun)
+                    Debug.Log("Device " + m_InputDeviceList[i].Device.name + " had no tests to run.");
+                if (!m_InputDeviceList[i].HaveAllTestsPassed && !m_InputDeviceList[i].NoTestsToRun)
                     allPassed = false;
             }
 
@@ -110,37 +112,59 @@ public class DeviceTestManager : MonoBehaviour
         }
         else
         {
-            // Update control status
-            Debug.Log("Finished running tests for usage " + CurrentInputFeatureUsage.name);
+            NextUsage();
+        }
+    }
 
-            bool allPassed = true;
-            for (int i = 0; i < m_ControlTestList.Count; i++)
-            {
-                if (!m_ControlTestList[i].AllChecksPassed())
-                    allPassed = false;
-            }
-            m_InputFeatureUsageList[m_CurrentFeatureIndex].HaveAllTestsPassed = allPassed;
-            m_InputFeatureUsageList[m_CurrentFeatureIndex].UIManager.SetStatusTested(allPassed);
+    public void SkipToNextUsage()
+    {
+        Debug.Log("\n----------------------------------\nManually skipping to next usage.\n----------------------------------");
+        NextUsage();
+    }
 
-            if (!ReadyNextTestableFeature(m_CurrentDevice))
-            {
-                // Update device status
-                Debug.Log("Finished testing device " + m_CurrentDevice.name);
+    private void NextUsage()
+    {
+        // Update control status
+        Debug.Log("\n----------------------------------\nFinished running tests for usage " + CurrentInputFeatureUsage.name + "\n----------------------------------");
 
-                bool allControlTestsPassed = true;
-                for (int i = 0; i < m_InputFeatureUsageList.Count; i++)
-                {
-                    if (!m_InputFeatureUsageList[i].HaveAllTestsPassed)
-                        allControlTestsPassed = false;
-                }
-                m_InputDeviceList[m_CurrentDeviceIndex].HaveAllTestsPassed = allControlTestsPassed;
-                m_InputDeviceList[m_CurrentDeviceIndex].UIManager.SetStatusTested(allControlTestsPassed);
+        bool allPassed = true;
+        for (int i = 0; i < m_ControlTestList.Count; i++)
+        {
+            if (!m_ControlTestList[i].AllChecksPassed())
+                allPassed = false;
+        }
+        m_InputFeatureUsageList[m_CurrentFeatureIndex].HaveAllTestsPassed = allPassed;
+        m_InputFeatureUsageList[m_CurrentFeatureIndex].UIManager.SetStatusTested(allPassed);
 
-                if (!ReadyNextTestableDevice())
-                {
-                    MarkTestsAsFinished();
-                }
-            }
+        if (!ReadyNextTestableFeature(m_CurrentDevice))
+        {
+            NextDevice();
+        }
+    }
+
+    public void SkipToNextDevice()
+    {
+        Debug.Log("\n----------------------------------\nManually skipping to next device.\n----------------------------------");
+        NextDevice();
+    }
+
+    private void NextDevice()
+    {
+        // Update device status
+        Debug.Log("\n\n==================================\nFinished testing device " + m_CurrentDevice.name + "\n==================================\n\n");
+
+        bool allControlTestsPassed = true;
+        for (int i = 0; i < m_InputFeatureUsageList.Count; i++)
+        {
+            if (!m_InputFeatureUsageList[i].HaveAllTestsPassed)
+                allControlTestsPassed = false;
+        }
+        m_InputDeviceList[m_CurrentDeviceIndex].HaveAllTestsPassed = allControlTestsPassed;
+        m_InputDeviceList[m_CurrentDeviceIndex].UIManager.SetStatusTested(allControlTestsPassed);
+
+        if (!ReadyNextTestableDevice())
+        {
+            MarkTestsAsFinished();
         }
     }
 
@@ -166,6 +190,9 @@ public class DeviceTestManager : MonoBehaviour
         }
 
         Debug.Log(m_InputDeviceList.Count + " devices");
+
+        for (int i = 0; i < m_InputDeviceList.Count; i++)
+            Debug.Log("Device " + i + ": " + m_InputDeviceList[i].Device.name);
 
         if (tempDeviceList.Count == 0)
             return;
@@ -215,6 +242,8 @@ public class DeviceTestManager : MonoBehaviour
 
             if (NextDeviceIndex != -1)
                 break;
+            else
+                m_InputDeviceList[i].NoTestsToRun = true;
         }
 
         if (NextDeviceIndex == -1)
@@ -316,6 +345,8 @@ public class DeviceTestManager : MonoBehaviour
         m_CurrentControlTest.Setup();
         UpdateTestDescription();
         testsScrollRect.verticalNormalizedPosition = 1f - ((float)(m_CurrentTestIndex) / (float)tests.Count);
+
+        Debug.Log("\nStarting to test device: " + m_CurrentDevice.name + ", usage: " + CurrentInputFeatureUsage.name + ", test: " + m_CurrentControlTest.GetType());
     }
 
     private void UpdateTestDescription() 

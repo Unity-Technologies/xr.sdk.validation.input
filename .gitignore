@@ -8,6 +8,7 @@ Assets/AssetStoreTools*
 Assets/InitTestScene*
 Assets/XR*
 TestResults*.xml
+[Aa]ssets/XR*
 
 # Visual Studio cache directory
 .vs/
