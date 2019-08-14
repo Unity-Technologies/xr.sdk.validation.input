@@ -6,6 +6,7 @@
 Logs/
 Assets/AssetStoreTools*
 Assets/InitTestScene*
+Assets/XR*
 TestResults*.xml
 
 # Visual Studio cache directory

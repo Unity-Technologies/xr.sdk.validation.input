@@ -56,6 +56,8 @@ public class InputSubsystemPanel : MonoBehaviour
 
     void SetStatus(string newText)
     {
+        
+        Debug.Log(newText);
         status.text = newText;
         StartCoroutine(UITextColorPulse(status));
     }
@@ -70,8 +72,21 @@ public class InputSubsystemPanel : MonoBehaviour
     
     public void UpdateCurrentOriginType(TrackingOriginModeFlags targetTrackingOriginMode)
     {
+        Debug.Log((uint)targetTrackingOriginMode);
+        Debug.Log(OnlyOneBitSet((uint)targetTrackingOriginMode));
+        if (!(OnlyOneBitSet((uint)targetTrackingOriginMode)) &&
+            (targetTrackingOriginMode != TrackingOriginModeFlags.Unknown))
+        {
+            if (m_InputSubsystem.TrySetTrackingOriginMode(targetTrackingOriginMode))
+            {
+                SetStatus("Error! Tracking mode set to multiple values!");
+                return;
+            }
+        }
+
         if (!m_InputSubsystem.TrySetTrackingOriginMode(targetTrackingOriginMode) && 
-            ((targetTrackingOriginMode & m_InputSubsystem.GetSupportedTrackingOriginModes()) != 0)) {
+            ((targetTrackingOriginMode & m_InputSubsystem.GetSupportedTrackingOriginModes()) != 0))
+        {
             SetStatus("Error! Tracking mode could not be set!");
             return;
         }
@@ -103,22 +118,32 @@ public class InputSubsystemPanel : MonoBehaviour
 
     public void TrySetOriginTypeDevice()
     {
+        Debug.Log("TrySetOriginTypeDevice");
         UpdateCurrentOriginType(TrackingOriginModeFlags.Device);
     }
 
     public void TrySetOriginTypeFloor()
     {
+        Debug.Log("TrySetOriginTypeFloor");
         UpdateCurrentOriginType(TrackingOriginModeFlags.Floor);
     }
 
     public void TrySetOriginTypeTrackingReference()
     {
+        Debug.Log("TrySetOriginTypeTrackingReference");
         UpdateCurrentOriginType(TrackingOriginModeFlags.TrackingReference);
     }
 
     public void TrySetOriginTypeUnknown()
     {
+        Debug.Log("TrySetOriginTypeUnknown");
         UpdateCurrentOriginType(TrackingOriginModeFlags.Unknown);
+    }
+
+    public void TrySetOriginTypeMultiple()
+    {
+        Debug.Log("TrySetOriginTypeMultiple");
+        UpdateCurrentOriginType(TrackingOriginModeFlags.Device | TrackingOriginModeFlags.Floor);
     }
 
     void OnBoundaryChange(XRInputSubsystem subsystem)
@@ -163,7 +188,6 @@ public class InputSubsystemPanel : MonoBehaviour
         if (!m_InputSubsystem.TryGetBoundaryPoints(BoundaryPoints))
         {
             SetStatus("Error! TryGetBoundaryPoints failed!");
-            Debug.Log("Error! TryGetBoundaryPoints failed!");
             return;
         }
         else
@@ -211,5 +235,13 @@ public class InputSubsystemPanel : MonoBehaviour
             m_BoundaryLineRenderer.positionCount = BoundaryPoints.Count;
             m_BoundaryLineRenderer.SetPositions(BoundaryPoints.ToArray());
         }
+    }
+
+    bool OnlyOneBitSet(uint b)
+    {
+        Debug.Log("OnlyOneBitSet " + (b != 0) + " " + (b & (b-1)));
+
+        return (b != 0) && 
+            (((b & (b-1)) == 0)); // remove lease significant bit with (b & (b-1)).  If non-zero, there is more than one bit set.
     }
 }
