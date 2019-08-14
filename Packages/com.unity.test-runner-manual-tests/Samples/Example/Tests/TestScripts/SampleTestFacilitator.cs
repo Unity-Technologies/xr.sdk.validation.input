@@ -11,7 +11,7 @@ public class SampleTestFacilitator : TestFacilitator
     // Please refer to the readme in this project's root folder for more information
     public override IEnumerator RunTest()
     {
-        instructionCanvas.Instructions.text = "Activate one of the control buttons on this panel by pressing the corresponding keyboard key (surrounded by brackets on each button).  If you are using an XR device, you may activate a button by centering your view on it until it activates.";
+        instructionCanvas.Instructions.text = "For every test scene, follow the instructions on this instruction panel.\n\nActivate buttons by pressing the corresponding keyboard key (surrounded by brackets on each button).  If you are using an XR device, you may activate a button by centering your view on it until it activates.\n\nPress one of the control buttons on this panel to complete this test.";
 
         // This is an example of a manual checkpoint.
         yield return WaitForContinue();

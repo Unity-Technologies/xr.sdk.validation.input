@@ -23,7 +23,10 @@ namespace Unity.TestRunnerManualTests
         void Update()
         {
             if (Input.GetKeyDown(keycode))
+            {
                 m_Button.onClick?.Invoke();
+                m_Button.Select();
+            }
         }
     }
 }
