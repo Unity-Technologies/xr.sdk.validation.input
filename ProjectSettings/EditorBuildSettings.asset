@@ -33,5 +33,5 @@ EditorBuildSettings:
     path: Packages/com.unity.test-runner-manual-tests/Samples/Example/Tests/Scenes/SampleTestScene.unity
     guid: 6f0f1fa5b5afdf44fa235385c53c9f6b
   m_configObjects:
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: ed0a9c226b3f9ea47a2faf2e02b00699,
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: d9ebf5b4f54149b42a6d5872361298c4,
       type: 2}
