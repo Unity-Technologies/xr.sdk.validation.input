@@ -33,6 +33,17 @@ public class InputExperienceTrackingOriginModeTestFacilitator : TestFacilitator
         ShowSubsystems();
         yield return WaitForContinue();
 
+        instructionCanvas.Instructions.text = "In Device TrackingOriginMode, activating Recenter corrects your position and yaw." +
+                    "\nFor each input subsystem that supports Device TrackingOriginMode, do the following:" +
+                    "\n- Set the TrackingOriginMode to Device." +
+                    "\n- Move away from your starting position if possible." +
+                    "\n- Look away from +Z" +
+                    "\n- Recenter" +
+                    "\n- Verify that your position is reset and your \"forward\" direction aligns with +Z." +
+                    "\n\nThen verify that nothing occurs if you try to recenter in other supported TrackingOriginModes";
+
+        yield return WaitForContinue();
+
         // If your test successfully reaches its conclusion, RecordStatus() as passed.
         // The second parameter of RecordStatus allows you to give more information 
         // for a success or failure in the results log.

@@ -20,8 +20,9 @@ public class InputExperienceRecenterTrackingOriginModeTestFacilitator : TestFaci
             yield break;
         }
 
-        instructionCanvas.Instructions.text = "Activating Recenter corrects your position and yaw." +
+        instructionCanvas.Instructions.text = "In Device TrackingOriginMode, activating Recenter corrects your position and yaw." +
                     "\nFor each input subsystem that supports Device TrackingOriginMode, do the following:" +
+                    "\n- Set the TrackingOriginMode to Device." +
                     "\n- Move away from your starting position if possible." +
                     "\n- Look away from +Z" +
                     "\n- Recenter" +

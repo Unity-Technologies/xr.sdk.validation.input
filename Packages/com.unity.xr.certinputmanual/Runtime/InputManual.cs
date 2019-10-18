@@ -64,12 +64,4 @@ public class InputManual
     {
         yield return TestHelperFunctions.RunFacilitatorSceneTest("InputExperience");
     }
-
-    [UnityTest]
-    [Timeout(3600000)] // An hour
-    [Description("This test verifies Recentering functionality.")]
-    public IEnumerator InputExperienceRecenter()
-    {
-        yield return TestHelperFunctions.RunFacilitatorSceneTest("InputExperienceRecenter");
-    }
 }

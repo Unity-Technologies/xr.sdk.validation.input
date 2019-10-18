@@ -43,7 +43,7 @@ public class Bearings : MonoBehaviour
     public void EnableAngularAcceleration(InputDevice device, InputFeatureUsage<Vector3> usage)
     {
         AngularAccelerationVisuals.SetActive(true);
-        AngularAccelerationVisuals.GetComponent<AngularAcceleration>().SetDrivingUsage(device, usage);
+        AngularAccelerationVisuals.GetComponent<Vector3DrivesTextMesh>().SetDrivingUsage(device, usage);
     }
 
     public void DisableAngularAcceleration()
