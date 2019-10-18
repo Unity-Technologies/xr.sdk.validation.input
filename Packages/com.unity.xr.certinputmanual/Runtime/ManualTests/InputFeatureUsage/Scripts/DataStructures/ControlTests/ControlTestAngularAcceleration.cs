@@ -12,7 +12,7 @@ public class ControlTestAngularAcceleration : ControlTest
 
     public ControlTestAngularAcceleration(InputDevice device, InputFeatureUsage usage) : base(device, usage)
     {
-        Description = "A visualizer has been added to the device under test.  Hold the device still and rotate it to match the oscillation of the X, Y, and Z cubes.  Angular Acceleration magnitude for the axis of rotation under test should be around 10, while the other two should remain <10." +
+        Description = "A visualizer has been added to the device under test.  Hold the device still and rotate it to match the oscillation of the X, Y, and Z cubes.  Angular Acceleration magnitude for the axis of rotation under test should be around 30, while the other two should remain <10." +
             "\n\nHold the device still. Angular acceleration should be approximately zero in all dimensions. <10 is sufficient.";
 
         CertReqID = "1.2.3.x";
