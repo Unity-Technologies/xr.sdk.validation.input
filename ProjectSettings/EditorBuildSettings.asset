@@ -15,9 +15,6 @@ EditorBuildSettings:
     path: Packages/com.unity.xr.certinputmanual/Runtime/ManualTests/InputExperience.unity
     guid: 25bc465f0c9dcdf47b8ce52d36303c04
   - enabled: 1
-    path: Packages/com.unity.xr.certinputmanual/Runtime/ManualTests/InputExperienceRecenter.unity
-    guid: 9307a857a2ecd534f97c03aff6f55333
-  - enabled: 1
     path: Packages/com.unity.xr.certinputmanual/Runtime/ManualTests/InputFeatureUsageControls.unity
     guid: 9976ad882d06da04cab373baf372d48e
   - enabled: 1
