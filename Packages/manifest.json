@@ -1,19 +1,19 @@
 {
   "dependencies": {
     "com.unity.ads": "2.0.8",
-    "com.unity.analytics": "3.3.2",
+    "com.unity.analytics": "3.3.5",
     "com.unity.collab-proxy": "1.2.16",
     "com.unity.ext.nunit": "1.0.0",
-    "com.unity.ide.rider": "1.1.0",
+    "com.unity.ide.rider": "1.1.4",
     "com.unity.ide.visualstudio": "1.0.11",
-    "com.unity.ide.vscode": "1.0.7",
+    "com.unity.ide.vscode": "1.1.4",
     "com.unity.purchasing": "2.0.6",
-    "com.unity.test-framework": "1.0.18",
-    "com.unity.timeline": "1.1.0",
+    "com.unity.test-framework": "1.1.11",
+    "com.unity.timeline": "1.2.10",
     "com.unity.xr.certinputauto": "https://github.com/Unity-Technologies/com.unity.xr.certinputauto.git#interface-4",
     "com.unity.xr.legacyinputhelpers": "2.0.6",
-    "com.unity.xr.management": "3.0.1",
-    "com.unity.xr.openvr.standalone": "1.0.5",
+    "com.unity.xr.management": "3.0.5",
+    "com.unity.xr.windowsmr": "2.0.3",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -48,5 +48,11 @@
   },
   "testables": [
     "com.unity.xr.certinputauto"
-  ]
+  ],
+  "lock": {
+    "com.unity.xr.certinputauto": {
+      "revision": "interface-4",
+      "hash": "a8d9465ae14fd875683429cabfa0b5e2f4ddc17b"
+    }
+  }
 }

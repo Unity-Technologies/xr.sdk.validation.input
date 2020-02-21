@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace Unity.TestRunnerManualTests
 {
     public abstract class TestFacilitator : MonoBehaviour
@@ -22,10 +21,35 @@ namespace Unity.TestRunnerManualTests
         protected bool m_WaitForContinue;
         protected string m_StatusDetails = "None";
 
+        // Inheritors should not need to extend this function, so it is private.
+        // If you need your scene to do something in awake, do it in another script. TestFacilitators should
+        // only be used to drive test logic elsewhere in the scene and record results.
+        private void Awake()
+        {
+            TestRunnerIsRunning Indicator = null;
+            Indicator = FindObjectOfType<TestRunnerIsRunning>();
+
+            if (Indicator == null)
+            {
+                Debug.Log("Did not find that TestRunner is driving this test. Starting the test run separately.");
+                StartCoroutine(LaunchRunTestWhenReady());
+            }
+            else
+            {
+                Debug.Log("Found that TestRunner is driving this test. No further action required.");
+            }
+        }
+
+        // Some ssystems need time to initialize.
+        public virtual IEnumerator LaunchRunTestWhenReady()
+        {
+            yield return StartCoroutine(RunTest());
+        }
+
         // This is called by TestRunner scripts.
         // Simply entering playmode won't start this, and we don't want it to start twice via Start() or Awake()
         // Please refer to the readme in this project's root folder for more information
-        public abstract IEnumerator RunTest();
+        protected abstract IEnumerator RunTest();
 
         protected void RecordStatus(OverallTestStatus OverallStatus, string StatusDetails)
         {

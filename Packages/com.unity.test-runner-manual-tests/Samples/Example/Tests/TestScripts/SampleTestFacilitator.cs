@@ -9,7 +9,7 @@ public class SampleTestFacilitator : TestFacilitator
     // This is called by TestRunner scripts.
     // Simply entering playmode won't start this, and we don't want it to start twice via Start() or Awake()
     // Please refer to the readme in this project's root folder for more information
-    public override IEnumerator RunTest()
+    protected override IEnumerator RunTest()
     {
         instructionCanvas.Instructions.text = "For every test scene, follow the instructions on this instruction panel.\n\nActivate buttons by pressing the corresponding keyboard key (surrounded by brackets on each button).  If you are using an XR device, you may activate a button by centering your view on it until it activates.\n\nPress one of the control buttons on this panel to complete this test.";
 

@@ -3,6 +3,8 @@ Automated and Manual tests to verify XR SDK providers.  Both automated and manua
 
 Branches are named based on new input provider interface versions.  There is at most only one new interface version per dot release of unity (for example, 2019.2 and 2019.3 are different dot releases).  New versions of Unity may not contain a new interface version.  When choosing which branch to use, select the latest Unity version that does not exceed the version you wish to test with.
 
+Does your platform need extra time to start up for one reason or another?  Navigate to Packages\com.unity.xr.certinputmanual\Runtime\ManualTests\_TestRunnerEntry\XRBaseTestFacilitator.cs and set InitializeTime to your magic number.
+
 ### Setup
 - Import the target XR SDK package
 - Configure ProjectSettings -> XR -> XR Manager to the target XR SDK Loader
@@ -13,11 +15,12 @@ Branches are named based on new input provider interface versions.  There is at 
 - OR run through the Test Runner command line interface for continuous integration. See bottom of https://docs.unity3d.com/Manual/PlaymodeTestFramework.html
 
 ### Running a Subset of Tests
-- Window -> General -> Test Runner -> Playmode Tests. Select a test or set of tests, right click on them, and Run
+- If your Input Provider runs on PC, you can navigate to Window -> General -> Test Runner -> Playmode Tests. Select a test or set of tests, right click on them, and Run.
 - OR run through the Test Runner command line interface with the option <-testFilter "regexString">.  This allows you to filter by namespaces, class names, or test names.
 
 ### Running a Single Test Scene
-Do not just hit play - this won't work!  Refer to "Running a subset of tests" above.
+- If your Input Provider runs on PC, you can open the scene you want to run and use editor playmode.
+- Otherwise, refer to "Running a Subset of Tests above.
 
 ### Edit a Manual Test Scene
 - Manual test scenes are located in Packages\com.unity.xr.certinputmanual\Runtime\ManualTests.  Each test scene has a corresponding TestFacilitator script located in Packages\com.unity.xr.certinputmanual\Runtime\ManualTests\_TestRunnerEntry which controls the flow of the manual test in that scene.

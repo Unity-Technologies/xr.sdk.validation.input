@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.XR;
 using Unity.TestRunnerManualTests;
 
-public class InputArrayForTrackingTestFacilitator : TestFacilitator
+public class InputArrayForTrackingTestFacilitator : XRBaseTestFacilitator
 {
     List<InputDevice> m_Devices;
     int m_DeviceIndex = 0;
@@ -13,7 +13,7 @@ public class InputArrayForTrackingTestFacilitator : TestFacilitator
     // This is called by TestRunner scripts.
     // Simply entering playmode won't start this, and we don't want it to start twice via Start() or Awake()
     // Please refer to the readme in this project's root folder for more information
-    public override IEnumerator RunTest()
+    protected override IEnumerator RunTest()
     {
         List<InputDevice> m_Devices = new List<InputDevice>();
         InputDevices.GetDevices(m_Devices);

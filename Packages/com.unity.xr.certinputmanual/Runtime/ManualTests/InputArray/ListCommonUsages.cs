@@ -27,8 +27,6 @@ public class ListCommonUsages : MonoBehaviour
             }
         }
 
-        Debug.Log(CommonUsages.pinkyFinger.ToString());
-
         GetComponent<Text>().text = accumulator;
     }
 
