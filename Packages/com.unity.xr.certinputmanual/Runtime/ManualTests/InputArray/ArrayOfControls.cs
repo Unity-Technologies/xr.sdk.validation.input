@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using System;
+using System.Reflection;
 using UnityEngine.XR;
 using UnityEngine.UI;
 
@@ -17,10 +19,13 @@ public class ArrayOfControls : MonoBehaviour
     private Vector3 m_NextPosition;
     private float m_RowSeparation;
 
+    private List<string> m_CommonUsages;
     private List<GameObject> m_Elements;
 
     void Start()
     {
+        BuildCommonUsagesList();
+
         m_ParentRect = GetComponent<RectTransform>();
         m_OriginalRectTransform = m_ParentRect.sizeDelta;
         m_RowSeparation = 1.25f * controlUIPrefab.GetComponent<RectTransform>().rect.height;
@@ -29,6 +34,23 @@ public class ArrayOfControls : MonoBehaviour
         m_Elements = new List<GameObject>();
 
         Clear();
+    }
+
+    void BuildCommonUsagesList()
+    {
+        m_CommonUsages = new List<string>();
+
+        System.Reflection.MemberInfo[] Members = typeof(CommonUsages).GetMembers();
+        Array.Sort(Members, new MemberInfoAlphabetizer());
+        string accumulator = "";
+
+        for (int i = 0; i < Members.Length; i++)
+        {
+            if (Members[i].MemberType == System.Reflection.MemberTypes.Field)
+            {
+                m_CommonUsages.Add(Members[i].Name);
+            }
+        }
     }
 
     void AddElement(InputDevice device, InputFeatureUsage usage)
@@ -43,6 +65,15 @@ public class ArrayOfControls : MonoBehaviour
         m_NextPosition = new Vector3(-m_NextPosition.x, m_NextPosition.x > 0 ? (m_NextPosition.y - m_RowSeparation): m_NextPosition.y, 0);
 
         NewControl.GetComponent<ControlValue>().SetDrivingUsage(device, usage);
+
+        Debug.Log($"Does {usage.name} exist in common usages?");
+        if (!m_CommonUsages.Contains(usage.name))
+        {
+            Text[] textComponents = NewControl.GetComponentsInChildren<Text>();
+
+            for (int i = 0; i < textComponents.Length; i++)
+                textComponents[i].color = Color.red;
+        }
     }
 
     void Clear()
@@ -76,6 +107,15 @@ public class ArrayOfControls : MonoBehaviour
         for (int i = 0; i < usages.Count; i++)
         {
             AddElement(device, usages[i]);
+        }
+    }
+
+    public class MemberInfoAlphabetizer : IComparer<MemberInfo>  
+    {
+        // Call CaseInsensitiveComparer.Compare with the parameters reversed.
+        int IComparer<MemberInfo>.Compare(MemberInfo x, MemberInfo y)  
+        {
+            return x.Name.CompareTo(y.Name);
         }
     }
 }

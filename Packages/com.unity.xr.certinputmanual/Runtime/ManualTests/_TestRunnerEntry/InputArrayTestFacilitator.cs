@@ -25,7 +25,7 @@ public class InputArrayTestFacilitator : XRBaseTestFacilitator
 
         instructionCanvas.Instructions.text = "For each device:" +
             "\n - Verify that every hardware sensor or control corresponds to a feature in the CommonUsages table." +
-            "\n - Verify that if a feature resembles a usage on the XR SDK Input Usage Table, it is implemented as that feature." + 
+            "\n - Verify that if a feature resembles a usage on the XR SDK Input Usage Table, it is implemented as that feature.  Non-common usages are highlighted red for your convenience. Names must match exactly, including case." + 
             "\n - Verify that verify that each hardware sensor or control changes only its expected usage(s). For example, a trigger should drive Trigger and TriggerButton, but not PrimaryButton." +
             "\n\nActivate \"Continue\" to cycle through devices.";
 

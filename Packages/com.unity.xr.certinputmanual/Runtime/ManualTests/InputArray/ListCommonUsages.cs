@@ -4,8 +4,8 @@ using UnityEngine;
 
 using System;
 using System.Reflection;
-using UnityEngine.UI;
 using UnityEngine.XR;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Text))]
 public class ListCommonUsages : MonoBehaviour
