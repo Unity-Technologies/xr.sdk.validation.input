@@ -32,6 +32,10 @@ public class NameManfSerialTestFacilitator : XRBaseTestFacilitator
 
         yield return WaitForContinue();
 
+        instructionCanvas.Instructions.text = "Verify that each device's characteristics list makes sense.  Characteristics allow users to find specific types of devices.  A list of all possible characteristics populate to the far right for your convenience.";
+
+        yield return WaitForContinue();
+
         // If your test successfully reaches its conclusion, RecordStatus() as passed.
         // The second parameter of RecordStatus allows you to give more information 
         // for a success or failure in the results log.

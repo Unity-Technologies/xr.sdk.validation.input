@@ -42,7 +42,6 @@ public class ArrayOfControls : MonoBehaviour
 
         System.Reflection.MemberInfo[] Members = typeof(CommonUsages).GetMembers();
         Array.Sort(Members, new MemberInfoAlphabetizer());
-        string accumulator = "";
 
         for (int i = 0; i < Members.Length; i++)
         {

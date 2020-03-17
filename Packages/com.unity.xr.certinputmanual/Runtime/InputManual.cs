@@ -36,9 +36,9 @@ public class InputManual
     [UnityTest]
     [Timeout(3600000)] // An hour
     [Description("This test verifies Device names, manufacturer, and serial number information.")]
-    public IEnumerator NameManfSerial()
+    public IEnumerator InputMetaData()
     {
-        yield return TestHelperFunctions.RunFacilitatorSceneTest("NameManfSerial");
+        yield return TestHelperFunctions.RunFacilitatorSceneTest("InputMetaData");
     }
 
     [UnityTest]

@@ -8,7 +8,6 @@ using Unity.TestRunnerManualTests;
 public class InputArrayTestFacilitator : XRBaseTestFacilitator
 {
     List<InputDevice> m_Devices;
-    int i = 0;
 
     // This is called by TestRunner scripts.
     // Simply entering playmode won't start this, and we don't want it to start twice via Start() or Awake()
