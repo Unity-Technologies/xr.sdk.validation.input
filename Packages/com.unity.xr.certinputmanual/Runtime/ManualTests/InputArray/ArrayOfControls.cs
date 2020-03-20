@@ -47,7 +47,15 @@ public class ArrayOfControls : MonoBehaviour
         {
             if (Members[i].MemberType == System.Reflection.MemberTypes.Field)
             {
-                m_CommonUsages.Add(Members[i].Name);
+                string memberName = Members[i].Name;
+                string name = "";
+
+                if (memberName.Length == 1)
+                    name = (char.ToUpper(memberName[0])).ToString();
+                else
+                    name = (char.ToUpper(memberName[0]) + memberName.Substring(1));
+
+                m_CommonUsages.Add(name);
             }
         }
     }
