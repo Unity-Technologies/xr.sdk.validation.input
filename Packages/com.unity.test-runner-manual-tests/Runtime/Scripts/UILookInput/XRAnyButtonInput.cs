@@ -10,6 +10,13 @@ namespace Unity.TestRunnerManualTests
         [SerializeField, Tooltip("The keyboard key treated as the mouse button.")]
         KeyCode m_MouseKeyCode = KeyCode.Space;
 
+
+        /// <summary>
+        /// You can use this to treat any button press as a mouse click.
+        /// Be wary of using this with capacitive touch!
+        /// </summary>
+        bool clickMouseOnAnyButton = false;
+
         public override bool mousePresent
         {
             get { return true; }
@@ -49,7 +56,8 @@ namespace Unity.TestRunnerManualTests
     //        }
             return
                 Input.GetKey(m_MouseKeyCode) ||
-                Input.GetKey(KeyCode.JoystickButton0) ||
+                (clickMouseOnAnyButton &&
+                (Input.GetKey(KeyCode.JoystickButton0) ||
                 Input.GetKey(KeyCode.JoystickButton1) ||
                 Input.GetKey(KeyCode.JoystickButton2) ||
                 Input.GetKey(KeyCode.JoystickButton3) ||
@@ -68,7 +76,7 @@ namespace Unity.TestRunnerManualTests
                 Input.GetKey(KeyCode.JoystickButton16) ||
                 Input.GetKey(KeyCode.JoystickButton17) ||
                 Input.GetKey(KeyCode.JoystickButton18) ||
-                Input.GetKey(KeyCode.JoystickButton19)
+                Input.GetKey(KeyCode.JoystickButton19)))
             ;
         }
 
@@ -95,7 +103,8 @@ namespace Unity.TestRunnerManualTests
     //        }
             return
                 Input.GetKeyDown(m_MouseKeyCode) ||
-                Input.GetKeyDown(KeyCode.JoystickButton0) ||
+                (clickMouseOnAnyButton &&
+                (Input.GetKeyDown(KeyCode.JoystickButton0) ||
                 Input.GetKeyDown(KeyCode.JoystickButton1) ||
                 Input.GetKeyDown(KeyCode.JoystickButton2) ||
                 Input.GetKeyDown(KeyCode.JoystickButton3) ||
@@ -114,7 +123,7 @@ namespace Unity.TestRunnerManualTests
                 Input.GetKeyDown(KeyCode.JoystickButton16) ||
                 Input.GetKeyDown(KeyCode.JoystickButton17) ||
                 Input.GetKeyDown(KeyCode.JoystickButton18) ||
-                Input.GetKeyDown(KeyCode.JoystickButton19)
+                Input.GetKeyDown(KeyCode.JoystickButton19)))
             ;
         }
 
@@ -141,7 +150,8 @@ namespace Unity.TestRunnerManualTests
     //        }
             return
                 Input.GetKeyUp(m_MouseKeyCode) ||
-                Input.GetKeyUp(KeyCode.JoystickButton0) ||
+                (clickMouseOnAnyButton &&
+                (Input.GetKeyUp(KeyCode.JoystickButton0) ||
                 Input.GetKeyUp(KeyCode.JoystickButton1) ||
                 Input.GetKeyUp(KeyCode.JoystickButton2) ||
                 Input.GetKeyUp(KeyCode.JoystickButton3) ||
@@ -160,7 +170,7 @@ namespace Unity.TestRunnerManualTests
                 Input.GetKeyUp(KeyCode.JoystickButton16) ||
                 Input.GetKeyUp(KeyCode.JoystickButton17) ||
                 Input.GetKeyUp(KeyCode.JoystickButton18) ||
-                Input.GetKeyUp(KeyCode.JoystickButton19)
+                Input.GetKeyUp(KeyCode.JoystickButton19)))
             ;
         }
 
