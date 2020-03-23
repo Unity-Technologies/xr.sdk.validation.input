@@ -56,6 +56,14 @@ public class InputManual
     {
         yield return TestHelperFunctions.RunFacilitatorSceneTest("InputArrayForTracking");
     }
+
+    [UnityTest]
+    [Timeout(3600000)] // An hour
+    [Description("This test verifies tracking information that requires viewing all features at once.")]
+    public IEnumerator InputConnectDisconnectEvents()
+    {
+        yield return TestHelperFunctions.RunFacilitatorSceneTest("InputConnectDisconnectEvents");
+    }
         
     [UnityTest]
     [Timeout(3600000)] // An hour

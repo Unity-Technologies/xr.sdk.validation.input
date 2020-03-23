@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Packages/com.unity.xr.certinputmanual/Runtime/ManualTests/InputArrayForTracking.unity
     guid: 4095673245440a146bd13705b2c10beb
   - enabled: 1
+    path: Packages/com.unity.xr.certinputmanual/Runtime/ManualTests/InputConnectDisconnectEvents.unity
+    guid: af52a036019fd5b4688e2274010d2b6f
+  - enabled: 1
     path: Packages/com.unity.xr.certinputmanual/Runtime/ManualTests/InputExperience.unity
     guid: 25bc465f0c9dcdf47b8ce52d36303c04
   - enabled: 1
