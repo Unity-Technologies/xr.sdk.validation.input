@@ -15,7 +15,7 @@ namespace Unity.TestRunnerManualTests
         /// You can use this to treat any button press as a mouse click.
         /// Be wary of using this with capacitive touch!
         /// </summary>
-        bool clickMouseOnAnyButton = false;
+        public bool clickMouseOnAnyButton = false;
 
         public override bool mousePresent
         {
