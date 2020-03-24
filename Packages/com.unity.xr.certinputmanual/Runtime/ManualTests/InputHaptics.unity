@@ -900,6 +900,7 @@ GameObject:
   - component: {fileID: 236399444}
   - component: {fileID: 236399443}
   - component: {fileID: 236399442}
+  - component: {fileID: 236399446}
   m_Layer: 5
   m_Name: StopHapticsButton (2)
   m_TagString: Untagged
@@ -1018,6 +1019,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 236399440}
   m_CullTransparentMesh: 0
+--- !u!114 &236399446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236399440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84cc45d376f3a594f9952f9d3611d93e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &246610569
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,6 +1121,7 @@ GameObject:
   - component: {fileID: 254859910}
   - component: {fileID: 254859909}
   - component: {fileID: 254859912}
+  - component: {fileID: 254859913}
   m_Layer: 5
   m_Name: Ramp Up
   m_TagString: Untagged
@@ -1224,6 +1238,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6238be1ae5a46694b94c2f631369100c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &254859913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254859907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84cc45d376f3a594f9952f9d3611d93e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &281170313
@@ -1462,6 +1488,7 @@ GameObject:
   - component: {fileID: 310269643}
   - component: {fileID: 310269642}
   - component: {fileID: 310269641}
+  - component: {fileID: 310269645}
   m_Layer: 5
   m_Name: Ramp Down
   m_TagString: Untagged
@@ -1580,6 +1607,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 310269639}
   m_CullTransparentMesh: 0
+--- !u!114 &310269645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310269639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84cc45d376f3a594f9952f9d3611d93e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &312202830
 GameObject:
   m_ObjectHideFlags: 0
@@ -1912,6 +1951,7 @@ GameObject:
   - component: {fileID: 357685833}
   - component: {fileID: 357685832}
   - component: {fileID: 357685831}
+  - component: {fileID: 357685835}
   m_Layer: 5
   m_Name: StopHapticsButton
   m_TagString: Untagged
@@ -2030,6 +2070,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357685829}
   m_CullTransparentMesh: 0
+--- !u!114 &357685835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357685829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84cc45d376f3a594f9952f9d3611d93e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &372840003
 GameObject:
   m_ObjectHideFlags: 0
@@ -5201,6 +5253,7 @@ GameObject:
   - component: {fileID: 1124282658}
   - component: {fileID: 1124282657}
   - component: {fileID: 1124282656}
+  - component: {fileID: 1124282660}
   m_Layer: 5
   m_Name: StopHapticsButton (1)
   m_TagString: Untagged
@@ -5319,6 +5372,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1124282654}
   m_CullTransparentMesh: 0
+--- !u!114 &1124282660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124282654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84cc45d376f3a594f9952f9d3611d93e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1132684282
 GameObject:
   m_ObjectHideFlags: 0
@@ -5711,6 +5776,7 @@ GameObject:
   - component: {fileID: 1256530317}
   - component: {fileID: 1256530316}
   - component: {fileID: 1256530319}
+  - component: {fileID: 1256530320}
   m_Layer: 5
   m_Name: BeginTest
   m_TagString: Untagged
@@ -5832,6 +5898,18 @@ MonoBehaviour:
   amplitudeSlider: {fileID: 632779645}
   durationSlider: {fileID: 1815376198}
   frequencySlider: {fileID: 0}
+--- !u!114 &1256530320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256530314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84cc45d376f3a594f9952f9d3611d93e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1304052613
 GameObject:
   m_ObjectHideFlags: 0
@@ -5999,6 +6077,7 @@ GameObject:
   - component: {fileID: 1311503085}
   - component: {fileID: 1311503084}
   - component: {fileID: 1311503083}
+  - component: {fileID: 1311503087}
   m_Layer: 5
   m_Name: StopHapticsButton (4)
   m_TagString: Untagged
@@ -6117,6 +6196,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311503081}
   m_CullTransparentMesh: 0
+--- !u!114 &1311503087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311503081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84cc45d376f3a594f9952f9d3611d93e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1323247637
 GameObject:
   m_ObjectHideFlags: 0
@@ -6605,6 +6696,7 @@ GameObject:
   - component: {fileID: 1510592801}
   - component: {fileID: 1510592800}
   - component: {fileID: 1510592799}
+  - component: {fileID: 1510592803}
   m_Layer: 5
   m_Name: One Second Clip
   m_TagString: Untagged
@@ -6723,6 +6815,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1510592797}
   m_CullTransparentMesh: 0
+--- !u!114 &1510592803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510592797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84cc45d376f3a594f9952f9d3611d93e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1526802868
 GameObject:
   m_ObjectHideFlags: 0
@@ -7842,6 +7946,7 @@ GameObject:
   - component: {fileID: 1756650834}
   - component: {fileID: 1756650833}
   - component: {fileID: 1756650832}
+  - component: {fileID: 1756650836}
   m_Layer: 5
   m_Name: StopHapticsButton (3)
   m_TagString: Untagged
@@ -7960,6 +8065,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1756650830}
   m_CullTransparentMesh: 0
+--- !u!114 &1756650836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756650830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84cc45d376f3a594f9952f9d3611d93e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1815376194
 GameObject:
   m_ObjectHideFlags: 0
@@ -8092,6 +8209,7 @@ GameObject:
   - component: {fileID: 1866883104}
   - component: {fileID: 1866883103}
   - component: {fileID: 1866883106}
+  - component: {fileID: 1866883107}
   m_Layer: 5
   m_Name: BeginTest
   m_TagString: Untagged
@@ -8213,6 +8331,18 @@ MonoBehaviour:
   amplitudeSlider: {fileID: 0}
   durationSlider: {fileID: 1672197054}
   frequencySlider: {fileID: 0}
+--- !u!114 &1866883107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866883101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84cc45d376f3a594f9952f9d3611d93e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1876788286
 GameObject:
   m_ObjectHideFlags: 0
@@ -8308,6 +8438,7 @@ GameObject:
   - component: {fileID: 1877231976}
   - component: {fileID: 1877231975}
   - component: {fileID: 1877231978}
+  - component: {fileID: 1877231979}
   m_Layer: 5
   m_Name: BeginTest
   m_TagString: Untagged
@@ -8429,6 +8560,18 @@ MonoBehaviour:
   amplitudeSlider: {fileID: 1034662569}
   durationSlider: {fileID: 0}
   frequencySlider: {fileID: 0}
+--- !u!114 &1877231979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877231973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84cc45d376f3a594f9952f9d3611d93e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1924816565
 GameObject:
   m_ObjectHideFlags: 0
@@ -8936,6 +9079,7 @@ GameObject:
   - component: {fileID: 2042820084}
   - component: {fileID: 2042820083}
   - component: {fileID: 2042820082}
+  - component: {fileID: 2042820086}
   m_Layer: 5
   m_Name: StopHapticsButton
   m_TagString: Untagged
@@ -9054,6 +9198,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2042820080}
   m_CullTransparentMesh: 0
+--- !u!114 &2042820086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042820080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84cc45d376f3a594f9952f9d3611d93e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2047256306
 GameObject:
   m_ObjectHideFlags: 0
@@ -9448,6 +9604,7 @@ GameObject:
   - component: {fileID: 2129957814}
   - component: {fileID: 2129957813}
   - component: {fileID: 2129957812}
+  - component: {fileID: 2129957816}
   m_Layer: 5
   m_Name: 50 percent duty cycle
   m_TagString: Untagged
@@ -9566,6 +9723,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2129957810}
   m_CullTransparentMesh: 0
+--- !u!114 &2129957816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129957810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84cc45d376f3a594f9952f9d3611d93e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2135959091
 GameObject:
   m_ObjectHideFlags: 0
