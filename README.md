@@ -30,7 +30,7 @@ Manual test scenes are located in `Packages\com.unity.xr.certinputmanual\Runtime
 ## Creating a New Manual Test Scene
 - Navigate to Packages\com.unity.xr.certinputmanual\Runtime\ManualTests
 - Copy an existing scene and rename it.
-- Create a new TestFacilitator in Packages\com.unity.xr.certinputmanual\Runtime\ManualTests\_TestRunnerEntry.  This can be a copy of an existing TestFacilitator renamed to reflect your new test name.  The TestFacilitator script controls the flow of your test and ultimately reports status back to the Test Runner.
+- Create a new TestFacilitator in Packages\com.unity.xr.certinputmanual\Runtime\ManualTests\\\_TestRunnerEntry.  This can be a copy of an existing TestFacilitator renamed to reflect your new test name.  The TestFacilitator script controls the flow of your test and ultimately reports status back to the Test Runner.
 - In your new scene replace the existing TestFacilitator script, located on the "TestFacilitator" GameObject, with your new TestFacilitator script.  Link the InstructionCanvas to this new Component.
 - Edit the new scene and TestFacilitator script to match your desired functionality.  Packages\com.unity.test-runner-manual-tests\Samples\Example\Tests\TestScripts contains examples of manual checkpoints and correct status reporting.
 - Add your new scene to the build settings scene list
