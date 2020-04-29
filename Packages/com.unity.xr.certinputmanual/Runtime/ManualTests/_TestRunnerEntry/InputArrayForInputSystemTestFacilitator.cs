@@ -33,9 +33,11 @@ public class InputArrayForInputSystemTestFacilitator : XRBaseTestFacilitator
         }
 
         instructionCanvas.Instructions.text = "For each device:" +
-            "\n - Verify that every hardware sensor or control corresponds to a feature in the CommonUsages table." +
-            "\n - Verify that if a feature resembles a usage on the XR SDK Input Usage Table, it is implemented as that feature.  Non-common usages are highlighted red for your convenience. Names must match exactly, including case." + 
-            "\n - Verify that verify that each hardware sensor or control changes only its expected usage(s). For example, a trigger should drive Trigger and TriggerButton, but not PrimaryButton." +
+            "\n - If you encounter a generic device such as a mouse or keyboard, continue to the next device." + 
+            "\n - The first panel to the right lists the InputSystem device controls. If a device with a matching name was found with the XR InputDevice API, verify that the two control lists match. If no matching device was found, or the control lists do not match, follow up to figure out why." + 
+            "\n - Verify that every hardware sensor or control corresponds to a listed control." + 
+            "\n - Verify that each hardware sensor or control changes only its expected usage(s). For example, a trigger should drive Trigger and TriggerButton, but not PrimaryButton." +
+            "\n - Verify that the metadata for each control makes sense." +
             "\n\nActivate \"Continue\" to cycle through devices.";
 
         for (int i = 0; i < ISDevices.Count; i++)
@@ -45,7 +47,7 @@ public class InputArrayForInputSystemTestFacilitator : XRBaseTestFacilitator
             int matchingXRIndex = -1;
             for (int j = 0; j < XRDevices.Count; j++)
             {
-                if (XRDevices[j].name == ISDevices[i].name)
+                if (XRDevices[j].name == ISDevices[i].displayName)
                 {
                     matchingXRIndex = j;
                     break;
@@ -71,6 +73,6 @@ public class InputArrayForInputSystemTestFacilitator : XRBaseTestFacilitator
     {
         BroadcastMessage("ClearArrayOfControls");
         BroadcastMessage("FillArrayOfControls", XRDevice);
-        BroadcastMessage("FillArrayOfControls", ISDevice);
+        BroadcastMessage("FillArrayOfControlsIS", ISDevice);
     }
 }
