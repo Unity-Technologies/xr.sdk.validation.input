@@ -36,5 +36,5 @@ EditorBuildSettings:
     path: Packages/com.unity.xr.certinputmanual/Runtime/ManualTests/InputArrayForInputSystem.unity
     guid: 2134228b8f90df14c8f96b3f80a67ce6
   m_configObjects:
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 25bbd7afcf28949419433d15de6c031a,
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: b7e2504f3f3faba46bfdf1e60ef9f277,
       type: 2}

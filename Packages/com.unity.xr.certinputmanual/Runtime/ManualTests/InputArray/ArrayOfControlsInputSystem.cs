@@ -4,7 +4,8 @@ using UnityEngine;
 
 using System;
 using System.Reflection;
-using UnityEngine.XR;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
 using UnityEngine.UI;
 
 [RequireComponent (typeof(RectTransform))]
@@ -33,7 +34,7 @@ public class ArrayOfControlsInputSystem : MonoBehaviour
         Clear();
     }
 
-    void AddElement(InputDevice device, InputFeatureUsage usage)
+    void AddElement(InputDevice device, InputControl control)
     {
         if (Mathf.Abs(m_NextPosition.y) > m_ParentRect.rect.height)
             m_ParentRect.sizeDelta = new Vector2(m_ParentRect.sizeDelta.x, m_ParentRect.sizeDelta.y + m_RowSeparation);
@@ -42,9 +43,9 @@ public class ArrayOfControlsInputSystem : MonoBehaviour
         NewControl.transform.localPosition = m_NextPosition;
         NewControl.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 1f);
         NewControl.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 1f);
-        m_NextPosition = new Vector3(-m_NextPosition.x, m_NextPosition.x > 0 ? (m_NextPosition.y - m_RowSeparation): m_NextPosition.y, 0);
+        m_NextPosition = new Vector3(m_NextPosition.x, m_NextPosition.y - m_RowSeparation, 0);
 
-        NewControl.GetComponent<ControlValue>().SetDrivingUsage(device, usage);
+        NewControl.GetComponent<ControlValueForInputSystem>().SetDrivingControl(device, control);
     }
 
     void Clear()
@@ -60,7 +61,7 @@ public class ArrayOfControlsInputSystem : MonoBehaviour
 
     void ResetElementInsertPosition()
     {
-        m_NextPosition = new Vector3(-m_ParentRect.rect.width/4, -0.625f * m_RowSeparation, 0);
+        m_NextPosition = new Vector3(0, -0.625f * m_RowSeparation, 0);
     }
 
     public void ClearArrayOfControls()
@@ -68,16 +69,15 @@ public class ArrayOfControlsInputSystem : MonoBehaviour
         Clear();
     }
 
-    public void FillArrayOfControls(InputDevice device)
+    public void FillArrayOfControlsIS(InputDevice device)
     {
         nameText.text = device.name;
 
-        List<InputFeatureUsage> usages = new List<InputFeatureUsage>();
-        device.TryGetFeatureUsages(usages);
+        ReadOnlyArray<InputControl> controls = device.children;
 
-        for (int i = 0; i < usages.Count; i++)
+        for (int i = 0; i < controls.Count; i++)
         {
-            AddElement(device, usages[i]);
+            AddElement(device, controls[i]);
         }
     }
 
