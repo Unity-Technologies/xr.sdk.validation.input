@@ -4,7 +4,8 @@
         "Unity.ugui",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Unity.TestRunnerManualTests"
+        "Unity.TestRunnerManualTests",
+        "Unity.InputSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -17,5 +18,6 @@
     "defineConstraints": [
         "UNITY_INCLUDE_TESTS"
     ],
-    "versionDefines": []
+    "versionDefines": [],
+    "noEngineReferences": false
 }

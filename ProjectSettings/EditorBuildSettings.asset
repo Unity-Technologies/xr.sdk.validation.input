@@ -32,6 +32,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Packages/com.unity.test-runner-manual-tests/Samples/Example/Tests/Scenes/SampleTestScene.unity
     guid: 6f0f1fa5b5afdf44fa235385c53c9f6b
+  - enabled: 1
+    path: Packages/com.unity.xr.certinputmanual/Runtime/ManualTests/InputArrayForInputSystem.unity
+    guid: 2134228b8f90df14c8f96b3f80a67ce6
   m_configObjects:
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 25bbd7afcf28949419433d15de6c031a,
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: b7e2504f3f3faba46bfdf1e60ef9f277,
       type: 2}

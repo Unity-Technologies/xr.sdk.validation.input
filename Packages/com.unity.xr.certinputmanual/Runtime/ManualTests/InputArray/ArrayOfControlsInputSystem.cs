@@ -4,11 +4,12 @@ using UnityEngine;
 
 using System;
 using System.Reflection;
-using UnityEngine.XR;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
 using UnityEngine.UI;
 
 [RequireComponent (typeof(RectTransform))]
-public class ArrayOfControls : MonoBehaviour
+public class ArrayOfControlsInputSystem : MonoBehaviour
 {
     public GameObject controlUIPrefab;
     public Text nameText;
@@ -19,13 +20,10 @@ public class ArrayOfControls : MonoBehaviour
     private Vector3 m_NextPosition;
     private float m_RowSeparation;
 
-    private List<string> m_CommonUsages;
     private List<GameObject> m_Elements;
 
     void Start()
     {
-        BuildCommonUsagesList();
-
         m_ParentRect = GetComponent<RectTransform>();
         m_OriginalRectTransform = m_ParentRect.sizeDelta;
         m_RowSeparation = 1.25f * controlUIPrefab.GetComponent<RectTransform>().rect.height;
@@ -36,31 +34,7 @@ public class ArrayOfControls : MonoBehaviour
         Clear();
     }
 
-    void BuildCommonUsagesList()
-    {
-        m_CommonUsages = new List<string>();
-
-        System.Reflection.MemberInfo[] Members = typeof(CommonUsages).GetMembers();
-        Array.Sort(Members, new MemberInfoAlphabetizer());
-
-        for (int i = 0; i < Members.Length; i++)
-        {
-            if (Members[i].MemberType == System.Reflection.MemberTypes.Field)
-            {
-                string memberName = Members[i].Name;
-                string name = "";
-
-                if (memberName.Length == 1)
-                    name = (char.ToUpper(memberName[0])).ToString();
-                else
-                    name = (char.ToUpper(memberName[0]) + memberName.Substring(1));
-
-                m_CommonUsages.Add(name);
-            }
-        }
-    }
-
-    void AddElement(InputDevice device, InputFeatureUsage usage)
+    void AddElement(InputDevice device, InputControl control)
     {
         if (Mathf.Abs(m_NextPosition.y) > m_ParentRect.rect.height)
             m_ParentRect.sizeDelta = new Vector2(m_ParentRect.sizeDelta.x, m_ParentRect.sizeDelta.y + m_RowSeparation);
@@ -69,18 +43,9 @@ public class ArrayOfControls : MonoBehaviour
         NewControl.transform.localPosition = m_NextPosition;
         NewControl.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 1f);
         NewControl.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 1f);
-        m_NextPosition = new Vector3(-m_NextPosition.x, m_NextPosition.x > 0 ? (m_NextPosition.y - m_RowSeparation): m_NextPosition.y, 0);
+        m_NextPosition = new Vector3(m_NextPosition.x, m_NextPosition.y - m_RowSeparation, 0);
 
-        NewControl.GetComponent<ControlValue>().SetDrivingUsage(device, usage);
-
-        // Is this control a common usage?  If not, highlight red
-        if (!m_CommonUsages.Contains(usage.name))
-        {
-            Text[] textComponents = NewControl.GetComponentsInChildren<Text>();
-
-            for (int i = 0; i < textComponents.Length; i++)
-                textComponents[i].color = Color.red;
-        }
+        NewControl.GetComponent<ControlValueForInputSystem>().SetDrivingControl(device, control);
     }
 
     void Clear()
@@ -96,7 +61,7 @@ public class ArrayOfControls : MonoBehaviour
 
     void ResetElementInsertPosition()
     {
-        m_NextPosition = new Vector3(-m_ParentRect.rect.width/4, -0.625f * m_RowSeparation, 0);
+        m_NextPosition = new Vector3(0, -0.625f * m_RowSeparation, 0);
     }
 
     public void ClearArrayOfControls()
@@ -104,16 +69,15 @@ public class ArrayOfControls : MonoBehaviour
         Clear();
     }
 
-    public void FillArrayOfControls(InputDevice device)
+    public void FillArrayOfControlsIS(InputDevice device)
     {
         nameText.text = device.name;
 
-        List<InputFeatureUsage> usages = new List<InputFeatureUsage>();
-        device.TryGetFeatureUsages(usages);
+        ReadOnlyArray<InputControl> controls = device.children;
 
-        for (int i = 0; i < usages.Count; i++)
+        for (int i = 0; i < controls.Count; i++)
         {
-            AddElement(device, usages[i]);
+            AddElement(device, controls[i]);
         }
     }
 
