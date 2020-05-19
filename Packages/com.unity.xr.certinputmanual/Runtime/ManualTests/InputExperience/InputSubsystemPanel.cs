@@ -134,6 +134,12 @@ public class InputSubsystemPanel : MonoBehaviour
         UpdateCurrentOriginType(TrackingOriginModeFlags.TrackingReference);
     }
 
+    public void TrySetOriginTypeUnbounded()
+    {
+        Debug.Log("TrySetOriginTypeTrackingReference");
+        UpdateCurrentOriginType(TrackingOriginModeFlags.Unbounded);
+    }
+
     public void TrySetOriginTypeUnknown()
     {
         Debug.Log("TrySetOriginTypeUnknown");
