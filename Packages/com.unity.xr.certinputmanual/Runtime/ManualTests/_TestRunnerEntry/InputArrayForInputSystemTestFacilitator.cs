@@ -34,7 +34,6 @@ public class InputArrayForInputSystemTestFacilitator : XRBaseTestFacilitator
 
         instructionCanvas.Instructions.text = "For each device:" +
             "\n - If you encounter a generic device such as a mouse or keyboard, continue to the next device." + 
-            "\n - The first panel to the right lists the InputSystem device controls. If a device with a matching name was found with the XR InputDevice API, verify that the two control lists match. If no matching device was found, or the control lists do not match, follow up to figure out why." + 
             "\n - Verify that every hardware sensor or control corresponds to a listed control." + 
             "\n - Verify that each hardware sensor or control changes only its expected usage(s). For example, a trigger should drive Trigger and TriggerButton, but not PrimaryButton." +
             "\n - Verify that the metadata for each control makes sense." +
