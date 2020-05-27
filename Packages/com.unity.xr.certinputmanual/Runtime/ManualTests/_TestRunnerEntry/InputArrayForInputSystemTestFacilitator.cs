@@ -44,20 +44,7 @@ public class InputArrayForInputSystemTestFacilitator : XRBaseTestFacilitator
         {
             Debug.Log("Testing InputSystem device [" + i + "] " + ISDevices[i].name);
 
-            int matchingXRIndex = -1;
-            for (int j = 0; j < XRDevices.Count; j++)
-            {
-                if (XRDevices[j].name == ISDevices[i].displayName)
-                {
-                    matchingXRIndex = j;
-                    break;
-                }
-            }
-
-            if (matchingXRIndex == -1)
-                DisplayNextDevice(ISDevices[i], new UnityEngine.XR.InputDevice());
-            else
-                DisplayNextDevice(ISDevices[i], XRDevices[matchingXRIndex]);
+            DisplayNextDevice(ISDevices[i]);
 
             yield return WaitForContinue();
         }
@@ -69,10 +56,9 @@ public class InputArrayForInputSystemTestFacilitator : XRBaseTestFacilitator
             RecordStatus(OverallTestStatus.Passed, "All Input Array tests have been manually approved");
     }
 
-    void DisplayNextDevice(UnityEngine.InputSystem.InputDevice ISDevice, UnityEngine.XR.InputDevice XRDevice)
+    void DisplayNextDevice(UnityEngine.InputSystem.InputDevice ISDevice)
     {
         BroadcastMessage("ClearArrayOfControls");
-        BroadcastMessage("FillArrayOfControls", XRDevice);
         BroadcastMessage("FillArrayOfControlsIS", ISDevice);
     }
 }
