@@ -8,6 +8,8 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Text))]
 public class ListDevices : MonoBehaviour
 {
+    public bool nameOnly = false;
+
     Text text;
 
     void Awake()
@@ -48,7 +50,10 @@ public class ListDevices : MonoBehaviour
             if (i != 0)
                 text.text += "\n";
 
-            text.text += "[" + (i + 1) + "] Name: " + devices[i].name + ", Manufacturer: " + devices[i].manufacturer + ", Serial Number: " + devices[i].serialNumber;
+            if (nameOnly)
+                text.text += "[" + (i + 1) + "] Name: " + devices[i].name;
+            else
+                text.text += "[" + (i + 1) + "] Name: " + devices[i].name + ", Manufacturer: " + devices[i].manufacturer + ", Serial Number: " + devices[i].serialNumber;
         }
     }
 }
