@@ -119,6 +119,7 @@ public class DeviceTestManager : MonoBehaviour
     public void SkipToNextUsage()
     {
         Debug.Log("\n----------------------------------\nManually skipping to next usage.\n----------------------------------");
+        m_CurrentControlTest.Teardown();
         NextUsage();
     }
 
