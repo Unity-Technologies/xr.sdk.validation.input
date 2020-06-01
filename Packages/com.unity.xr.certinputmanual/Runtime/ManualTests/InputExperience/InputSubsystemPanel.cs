@@ -82,6 +82,11 @@ public class InputSubsystemPanel : MonoBehaviour
                 SetStatus("Error! Tracking mode set to multiple values!");
                 return;
             }
+            else
+            {
+                SetStatus("Success! Tracking mode NOT set to multiple values!");
+                return;
+            }
         }
 
         if (!m_InputSubsystem.TrySetTrackingOriginMode(targetTrackingOriginMode) && 
