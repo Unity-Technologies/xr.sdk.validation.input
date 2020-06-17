@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.VR;
 
 
 namespace Unity.TestRunnerManualTests
