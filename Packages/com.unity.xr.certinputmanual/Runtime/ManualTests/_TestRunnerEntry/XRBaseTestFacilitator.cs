@@ -14,6 +14,11 @@ public abstract class XRBaseTestFacilitator : TestFacilitator
     // Start when any Input Subsystem has a device.
     public override IEnumerator LaunchRunTestWhenReady()
     {
+        float InitializeTime = 0f;
+
+        if (PlayerPrefs.HasKey(ManualCertTestConfig.k_DelaySecondsKey))
+            InitializeTime = PlayerPrefs.GetFloat(ManualCertTestConfig.k_DelaySecondsKey);
+
         Debug.Log("Waiting to RunTest...");
 
         // Wait for a display subsystem.  Right now all known InputProviders are ready by the time its 
@@ -52,6 +57,7 @@ public abstract class XRBaseTestFacilitator : TestFacilitator
         } while (devices.Count == 0);
 
         yield return null;
+        Debug.Log($"Waiting {InitializeTime} seconds for runtime to warm up...");
         yield return new WaitForSeconds(InitializeTime);
         Debug.Log("Starting RunTest");
         yield return base.LaunchRunTestWhenReady();
