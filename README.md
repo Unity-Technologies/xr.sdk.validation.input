@@ -3,12 +3,11 @@ The purpose of this test suite is to provide automated and manual tests to verif
 
 Branches are named based on new input provider interface versions.  There is at most only one new interface version per dot release of unity (for example, 2019.2 and 2019.3 are different dot releases).  New versions of Unity may or may not contain a changed interface version.  Select the branch named for the most recent Unity version that does not exceed the version you wish to test.
 
-Does your platform need extra time to start up for one reason or another?  Navigate to Packages\com.unity.xr.certinputmanual\Runtime\ManualTests\\\_TestRunnerEntry\XRBaseTestFacilitator.cs and set InitializeTime to your magic number.
-
 ## Setup
 - Import the target XR SDK package
 - Configure ProjectSettings -> XR -> XR Manager to the target XR SDK Loader
 - Adjust project build settings to target the appropriate build platform.
+- If your platform needs extra time to warm up before it returns valid information, you can set a timer to compensate in Tools > Manual Certification Configuration
 
 ## Running Tests
 Tests are run through the Unity Test Runner.  This enables the collection of pass/fail status and debug logs that can help point implementers toward items to fix.
