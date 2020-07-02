@@ -1,0 +1,17 @@
+{
+    "name": "Unity.XR.CertInputManual.Editor",
+    "references": [
+        "GUID:5501b7184066f4c4ab4e371c03bf924e"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

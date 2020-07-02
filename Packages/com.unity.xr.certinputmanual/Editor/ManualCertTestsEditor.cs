@@ -21,12 +21,16 @@ public class ManualCertTestsEditor : EditorWindow
     /// </summary>
     void OnGUI()
     {
-        if (m_DelaySeconds < 0 && PlayerPrefs.HasKey(ManualCertTestConfig.k_DelaySecondsKey))
-            m_DelaySeconds = PlayerPrefs.GetFloat(ManualCertTestConfig.k_DelaySecondsKey);
-        else
+        // Init
+        if (m_DelaySeconds < 0)
         {
-            m_DelaySeconds = 0;
-            PlayerPrefs.SetFloat(ManualCertTestConfig.k_DelaySecondsKey, m_DelaySeconds);
+            if (PlayerPrefs.HasKey(ManualCertTestConfig.k_DelaySecondsKey))
+                m_DelaySeconds = PlayerPrefs.GetFloat(ManualCertTestConfig.k_DelaySecondsKey);
+            else
+            {
+                m_DelaySeconds = 0;
+                PlayerPrefs.SetFloat(ManualCertTestConfig.k_DelaySecondsKey, m_DelaySeconds);
+            }
         }
 
         float NewDelaySeconds = EditorGUILayout.DelayedFloatField(
