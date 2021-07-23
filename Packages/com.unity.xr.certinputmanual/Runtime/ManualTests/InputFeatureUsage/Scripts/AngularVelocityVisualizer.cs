@@ -28,6 +28,8 @@ public class AngularVelocityVisualizer : MonoBehaviour
     {
         Vector3 AngularVelocity;
         if (m_Device.TryGetFeatureValue(m_AngularVelocityUsage, out AngularVelocity))
-            m_Transform.Rotate(AngularVelocity, Space.World);
+            // Convert from radians to degrees for the Rotate function.
+            // Scale by deltaTime
+            m_Transform.Rotate(AngularVelocity * (180f/Mathf.PI) * Time.deltaTime, Space.World);
     }
 }
